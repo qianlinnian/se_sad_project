@@ -1,22 +1,22 @@
 # 系统设计与分析
 ## SmartCampus
 ——Your Campus Life Helper
-### Team name
+### Team Name
 CampusCode
-### Team members
+### Team Members
 2353924 Feng Juncai  冯俊财
 2351869 Ji Peng      纪鹏
 2353240 Zhang Shikou 张诗蔻
 2352993 Yu Yilian    于伊莲
 
-## Project description
-#### 1. Backgrounds & Motivations
+## Project Description
+#### 1. Background and Motivation
 
-##### 1.1 Backgrounds
+##### 1.1 Background
 
 Modern universities offer various digital services (library, academic portal, dining, facility management), but these operate independently with separate interfaces, authentication systems, and data structures. Students must switch between multiple platforms daily. While many universities have developed integrated platforms to consolidate digital services, current implementations have limitations. For example, existing platforms focus primarily on academic management, with minimal integration of daily life services.
 
-##### 1.2 Motivations
+##### 1.2 Motivation
 
 SmartCampus reimagines integrated campus platforms with a student-first approach, not replacing but enhancing existing infrastructure.
 
@@ -85,8 +85,8 @@ Create a comprehensive, user-friendly, one-stop digital platform that integrates
 
 | Platform | Key Features | Strengths | Limitations |
 |----------|-------------|-----------|-------------|
-| **Tongxinyun**<br>(Our University) | Unified authentication, academic service management | • Official and reliable data<br>• Stable infrastructure<br>• Comprehensive academic functions | • Academic-only focus<br>• No daily life services (dining, packages, lost-and-found)<br>• Lacks personalization and smart features |
-| **WeChat Mini Programs** | Quick access to individual campus services | • Lightweight, no installation<br>• Fast and convenient | • Fragmented services<br>• No data integration<br>• Inconsistent user experience |
+| **Tongxinyun**<br>(Our University) | Unified authentication,<br>academic service management | • Official and reliable data<br>• Stable infrastructure<br>• Comprehensive academic functions | • Academic-only focus<br>• No daily life services<br>• Lacks personalization |
+| **WeChat Mini Programs** | Quick access to<br>campus services | • Lightweight, no installation<br>• Fast and convenient<br>• Wide accessibility | • Fragmented services<br>• No data integration<br>• Inconsistent experience |
 | **Commercial Platforms**<br>(今日校园, 易班) | Multi-university campus management solutions | • Professional and mature<br>• Rich feature sets<br>• Regular updates | • Generic design, not campus-specific<br>• Privacy concerns with third-party data<br>• Difficult to customize |
 
 **Summary:** Existing solutions address specific needs but lack comprehensive integration. Tongxinyun handles academics well but ignores daily life. WeChat mini programs are convenient but fragmented. Commercial platforms are feature-rich but generic. **SmartCampus** aims to combine their strengths—institutional reliability, accessibility, and comprehensiveness—while adding integrated daily services, personalized experiences, and modern intelligent features tailored to our campus.
@@ -97,8 +97,8 @@ SmartCampus integrates four core subsystems to provide comprehensive campus serv
 
 ##### 5.1 Library Service Subsystem
 
-- **Seat Reservation & Management**: Real-time seat availability display with advance booking capabilities
-- **Book Borrowing & Renewal**: Search, borrow, and renew books with automated due date reminders
+- **Seat Reservation and Management**: Real-time seat availability display with advance booking capabilities
+- **Book Borrowing and Renewal**: Search, borrow, and renew books with automated due date reminders
 - **Study Space Inquiry**: Browse and reserve different types of study spaces (quiet zones, group rooms, etc.)
 - **Borrowing History Statistics**: Personal reading analytics and borrowing patterns
 
@@ -114,7 +114,7 @@ SmartCampus integrates four core subsystems to provide comprehensive campus serv
 
 - **Canteen Ordering & Payment**: Browse menus, pre-order meals, and make mobile payments
 - **Package Collection Notification**: Real-time alerts when packages arrive at campus collection points
-- **Lost & Found Platform**: Report lost items and search for found items with photo uploads
+- **Lost and Found Platform**: Report and search for items with photo uploads
 - **Sports Facility Booking**: Reserve gyms, courts, and sports equipment
 - **Campus Shuttle Schedule**: Timetable information
 
