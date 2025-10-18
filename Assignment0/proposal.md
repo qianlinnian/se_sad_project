@@ -74,23 +74,18 @@ Create a comprehensive, user-friendly, one-stop digital platform that integrates
 - Powerful backend management tools
 - Batch operation capabilities
 - Role-based access control
-- Comprehensive reporting features
-
- 
-#### 4. Notes on existing similar products: their utility and limitations and advantages and disadvantages
+- Comprehensive reporting features 
   
 #### 4. Notes on Existing Similar Products
+
+| Platform | Key Features | Strengths | Limitations |
+|----------|-------------|-----------|-------------|
+| **Tongxinyun**<br>(Our University) | Unified authentication, academic service management | • Official and reliable data<br>• Stable infrastructure<br>• Comprehensive academic functions | • Academic-only focus<br>• No daily life services (dining, packages, lost-and-found)<br>• Lacks personalization and smart features |
+| **WeChat Mini Programs** | Quick access to individual campus services | • Lightweight, no installation<br>• Fast and convenient | • Fragmented services<br>• No data integration<br>• Inconsistent user experience |
+| **Commercial Platforms**<br>(今日校园, 易班) | Multi-university campus management solutions | • Professional and mature<br>• Rich feature sets<br>• Regular updates | • Generic design, not campus-specific<br>• Privacy concerns with third-party data<br>• Difficult to customize |
+
+**Summary:** Existing solutions address specific needs but lack comprehensive integration. Tongxinyun handles academics well but ignores daily life. WeChat mini programs are convenient but fragmented. Commercial platforms are feature-rich but generic. **SmartCampus** aims to combine their strengths—institutional reliability, accessibility, and comprehensiveness—while adding integrated daily services, personalized experiences, and modern intelligent features tailored to our campus.
  
-
-| Platform Type | Utility | Advantages | Limitations | Disadvantages |
-|--------------|---------|------------|-------------|---------------|
-| **Tongxinyun**<br>(Our University) | Provides unified authentication and academic service management for students | • Stable infrastructure<br>• Reliable official data<br>• Comprehensive academic functions<br>• Institutional support | • Academic-focused scope<br>• Lacks daily life services<br>• Limited personalization | • No dining/package/lost-and-found services<br>• Traditional interface design<br>• Missing smart recommendations<br>• No proactive notifications |
-| **WeChat Mini Programs** | Offers quick access to individual campus services through WeChat ecosystem | • Lightweight, no installation<br>• Fast access<br>• Low development costs<br>• Works well for single tasks | • Fragmented service structure<br>• No data integration<br>• Platform restrictions | • Requires separate apps for each service<br>• Inconsistent user experience<br>• WeChat account dependency<br>• Limited advanced features |
-| **Commercial Platforms**<br>(今日校园, 易班) | Delivers comprehensive campus management solutions across multiple universities | • Professional development<br>• Regular updates<br>• Mature architecture<br>• Rich feature sets | • Generic design approach<br>• Third-party data handling<br>• Customization difficulties | • Not tailored to specific campus<br>• Privacy concerns<br>• Monetization priorities<br>• Integration challenges with existing systems |
-
-**Summary:** Existing solutions each serve specific purposes but lack comprehensive integration. Tongxinyun excels at academic administration but misses daily life services. WeChat mini programs provide convenience but create fragmentation. Commercial platforms offer breadth but sacrifice campus-specific customization and data privacy. SmartCampus aims to combine the institutional reliability of Tongxinyun, the accessibility of mini programs, and the comprehensiveness of commercial platforms, while addressing their collective shortcomings through integrated daily life services, personalized experiences, and modern intelligent features.
- 
-
 #### 5. Main functionality and characteristics
 
 SmartCampus integrates four core subsystems to provide comprehensive campus services, combining essential academic functions with daily life conveniences through a unified platform.
@@ -110,7 +105,6 @@ SmartCampus integrates four core subsystems to provide comprehensive campus serv
 - **Exam Schedule Query**: Centralized exam timetable with location and time details
 - **Credit Progress Tracking**: Monitor degree requirements and credit completion status
 
-
 ##### 5.3 Daily Life Service Subsystem 
 
 - **Canteen Ordering & Payment**: Browse menus, pre-order meals, and make mobile payments
@@ -125,7 +119,6 @@ SmartCampus integrates four core subsystems to provide comprehensive campus serv
 - **Utility Bill Inquiry & Payment**: Check and pay electricity and water bills online
 - **Campus Card Top-up**: Add funds to campus card for various campus services
 - **Facility Maintenance Management**: Track repair status and maintenance schedules
-
  
 #### 6. Novelty of your solution and enhancements suggested 
  
@@ -144,18 +137,16 @@ Customize homepage based on user habits, prioritizing frequently used functions.
 - Study group matching
 - Campus events calendar
  
-
- 
 #### 7. Team organization and preliminary project planning
 
 ##### 7.1. Team organization
 
 | Member | Module | Specific Tasks |
 |--------|--------|----------------|
-| **Zhang Shicui** |  Library Service Subsystem | • Seat reservation and management development<br>• Book borrowing and renewal API integration<br>• Study space query interface design<br>• Borrowing history statistics and visualization |
-| **Yu Yilian** |  Academic Affairs Subsystem | • Online course selection system logic implementation<br>• Course schedule query and display<br>• Grade inquiry and data analysis functions<br>• Exam schedule query module<br>• Credit progress tracking algorithm |
+| **Zhang Shikou** |  Library Service Subsystem | • Seat reservation and management development<br>• Book borrowing and renewal API integration<br>• Study space query interface design<br>• Borrowing history statistics and visualization |
+| **Yu Yilian** |  Academic Affairs Subsystem | • Online course selection system logic <br>• Course schedule query and display<br>• Grade inquiry functions<br>• Exam schedule query module<br>• Credit progress tracking algorithm |
 | **Feng Juncai** |  Life Service Subsystem | • Canteen ordering and payment integration<br>• Express delivery notification push<br>• Lost and found platform development<br>• Sports facility booking system<br>• Campus shuttle schedule query |
-| **Ji Peng** | 🔧 Logistics Management Subsystem | • Dormitory repair request workflow design<br>• Utility bill inquiry and payment integration<br>• Campus card recharge function implementation<br>• Facility maintenance management backend |
+| **Ji Peng** | W Logistics Management Subsystem | • Dormitory repair request workflow design<br>• Utility bill inquiry and payment integration<br>• Campus card recharge function implementation<br>• Facility maintenance management backend |
 
 ##### 7.2.preliminary project planning
 ![gantt diagram](assets/image.png)
@@ -166,20 +157,10 @@ Customize homepage based on user habits, prioritizing frequently used functions.
 
 We use **User Stories** and **Use Case Diagrams** to collect and analyze system requirements, ensuring functional completeness and traceability.
 
-Main Outputs:
-- User Stories List
-- Use Case Diagrams
-- Functional Requirements Document
-
 ##### 8.2 System Design
 
 We adopt **Object-Oriented Design** and **Front-End/Back-End Separation Architecture**. Data is exchanged through RESTful APIs and JSON format.
 
-Design Documents:
-- Class Diagrams
-- API Documentation
-- Database Design (ER Diagrams + Table Structure)
- 
 ##### 8.3 Development Methodologies
 
 We use **Agile Development** with 2-week iteration cycles for rapid delivery and flexible requirement adjustments.
@@ -254,6 +235,7 @@ Through standardized engineering practices including requirements analysis, syst
  
 #### 9. Team collaboration platforms or systems 
 To ensure efficient communication and seamless project coordination, our team utilizes two primary collaboration platforms:**Wechat** and **GitHub**
+
 #### 10. Potential for further development 
 SmartCampus has significant potential for expansion beyond its initial scope: 
 **Study Group Matching**: Connect students with similar courses or study interests
@@ -300,165 +282,86 @@ Deployment and DevOps:
 - Cloud Platform: Alibaba Cloud 
  
 
-#### 12. Challenges that you think you may encounter during the project’s development
+#### 12. Challenges We May Encounter
 
+##### 12.1 Technical Challenges
 
-# 12. Challenges We May Encounter
+**System Integration**
+- **Challenge**: Connecting multiple subsystems (library, academic, dining, logistics) with different data formats
+- **Mitigation**: Define unified API standards and data structures early in development
 
-## 12.1 Technical Challenges
+**Real-time Performance**
+- **Challenge**: Handling concurrent users during peak times (course selection, seat booking) and ensuring real-time updates
+- **Mitigation**: Implement caching strategies, load balancing, and efficient database queries
 
-**Integration Complexity**
-- **Challenge**: Integrating multiple subsystems with different data structures
-- **Mitigation**: Establish clear API contracts and data standards early
+**Cross-platform Compatibility**
+- **Challenge**: Ensuring consistent experience across web and mobile devices
+- **Mitigation**: Adopt responsive design and conduct thorough cross-device testing
 
-**Real-time Data Synchronization**
-- **Challenge**: Ensuring seat availability, package notifications are updated in real-time
-- **Mitigation**: Implement WebSocket or polling mechanisms with proper caching
-
-**Performance Optimization**
-- **Challenge**: Handling concurrent users during peak times (course selection, meal ordering)
-- **Mitigation**: Load testing, database optimization, and caching strategies
-
-**Mobile Responsiveness**
-- **Challenge**: Ensuring consistent experience across different devices
-- **Mitigation**: Responsive design principles and thorough cross-device testing
-
-## 12.2 Team Collaboration Challenges
+##### 12.2 Team Collaboration Challenges
 
 **Time Management**
-- **Challenge**: Balancing coursework with project development
-- **Mitigation**: Realistic sprint planning and flexible task allocation
+- **Challenge**: Balancing academic coursework with project development deadlines
+- **Mitigation**: Create realistic sprint plans with buffer time and prioritize core features
 
-**Skill Level Differences**
-- **Challenge**: Team members have varying technical expertise
-- **Mitigation**: Pair programming, code reviews, and knowledge sharing sessions
+**Skill Gaps**
+- **Challenge**: Team members have varying levels of technical expertise
+- **Mitigation**: Pair programming, code reviews, and regular knowledge sharing sessions
 
-**Communication Gaps**
-- **Challenge**: Misunderstandings in requirements or technical decisions
-- **Mitigation**: Regular meetings, clear documentation, and open communication channels
+##### 12.3 Project Scope Challenges
 
-## 12.3 Project Management Challenges
+**Feature Prioritization**
+- **Challenge**: Risk of scope creep with too many desired features
+- **Mitigation**: Focus on MVP (Minimum Viable Product) approach, implement core functions first
 
-**Scope Creep**
-- **Challenge**: Adding too many features beyond initial plan
-- **Mitigation**: Strict prioritization and MVP (Minimum Viable Product) approach
+**Data Security**
+- **Challenge**: Protecting sensitive student information and ensuring privacy compliance
+- **Mitigation**: Implement proper authentication, role-based access control, and data encryption
 
-**Testing Coverage**
-- **Challenge**: Ensuring comprehensive testing with limited time
-- **Mitigation**: Focus on critical path testing and automated test suites
+**External Dependencies**
+- **Challenge**: Limited access to existing campus systems for integration
+- **Mitigation**: Use mock data for development and testing, prepare clear integration documentation
 
-**Data Security and Privacy**
-- **Challenge**: Protecting sensitive student information
-- **Mitigation**: Implement proper authentication, authorization, and data encryption
 
-## 12.4 External Dependencies
 
-**Third-party System Integration**
-- **Challenge**: Limited access to existing campus systems (library, academic databases)
-- **Mitigation**: Mock data for development, clear interface definitions
-
-**Requirement Changes**
-- **Challenge**: Stakeholder feedback may require significant changes
-- **Mitigation**: Agile methodology allows for iterative adjustments
-
----
-
-# 13. Professional Growth and Benefits
-
-## 13.1 Technical Skills Development
-
+#### 13. Professional Growth and Benefits  
+ 
 **Full-Stack Development Experience**
-- Gain hands-on experience with both frontend and backend technologies
-- Learn complete software development lifecycle from design to deployment
-- Master modern frameworks and tools used in industry
+- Master both frontend (React/Vue) and backend (Spring Boot) technologies
+- Learn complete development lifecycle from design to deployment
+- Gain practical experience with databases, APIs, and system architecture
 
-**System Design Capabilities**
-- Practice designing scalable, maintainable system architecture
-- Learn to balance trade-offs between performance, complexity, and maintainability
-- Understand database design and optimization techniques
+**System Integration and Design**
+- Practice designing scalable and maintainable systems
+- Learn to integrate multiple services and handle data synchronization
+- Understand trade-offs between performance and complexity
 
-**API Development and Integration**
-- Learn RESTful API design principles
-- Practice API documentation and testing
-- Gain experience integrating multiple services
+**Agile and Collaborative Development**
+- Experience real agile workflows (sprints, code reviews, version control)
+- Master Git collaboration and branching strategies
+- Learn to write testable code and ensure quality through automated testing
 
-## 13.2 Software Engineering Practices
-
-**Agile Development Methodology**
-- Experience real-world agile practices (sprints, standups, retrospectives)
-- Learn to adapt to changing requirements
-- Understand iterative development benefits
-
-**Version Control and Collaboration**
-- Master Git workflows and branching strategies
-- Practice code review processes
-- Learn collaborative development best practices
-
-**Testing and Quality Assurance**
-- Understand importance of comprehensive testing
-- Learn to write unit, integration, and system tests
-- Develop quality-conscious development habits
-
-## 13.3 Project Management Skills
+**Problem-Solving Skills**
+- Develop systematic debugging and troubleshooting approaches
+- Learn to research solutions and make technical decisions
+- Improve analytical thinking through real-world challenges
 
 **Team Collaboration**
-- Improve communication skills with technical and non-technical stakeholders
-- Learn to coordinate work across multiple team members
-- Practice conflict resolution and consensus building
+- Enhance communication with team members and stakeholders
+- Practice task coordination, time management, and prioritization
+- Learn conflict resolution and consensus building
 
-**Time and Resource Management**
-- Learn to estimate task complexity and duration
-- Practice prioritization and deadline management
-- Understand resource allocation in team projects
+**User-Centered Thinking**
+- Translate user requirements into technical solutions
+- Practice user experience design and usability testing
+- Understand business processes and workflow optimization
 
-**Problem-Solving Abilities**
-- Develop systematic approach to debugging and troubleshooting
-- Learn to research and evaluate technical solutions
-- Improve critical thinking and analytical skills
+**Portfolio and Professional Experience**
+- Build substantial project showcasing end-to-end delivery capability
+- Gain industry-relevant experience with modern technologies
+- Develop confidence for internship and job interviews
 
-## 13.4 Domain Knowledge
-
-**Understanding User Needs**
-- Learn to translate user requirements into technical solutions
-- Practice user-centered design thinking
-- Gain experience in usability and user experience design
-
-**Business Process Analysis**
-- Understand how digital systems support organizational workflows
-- Learn to identify inefficiencies and propose improvements
-- Develop systems thinking perspective
-
-## 13.5 Career Preparation
-
-**Portfolio Development**
-- Create substantial project for resume and interviews
-- Demonstrate end-to-end project delivery capability
-- Showcase both technical and soft skills
-
-**Industry-Relevant Experience**
-- Work with technologies and practices used in professional settings
-- Build confidence in handling real-world complexity
-- Prepare for internship and job interviews
-
-**Networking and Teamwork**
-- Build collaborative relationships with team members
-- Learn from peers' different perspectives and approaches
-- Develop professional work habits and communication style
-
-## 13.6 Personal Growth
-
-**Confidence Building**
-- Overcome technical challenges and see tangible results
-- Develop self-directed learning abilities
-- Build resilience through problem-solving
-
-**Innovation and Creativity**
-- Practice designing solutions to real problems
-- Learn to balance innovation with practical constraints
-- Develop product thinking mindset
-
----
-
-**Summary**: This project provides invaluable hands-on experience that bridges academic learning and professional practice. It develops not only technical skills but also essential soft skills like teamwork, communication, and project management. The comprehensive nature of SmartCampus—spanning multiple subsystems and technologies—offers a realistic preview of professional software development, preparing us for successful careers in the technology industry.
-
-#### 13. A note on how this project can help your professional growth (how you would benefit from it).  
+**Personal Growth**
+- Build self-directed learning abilities and resilience
+- Develop innovation mindset balanced with practical constraints
+- Cultivate professional work habits and communication skills
