@@ -7,7 +7,6 @@
     - [1.4 Target Users](#14-target-users)
       - [Primary Users: Students](#primary-users-students)
       - [Secondary Users: Faculty \& Staff](#secondary-users-faculty--staff)
-      - [User Personas](#user-personas)
   - [2. Strategic Analysis](#2-strategic-analysis)
     - [2.1 SWOT](#21-swot)
     - [2.2 Goals](#22-goals)
@@ -62,16 +61,8 @@ These four subsystems work together to create a unified, intelligent campus serv
 
 #### Secondary Users: Faculty & Staff
 - **Faculty**: Library access, course management, facility booking
-- **Service Staff**: Librarians, canteen staff, maintenance, IT support, administrators
-- **Needs**: Operational dashboards, real-time updates, reporting tools
-
-#### User Personas
-
-**Alex (Student)**: Tech-savvy, mobile-first, wants quick access to daily services
-
-**Dr. Johnson (Faculty)**: Prefers simple, reliable tools for teaching and research
-
-**Maria (Staff)**: Needs intuitive interface for managing canteen operations
+- **Service Staff**: Administrators Staff
+- **Needs**: Operational dashboards, real-time updates, reporting tools 
  
 
 ## 2. Strategic Analysis
@@ -164,12 +155,12 @@ If you have used an AI tool or technology in the process of completing the above
 1 domain-related book and/or 2 reference articles, with a brief description (30 to 60 words each). 
 
 ## 10. Team member contributions 
-| Name | Student Num | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Percent |
-|------|-------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|
-| Feng Juncai | 2353924 | ✓ |✓ |✓ | | | | | | | |
-| Ji Peng | 2351869 | |✓ |✓ | | | | | | | |
-| Zhang Shikou | 2353240 | |✓ |✓ | | | | | | | |
-| Yu Yilian | 2352993 | |✓ |✓ | | | | | | | |
+| Members  | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Percent |
+|------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|
+| Feng Juncai  2353924 | ✓ |✓ |✓ | | | | | | | |
+| Ji Peng  2351869 | | |✓ | | | | | | | |
+| Zhang Shikou  2353240 | | |✓ | | | | | | | |
+| Yu Yilian  2352993 | | |✓ | | | | | | | |
 
 ## 11. Agile artifacts
 If you have adopted any agile requirements gathering and analysis approaches in your project, please also summarize your current artifacts, such as User Personas, Impact Map, User Journey Maps, Product Backlogs, Themes, Epics, User Stories, Enabler Stories, and so on.
