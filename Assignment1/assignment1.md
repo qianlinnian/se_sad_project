@@ -86,7 +86,7 @@ Strengths:
 - **Mobile-First Approach**: Responsive design for multi-device access
 
 Weaknesses:
-- **Resource Constraints**: Limited development team (5 members) and budget
+- **Resource Constraints**: Limited development team and budget
 - **System Dependencies**: Relies on existing campus infrastructure and APIs
 - **No Established Brand**: First-time product with no user base
 - **Data Privacy Risks**: Handling sensitive student personal and academic information
