@@ -275,6 +275,34 @@ At least 10 terms related to the problem's domain.
 
 ## 6. Supplementary specification
 
+### 6.3 Performance and Technical Specifications
+
+1. **Response Time**:
+
+   * The system should ensure that the average response time for all user interactions remains below 2 seconds to provide a smooth and efficient user experience.
+   * For data-intensive operations, such as dormitory repair requests, utility bill inquiries, campus card recharges, and facility maintenance tracking, the response time should not exceed 5 seconds to ensure real-time responsiveness during peak usage times.
+
+2. **Concurrent Users**:
+
+   * The system must support at least 1,000 concurrent users, allowing seamless operation during periods of high demand, such as peak hours when students simultaneously submit maintenance requests or recharge campus cards.
+   * Load balancing techniques will be implemented to evenly distribute traffic and maintain system availability and stability under heavy load.
+
+3. **Technology Stack**:
+
+   * **Frontend**: React.js / Vue.js (for building a responsive and interactive user interface that works seamlessly across devices)
+   * **Backend**: Node.js / Spring Boot (to handle high volumes of requests efficiently and support microservice architecture)
+   * **Database**: MySQL / PostgreSQL (for reliable data storage, including user records, request statuses, and historical data)
+   * **Cache**: Redis (to cache frequently accessed data and reduce database load, improving response times)
+   * **Message Queue**: Kafka / RabbitMQ (to handle asynchronous operations such as notification delivery and background task processing)
+   * **API Gateway**: Nginx / Kong (to manage API requests and optimize traffic flow between services)
+
+4. **Deployment Environment**:
+
+   * The system will be deployed on a cloud platform (e.g., Alibaba Cloud, AWS, Azure), utilizing auto-scaling and high availability features to handle varying workloads efficiently.
+   * Containerization technologies (Docker) and orchestration tools (Kubernetes) will be used for flexible deployment, automation, and scalability of system components.
+   * Database and storage services will be distributed to ensure scalability and high availability, supporting large-scale data access and storage.
+   * Security protocols will include SSL/TLS encryption, OAuth 2.0 for authentication, and regular security audits to protect user data and maintain system integrity.
+
 ## 7. Initial snapshots of the system's user interface
 At least 4 snapshots with brief descriptions.
 
