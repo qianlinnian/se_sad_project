@@ -163,4 +163,5 @@ If you have used an AI tool or technology in the process of completing the above
 | Yu Yilian  2352993 | | |✓ | | | | | | | |
 
 ## 11. Agile artifacts
-If you have adopted any agile requirements gathering and analysis approaches in your project, please also summarize your current artifacts, such as User Personas, Impact Map, User Journey Maps, Product Backlogs, Themes, Epics, User Stories, Enabler Stories, and so on.
+The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
+  <img src="diagrams/persona.png" alt="persona_page" title="persona" width="auto" style="margin: 0;"/>
