@@ -138,6 +138,138 @@ The development follows agile methodology with iterative sprints, continuous use
   Detailed use cases: concise text descriptions (two to four lines each) for all the above use cases, as well as detailed specifications for at least 5 use cases.
   Necessary activity diagrams or BPMN diagrams to illustrate the primary business process.
 
+### 4.7 Dormitory Maintenance Request
+
+**Use Case Diagram**
+
+<img src="../Assignment1/diagrams/uc4-7.png" alt="Dormitory Maintenance Request Use Case Diagram" style="zoom:80%;" />
+
+**Detailed Specification for Use Cases**
+
+Use Case: **Dormitory Maintenance Request**
+
+---
+
+| USE CASE             | **Submit Maintenance Request**                                   |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC01***                                                       |
+| **Specification**    | Student submits a dormitory maintenance request with issue details and optional photos; system creates a ticket and notifies maintenance staff/admin for assignment.|
+| **Actors**           | **Student**, **System**, **System Admin**|
+| **Pre-condition**    | Student authenticated via SSO; student has a registered dormitory record.|
+| **Basic Path**       | 1. Student opens Maintenance module. <br/>2. Student selects building/room and issue category. <br/>3. Student types issue description and optionally attaches photos (may invoke UC02). <br/>4. Student submits request. <br/>5. System validates input and creates ticket with unique ID. <br/>6. System attempts automatic assignment to available maintenance staff or places ticket in admin queue. <br/>7. Student receives confirmation and ticket ID. |
+| **Alternative Path** | 1. **Validation fail:** System returns form errors and requests correction. <br/>2. **Auto-assignment fail:** Ticket routed to admin for manual assignment (triggers admin notification). <br/>3. **Student cancels:** Submission aborted and no ticket created.|
+| **Post condition**   | Ticket created and persisted; notification sent to assigned staff/admin; student can track ticket (UC03).|
+
+---
+
+| USE CASE             | **Upload Issue Photos**                                          |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC02***                                                       |
+| **Specification**    | Student uploads one or more photos to support maintenance request; photos are stored and linked to the ticket. |
+| **Actors**           | **Student**, **System**              |
+| **Pre-condition**    | Student is in the Submit Maintenance Request flow or editing an existing ticket; storage service reachable.|
+| **Basic Path**       | 1. Student selects file(s) to upload while composing request. <br/>2. System performs client-side validation (file type/size). <br/>3. System uploads file(s) to storage and returns URLs. <br/>4. System associates uploaded photo URLs with the maintenance ticket. <br/>5. Student completes submission. |
+| **Alternative Path** | 1. **File too large/invalid type:** System rejects file and shows error. <br/>2. **Upload network failure:** System retries upload or lets user retry manually. <br/>3. **Storage quota exceeded:** System notifies admin and allows submission without photos.                                             |
+| **Post condition**   | Photos stored and linked to ticket; thumbnails visible in student/staff dashboards.  |
+
+---
+
+| USE CASE             | **Track Maintenance Status**                                     |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC03***                                                       |
+| **Specification**    | Student views real-time status and history of their maintenance ticket, including assigned staff, status updates, and expected completion time. |
+| **Actors**           | **Student**, **Maintenance Staff**, **System**         |
+| **Pre-condition**    | Ticket exists and status updates are posted by staff/admin.|
+| **Basic Path**       | 1. Student opens “My Tickets” or ticket details page. <br/>2. System displays current status, timestamps, assigned staff, and messages. <br/>3. Student optionally adds a comment or additional info. |
+| **Alternative Path** | 1. **No updates available:** System shows “No updates yet” and expected SLA. <br/>2. **Ticket archived:** System shows closed status and read-only history.  |
+| **Post condition**   | Student obtains up-to-date ticket information; any student comment is appended to ticket log.|
+
+---
+
+| USE CASE             | **Update Repair Progress**                                       |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC04***                                                       |
+| **Specification**    | Maintenance staff updates ticket status (accepted, in-progress, completed), attaches repair notes and photos, and indicates time spent. |
+| **Actors**           | **Maintenance Staff**, **System Admin**, **System**    |
+| **Pre-condition**    | Staff authenticated and assigned ticket; ticket active.          |
+| **Basic Path**       | 1. Staff logs into staff dashboard. <br/>2. Staff views assigned tickets. <br/>3. Staff opens a ticket and updates status to “In Progress”. <br/>4. Staff performs repair, uploads completion photos and notes, and marks ticket “Completed”. <br/>5. System notifies student of completion. |
+| **Alternative Path** | 1. **Need parts/unable to complete:** Staff updates status to “Awaiting Parts” with ETA; ticket remains open. <br/>2. **Incorrect assignment:** Staff flags admin to reassign.  |
+| **Post condition**   | Ticket status and repair details updated; completion triggers student confirmation.|
+
+---
+
+| USE CASE             | **Provide Feedback / Confirm Completion**                        |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC05***                                                       |
+| **Specification**    | Student confirms whether repair was satisfactory and may provide rating/comments; unsatisfactory reports reopen the ticket. |
+| **Actors**           | **Student**, **System**, **System Admin**              |
+| **Pre-condition**    | Ticket status is “Completed” by staff and student notified.      |
+| **Basic Path**       | 1. Student receives completion notification. <br/>2. Student opens ticket and confirms resolution or rates the service. <br/>3a. If confirmed satisfactory, system closes ticket and archives record. <br/>3b. If unsatisfactory, student selects “Reopen” and adds comment; system reassigns ticket. |
+| **Alternative Path** | 1. **No response within SLA:** System auto-closes after reminder cycle (configurable). <br/>2. **Student disputes charge/time:** System routes to admin review. |
+| **Post condition**   | Ticket closed and feedback stored, or ticket reopened and returned to staff queue. |
+
+---
+
+### 4.8 Utility Bill Payment
+
+**Use Case Diagram**
+
+<img src="../Assignment1/diagrams/uc4-8.png" alt="Dormitory Maintenance Request Use Case Diagram" style="zoom:80%;" />
+
+**Detailed Specification for Use Cases**
+
+Use Case: **Utility Bill Payment**
+
+---
+
+| USE CASE             | **View Utility Bill**                                           |
+| -------------------- | --------------------------------------------------------------- |
+| **ID**               | ***UC06***                                                      |
+| **Specification**    | Student queries current and historical water/electricity bills for their dormitory, including usage, amount due, and due date. |
+| **Actors**           | **Student**, **Finance System**            |
+| **Pre-condition**    | Student authenticated; finance system API accessible; student’s dorm linked to billing account. |
+| **Basic Path**       | 1. Student navigates to “Utility Bills”. <br/>2. System requests billing data from finance API. <br/>3. System displays current outstanding bills and history entries with details. |
+| **Alternative Path** | 1. **Finance API unavailable:** System shows an error and cached last-known data if available. <br/>2. **No billing record:** System shows “No bills found for this account.”       |
+| **Post condition**   | Student views accurate billing information or receives an explanatory error.|
+
+---
+
+| USE CASE             | **Pay Utility Bill**                                             |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC07***                                                       |
+| **Specification**    | Student pays outstanding utility bill using campus card or third-party mobile payment; system coordinates with finance system to record payment.     |
+| **Actors**           | **Student**, **Payment Gateway**, **Finance System** |
+| **Pre-condition**    | Student authenticated; selected payment method configured; finance/payment APIs operational.   |
+| **Basic Path**       | 1. Student selects bill to pay and chooses payment method. <br/>2. Student confirms payment amount and authorizes transaction. <br/>3. System invokes payment gateway / campus card service. <br/>4. Upon success, system updates bill status and notifies finance system. <br/>5. Student receives payment confirmation and transaction receipt. |
+| **Alternative Path** | 1. **Insufficient balance:** System prompts for campus card recharge (could invoke separate recharge flow). <br/>2. **Payment gateway error:** Transaction fails and student is shown error with retry option. <br/>3. **Timeout:** Transaction marked “Pending” until confirmation.  |
+| **Post condition**   | Bill state updated to “Paid” (or “Pending”); transaction recorded in payment history and finance system. |
+
+---
+
+| USE CASE             | **View Payment History**                                         |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC08***                                                       |
+| **Specification**    | Student reviews historical payment transactions, receipts, and statuses for utility payments.|
+| **Actors**           | **Student**, **System**, **Finance System**            |
+| **Pre-condition**    | Student authenticated; transaction records exist.                |
+| **Basic Path**       | 1. Student opens “Payment History”. <br/>2. System retrieves transaction list from local DB (and optionally finance API). <br/>3. System displays filtered/sortable history and links to receipts. |
+| **Alternative Path** | 1. **Sync lag with finance system:** Some recent transactions may be pending; system shows pending notice.|
+| **Post condition**   | Student can view/download receipts; records available for audit. |
+
+---
+
+| USE CASE             | **Notify Due Date / Generate Monthly Bill**                      |
+| -------------------- | ---------------------------------------------------------------- |
+| **ID**               | ***UC09***                                                       |
+| **Specification**    | System or finance backend generates monthly bills and sends due-date reminders/notifications to students via app push/SMS/email.|
+| **Actors**           | **System**, **Finance System**, **Student**|
+| **Pre-condition**    | Billing cycle configured; finance data aggregated and available. |
+| **Basic Path**       | 1. Finance system generates monthly bill data. <br/>2. System receives bills via API and stores them. <br/>3. System schedules and sends due-date reminders at configured intervals. <br/>4. Student receives notification and link to pay. |
+| **Alternative Path** | 1. **Notification delivery failure:** System retries and logs failure. <br/>2. **Bill generation discrepancy:** System flags for admin review and holds notifications until resolved. |
+| **Post condition**   | Monthly bills generated and notifications dispatched; billing records persisted.|
+
+---
+
 ## 5. Glossary of terms
 At least 10 terms related to the problem's domain.
 
