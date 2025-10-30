@@ -253,6 +253,15 @@ At least 10 terms related to the problem's domain.
 
 ## 6. Supplementary specification
 ### 6.1 Usability
+#### 4.1 Learning Time
+The platform features an intuitive user interface design and operational workflows that align with users' mental models, significantly reducing the difficulty for new users to get started. With a simple navigation structure, clear functional icons, and consistent interaction patterns, ordinary users can independently perform core operations upon first login without undergoing complex training. Key business processes are designed in a wizard-style or form-based manner, guiding users step by step to ensure clear operation logic and reduced cognitive load.
+
+#### 4.2 Language Support
+To meet the needs of an international campus environment and enhance accessibility for users with different language backgrounds, the platform provides comprehensive multilingual support. The platform natively supports both Simplified Chinese and English as interface languages. Users can switch between display languages in real time; the switching process does not require a page refresh, and the user's language preference will be persistently saved.
+
+#### 4.3 Help System
+Next to complex functional modules, a "?" help icon is provided. Clicking the icon displays concise operation instructions or frequently asked questions directly related to the current page content, reducing the effort required for users to locate information. The platform integrates a centralized "Help Center" or "User Guide" module. Users can search by keywords to quickly find required operation instructions, policy explanations, or troubleshooting solutions. Content is presented in structured articles, illustrated tutorials, or short videos for easy comprehension. A convenient "Feedback" entry is provided, allowing users to submit usage issues, feature suggestions, or bug reports with one click.
+
 
 
 ## 7. Initial snapshots of the system's user interface
