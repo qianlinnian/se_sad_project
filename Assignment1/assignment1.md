@@ -13,6 +13,9 @@
     - [2.3 Initiatives](#23-initiatives)
   - [3. Roadmap](#3-roadmap)
   - [4. Use case modelling and Business Process Modelling](#4-use-case-modelling-and-business-process-modelling)
+    - [4.3 Life Services Subsystem](#43-life-services-subsystem)
+      - [4.3.1 Meal Ordering](#431-meal-ordering)
+      - [4.3.2 Package Notification](#432-package-notification)
   - [5. Glossary of terms](#5-glossary-of-terms)
   - [6. Supplementary specification](#6-supplementary-specification)
   - [7. Initial snapshots of the system's user interface](#7-initial-snapshots-of-the-systems-user-interface)
@@ -137,6 +140,14 @@ The development follows agile methodology with iterative sprints, continuous use
   Necessary use case diagrams
   Detailed use cases: concise text descriptions (two to four lines each) for all the above use cases, as well as detailed specifications for at least 5 use cases.
   Necessary activity diagrams or BPMN diagrams to illustrate the primary business process.
+
+### 4.3 Life Services Subsystem
+User Case Diagram:
+  <img src="diagrams/Life_Services.svg" alt="user_case" title="usercase_life" width="auto" style="margin: 0;"/>
+  
+#### 4.3.1 Meal Ordering
+
+#### 4.3.2 Package Notification
 
 ## 5. Glossary of terms
 At least 10 terms related to the problem's domain.
