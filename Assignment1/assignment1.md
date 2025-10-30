@@ -309,7 +309,32 @@ Use Case: **Utility Bill Payment**
    * Security protocols will include SSL/TLS encryption, OAuth 2.0 for authentication, and regular security audits to protect user data and maintain system integrity.
 
 ## 7. Initial snapshots of the system's user interface
-At least 4 snapshots with brief descriptions.
+
+### 7.1 Dormitory Repair Request Interface
+
+<table width="100%">
+<tr>
+<td align="center" width="33%">
+<img src="../Assignment1/diagrams/snapshot7-4-1.png" alt="UserStory" width="300"/>
+</td>
+<td align="center" width="33%">
+<img src="../Assignment1/diagrams/snapshot7-4-2.png" alt="Diagram2" width="300"/>
+</td>
+</tr>
+
+</table>
+<table width="100%">
+<tr>
+<td align="center" width="33%">
+<img src="../Assignment1/diagrams/snapshot7-4-3.png" alt="Diagram3" width="300"/>
+</td>
+<td align="center" width="33%">
+<img src="../Assignment1/diagrams/snapshot7-4-4.png" alt="Diagram2" width="300"/>
+</td>
+</tr>
+</table>
+
+This snapshot illustrates the main interface for submitting a dormitory maintenance request. The clean, intuitive design features a blue and white color scheme. A top navigation bar allows students to categorize their issue into: **Furniture/Item Repair**, **Water & Electricity Repair**, **Housing Fittings Repair**, and **Friendly Reminders**. The central form dynamically displays specific items based on the selected category (e.g., desk, chair, bed, light, door, network port, socket, shower, toilet, etc.), enabling users to quickly pinpoint and report the exact problem.
 
 ## 8. AI tool usage disclosure
 
