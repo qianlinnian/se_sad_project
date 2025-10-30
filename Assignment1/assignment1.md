@@ -136,6 +136,7 @@ The development follows agile methodology with iterative sprints, continuous use
 ## 4. Use case modelling and Business Process Modelling
 ### 4.1.1 Library System Use Case Diagram
 <img src="../Assignment1/diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="zoom:80%;" />
+
 #### Use Case: Reserve Study Seat
 
 | Attribute | Description |
