@@ -14,7 +14,7 @@
   - [3. Roadmap](#3-roadmap)
   - [4. Use case modelling and Business Process Modelling](#4-use-case-modelling-and-business-process-modelling)
     - [4.3 Life Services Subsystem](#43-life-services-subsystem)
-      - [4.3.1 Meal Ordering](#431-meal-ordering)
+      - [4.3.1 Meal Ordering:](#431-meal-ordering)
       - [4.3.2 Package Notification](#432-package-notification)
   - [5. Glossary of terms](#5-glossary-of-terms)
   - [6. Supplementary specification](#6-supplementary-specification)
@@ -143,11 +143,65 @@ The development follows agile methodology with iterative sprints, continuous use
 
 ### 4.3 Life Services Subsystem
 User Case Diagram:
-  <img src="diagrams/Life_Services.svg" alt="user_case" title="usercase_life" width="auto" style="margin: 0;"/>
-  
-#### 4.3.1 Meal Ordering
+<img src="diagrams/Life_Services.svg" alt="use_case_ls" title="usecase_life" width="auto" style="margin: 0;"/>
 
-#### 4.3.2 Package Notification
+Short written summary:
+1. Meal Ordering: Students can order meals via SmartCampus "Meal Ordering" function before they arrive at the canteens or other food sellers, and then they can reduce the time wasting on food waiting, helping them to have more rest time.
+2. Browse Menu: Students can choose different food sellers and kinds of food on the browse food menu. The browser can offer many food photos and names directly, making it easy to explore available dining options.
+3. Search Food Items: Students can also directly search for the food they would like to have, avoiding moving from the top to the bottom to find the food on the browse menu, providing quick access to specific items.
+4. Add to Cart: Students can choose many kinds of food and put them into the cart, then they can pay the whole food cart together, enabling bulk ordering and convenient checkout process.
+5. Customize Order: Students can choose the food type and select the spicy degree or sugar degree, and they can also choose some special accessories such as cheese, butter and other things to personalize their meals.
+6. Make Payment: The students can make payment after choosing the foods on the SmartCampus. They can choose the payment method such as WeChat Pay, Alipay, or bank payment for flexible transaction options.
+7. Track Order Status: The students can check the order status, such as order sending state, preparing state, finishing state, or cancellation state, providing real-time updates on their food preparation progress.
+8. Package Notification: SmartCampus can send package notification to students when their packages arrive at campus, ensuring timely pickup and reducing package accumulation at delivery points.
+9. Register Package: Students can register the package number on the SmartCampus app, and when the packages arrive at campus, the SmartCampus can recognize the package, then send the notification to the owner automatically.
+10. Set Special Instructions: The students can set special instructions, such as the delivery method, preferred pickup time, or specific handling requirements to ensure proper package management according to their preferences.
+11. Send Arrival Notification: The campus system can send arrival messages to students via SMS, email, or app notifications when their registered packages are delivered to campus pickup points.
+12. Set Pickup Method: Students can choose their preferred pickup method, such as self-pickup at designated locations, delivery to dormitory, or pickup by authorized representatives for flexible package collection.
+13. Generate Pickup Code: The system generates unique pickup codes for each package to ensure secure package retrieval, preventing unauthorized access and maintaining package security throughout the pickup process.
+14. Set Code Expiry Time: Students can set expiry time for their pickup codes to enhance security and ensure timely package collection, with automatic code renewal options available for extended storage needs.
+15. Lost & Found: SmartCampus provides a comprehensive lost and found service where students can report lost items and search for found items, facilitating the return of misplaced belongings within the campus community.
+16. Report Item: Students can report lost items by providing detailed descriptions, location information, and contact details, creating searchable records to help reunite owners with their lost belongings efficiently.
+17. Search Items: Students can search through the lost and found database using keywords, categories, or location filters to find their missing items or browse available found items.
+18. Facility Booking: Students can book various campus facilities such as study rooms, sports courts, meeting rooms, and recreational areas through the SmartCampus platform for academic and social activities.
+19. View Facilities: Students can view available campus facilities with detailed information including capacity, equipment, availability schedules, and booking policies to make informed reservation decisions.
+20. Making Booking: Students can make facility reservations by selecting desired time slots, specifying group size, and confirming booking details, with instant confirmation and calendar integration for schedule management.
+21. Shuttle Schedule: SmartCampus provides real-time shuttle schedule information including departure times, routes, stops, and estimated arrival times to help students plan their campus transportation efficiently.
+22. View Schedule: Students can view comprehensive shuttle schedules with route maps, stop locations, and service hours, enabling them to plan their daily commute and campus travel effectively.
+23. Tracking Shuttle: Students can track real-time shuttle locations and estimated arrival times at specific stops, reducing waiting time and improving transportation planning through GPS-enabled tracking features.
+24. Manage System Content: System administrators can manage and update various content including menus, facility information, shuttle schedules, and system announcements to ensure accurate and current information for all users.
+25. View Reports: Administrators can view comprehensive reports on system usage, popular services, user feedback, and operational statistics to make data-driven decisions for system improvements and resource allocation.
+
+Above is a brief summary of life service use cases. Following this, we will select two main use cases,meal ordering and package notification, to develop detailed specifications.
+
+#### 4.3.1 Meal Ordering:
+<img src="diagrams/Meal_Ordering.svg" alt="use_case_mo" title="Meal_Ordering" width="auto" style="margin: 0;"/>
+ 
+|USE CASE|MEAL ORDERING|
+| ---- | ---- |
+|ID|*UC01*|
+|Specification|Students can pre-order meals from campus canteens and vendor through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
+|Actors|Student, Vendor, Payment System|
+|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor have updated menus available|
+|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food vendor<br>3. Student selects a vendor and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
+|Alternative Path|3a: No vendors available<br>• System displays "No vendors currently available" message<br>6a: Item out of stock<br>• System notifies student <br>8a: Payment fails<br>• System prompts student to retry or change payment method<br>9a: Order cancellation<br>• Student can cancel order before preparation begins<br>• System processes refund if applicable|
+|Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Vendor receives order details<br>• Student can track order status<br>• Order appears in student's order history|
+
+
+#### 4.3.2 Package Notification  
+<img src="diagrams/Package_Notification.svg" alt="use_case_pn" title="Package_Notification" width="auto" style="margin: 0;"/>
+ 
+
+|USE CASE|PACKAGE NOTIFICATION|
+| ---- | ---- |
+|ID|*UC02*|
+|Specification|System automatically notifies students when their registered packages arrive at campus pickup points, ensuring timely collection and reducing package accumulation.|
+|Actors|**Primary Actor:** Student<br>**Secondary Actors:** Package Manager, Delivery Service|
+|Pre-condition|• Package has been registered in the system<br>• Delivery service integration with SmartCampus is active<br>• Student has valid contact information in the system|
+|Basic Path|1. Student registers package postal number in SmartCampus app<br>2. Student sets special instructions (delivery method, preferred pickup time, or specific handling requirements)<br>3. System monitors package delivery status<br>4. Package arrives at campus pickup point<br>5. Delivery service updates package status in system<br>6. System recognizes registered package<br>7. System generates unique pickup code for each package to ensure secure retrieval<br>8. System sends arrival notification via SMS, email, or app notification<br>9. Student receives notification with pickup details<br>10. Student can view pickup code and location information<br>11. Student can choose preferred pickup method (self-pickup at designated locations, delivery to dormitory, or pickup by authorized representatives)<br>12. Student can set pickup code expiry time to enhance security|
+|Alternative Path|**1a:** Invalid postal number<br>• System displays error message and prompts re-entry<br><br>**4a:** Package delivery delayed<br>• System sends delay notification to student<br><br>**6a:** System cannot recognize package<br>• System records unregistered package for manual processing<br><br>**7a:** Pickup code generation fails<br>• System regenerates pickup code and notifies student<br><br>**8a:** Notification delivery fails<br>• System attempts alternative notification methods<br><br>**10a:** Pickup code expires<br>• Student can request new pickup code through app<br>• System provides automatic renewal options for extended storage needs<br><br>**11a:** Preferred pickup method unavailable<br>• System provides alternative pickup options<br>• Student can reselect pickup method|
+|Post-condition|• Student receives package arrival notification<br>• Package location and pickup instructions are provided<br>• Package status is updated to "Ready for Pickup"<br>• Unique pickup code is generated to ensure secure retrieval<br>• Notification record is logged in system<br>• Prevents unauthorized access and maintains package security throughout pickup process|
+ 
 
 ## 5. Glossary of terms
 At least 10 terms related to the problem's domain.
