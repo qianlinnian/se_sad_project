@@ -134,25 +134,79 @@ The development follows agile methodology with iterative sprints, continuous use
 
 
 ## 4. Use case modelling and Business Process Modelling
-  Necessary use case diagrams
-  Detailed use cases: concise text descriptions (two to four lines each) for all the above use cases, as well as detailed specifications for at least 5 use cases.
-  Necessary activity diagrams or BPMN diagrams to illustrate the primary business process.
+### 4.1.1 Library System Use Case Diagram
+<img src="../Assignment1/diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="zoom:80%;" />
+#### Use Case: Reserve Study Seat
+
+| Attribute | Description |
+|-----------|-------------|
+| Use Case Name | Reserve Study Seat |
+| ID | UC-01 |
+| Specification | Students view real-time library seat status through the system and select appropriate areas and time slots for seat reservations |
+| Actor | Student |
+| Pre-condition | Student has successfully logged into the system, seat reservation function is operating normally |
+| Basic Path | 1. Student enters the seat reservation interface<br>2. System displays real-time seat status map of various library areas<br>3. Student selects target area and reservation time slot<br>4. System verifies reservation rules (maximum reservation duration, duplicate reservation restrictions, etc.)<br>5. Student confirms reservation information<br>6. System generates reservation record and updates seat status<br>7. System sends reservation success notification |
+| Alternative Path | 4a. If reservation rules are violated, system displays specific error message and returns to step 2<br>5a. Student cancels reservation operation, returns to seat selection interface<br>6a. System processing fails, displays "System busy, please try again later" |
+| Post-condition | Seat reservation successful, seat status updated to "Reserved", student receives reservation confirmation notification |
+
+#### Use Case: Borrow Books
+
+| Attribute | Description |
+|-----------|-------------|
+| Use Case Name | Borrow Books |
+| ID | UC-02 |
+| Specification | Students search library collection information and select available books to complete the borrowing process |
+| Actor | Student |
+| Pre-condition | Student has successfully logged into the system and has valid borrowing privileges |
+| Basic Path | 1. Student searches for books by ISBN, title, author, or other information<br>2. System displays detailed book information and collection status<br>3. Student selects available books for borrowing<br>4. System verifies borrowing eligibility (maximum book limit, outstanding fees, etc.)<br>5. Student confirms borrowing operation<br>6. System generates borrowing record and updates book status<br>7. System sends borrowing success notification and due date reminder |
+| Alternative Path | 4a. If borrowing eligibility requirements are not met, system displays specific reasons (e.g., "Maximum borrowing limit reached")<br>5a. Student cancels borrowing operation, returns to book search interface<br>6a. Book status update fails, system rolls back operation and prompts to retry |
+| Post-condition | Book borrowing successful, borrowing record updated, book status changes to "Borrowed" |
+
+### 4.1.3 Brief Description of Other Use Cases
+
+**Renew Books**: Students select books needing renewal from their personal borrowing records, system verifies renewal conditions (not overdue, not reached maximum renewal times), extends loan period upon success and sends confirmation notification. The entire process completes within 2 minutes.
+
+**Query Study Spaces**: Students filter study spaces based on needs (quiet areas, group discussion rooms, multimedia rooms, etc.), system displays available space quantities, equipment configuration, and real-time occupancy status, supporting time-slot based reservation status queries.
+
+**View Reading Analytics**: System aggregates students' borrowing history data, generates monthly/annual reading reports including reading preference analysis, reading duration statistics, subject distribution visualization charts, helping students understand reading habits.
 
 ## 5. Glossary of terms
-At least 10 terms related to the problem's domain.
+### Use Case Modeling
+A UML modeling method that describes system functional requirements through use cases, focusing on the interaction between users and the system.
+
+### User Journey Map
+A tool that visualizes the entire process of user interaction with a product, analyzing experience pain points and improvement opportunities.
+
+### Agile Development
+A development methodology characterized by iterative increments, emphasizing rapid response to requirement changes and user feedback.
 
 ## 6. Supplementary specification
+### 6.2 Security and Stability
+**Data Encryption**: The system employs end-to-end encryption technology, using AES-256 encryption for transmission and storage of all sensitive data (such as personal information, payment credentials), ensuring data confidentiality and integrity during transmission and storage.
+
+**System Availability**: Through load balancing and cluster deployment, the system ensures 99.9% availability, supports tens of thousands of concurrent requests per second, and automatically scales resources under high load to ensure stable and smooth service.
+
+**Data Backup**: Establishes daily incremental backup and weekly full backup mechanisms, combined with off-site disaster recovery solutions, achieving rapid data recovery and seamless business switching, minimizing data loss risks.
 
 ## 7. Initial snapshots of the system's user interface
-At least 4 snapshots with brief descriptions.
+### 7.1 Library Seat Reservation Interface
+<img src="../Assignment1/diagrams/LibrarySnapshot.png" alt="LibrarySnapshot" style="zoom:80%;" />
+This clean and intuitive interface allows students to easily reserve study spaces across multiple campus libraries. Users can view real-time seat availability with clear "Vacant/Total" counts for each location. The date selection panel enables quick browsing for today and tomorrow. The design prioritizes essential information - showing current vacancy rates and total capacity - helping students make informed decisions quickly.
 
 ## 8. AI tool usage disclosure
-If you have used an AI tool or technology to generate an output which you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list.
-
-If you have used an AI tool or technology in the process of completing the above tasks (for example, brainstorming, outlining, generating examples, rendering diagrams, creating UIs, editing), an acknowledgement of how you have used AI tools or technologies is required.
+### Use of AI Tools in This System Design Project
+In this system design project, we utilized AI tools to assist in several key phases:
+- Used AI tools for initial requirements research and functional ideation
+- Leveraged conversational interactions to identify user pain points and scenario requirements
+- Checked the structure and terminology consistency of technical documentation
+- Assisted in accurate translation of technical terms between Chinese and English
 
 ## 9. References
-1 domain-related book and/or 2 reference articles, with a brief description (30 to 60 words each). 
+1. "Systems Analysis and Design Methods" by Jeffrey L. Whitten & Lonnie D. Bentley
+A comprehensive guide covering structured analysis, design techniques, and project management. It provides practical methodologies for developing information systems through real-world case studies and UML modeling approaches.
+
+2. "User Stories Applied: For Agile Software Development" by Mike Cohn
+Focuses on agile requirements through user stories. Offers practical techniques for writing, prioritizing, and planning stories in iterative development, bridging communication between stakeholders and development teams.
 
 ## 10. Team member contributions 
 | Members  | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Percent |
@@ -163,4 +217,6 @@ If you have used an AI tool or technology in the process of completing the above
 | Yu Yilian  2352993 | | |✓ | | | | | | | |
 
 ## 11. Agile artifacts
-If you have adopted any agile requirements gathering and analysis approaches in your project, please also summarize your current artifacts, such as User Personas, Impact Map, User Journey Maps, Product Backlogs, Themes, Epics, User Stories, Enabler Stories, and so on.
+### 11.3 User Journey Map
+<img src="../Assignment1/diagrams/journry map.png" alt="User Journry Map" style="zoom:80%;" />
+In the system design process, we have mapped out the complete user journey by analyzing students' interactions with SmartCampus across four critical stages: exploration, selection, participation, and feedback. This approach goes beyond simply documenting functional requirements to capture users' evolving psychological states and emotional responses throughout their experience. By examining the key questions students ask at each phase, we gain deep insights into their underlying needs and anxieties. The journey mapping reveals not only where students encounter friction but also where opportunities exist to build trust and deliver delight. This comprehensive understanding enables us to design features that proactively address user concerns, streamline complex processes, and create emotional connections that transform routine campus tasks into satisfying experiences. Through this user-centered approach, we ensure SmartCampus evolves from a mere service platform into an indispensable companion that genuinely understands and supports students' academic and daily life needs.
