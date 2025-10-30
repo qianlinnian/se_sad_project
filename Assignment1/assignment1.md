@@ -312,9 +312,16 @@ Use Case: **Utility Bill Payment**
 At least 4 snapshots with brief descriptions.
 
 ## 8. AI tool usage disclosure
-If you have used an AI tool or technology to generate an output which you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list.
 
-If you have used an AI tool or technology in the process of completing the above tasks (for example, brainstorming, outlining, generating examples, rendering diagrams, creating UIs, editing), an acknowledgement of how you have used AI tools or technologies is required.
+During the completion of this SmartCampus system analysis and design project, our team utilized AI-assisted tools in a limited and responsible manner to support specific tasks. The use of AI was strictly supplementary; all core analytical thinking, architectural decisions, and final content were driven and owned by the team members.
+
+Specifically, **OpenAI ChatGPT** was employed as a tool to aid in the following areas:
+
+*   **Brainstorming Assistance:** In the initial project phase, the AI tool was used to help generate and organize broad ideas for all four subsystems (Academic, Library, Logistics, and Daily Life Services), which the team then critically evaluated, filtered, and developed into our final design.
+*   **Documentation Drafting and Structuring:** The AI tool assisted in creating initial drafts and outlines for certain sections of the report, such as the *Supplementary Specification* and *User Stories*. These drafts served as a starting point and were substantially revised, expanded, and validated by the team to ensure accuracy and relevance to our specific project context.
+*   **Language Polishing and Editing:** The primary use of the AI tool was for proofreading and refining the language of team-written content to improve clarity, consistency, and academic tone. All technical descriptions and key concepts remained the product of the team's work.
+
+All outputs generated with AI assistance were thoroughly reviewed, edited, and corrected by the team members. The final deliverables represent the team's own understanding, analysis, and design efforts.
 
 ## 9. References
 1 domain-related book and/or 2 reference articles, with a brief description (30 to 60 words each). 
