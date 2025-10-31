@@ -24,6 +24,7 @@
   - [5. Glossary of terms](#5-glossary-of-terms)
   - [6. Supplementary specification](#6-supplementary-specification)
   - [7. Initial snapshots of the system's user interface](#7-initial-snapshots-of-the-systems-user-interface)
+    - [7.3 Life Service](#73-life-service)
   - [8. AI tool usage disclosure](#8-ai-tool-usage-disclosure)
   - [9. References](#9-references)
   - [10. Team member contributions](#10-team-member-contributions)
@@ -234,15 +235,35 @@ This activity diagram illustrates a package notification system workflow where u
 ## 6. Supplementary specification
 
 ## 7. Initial snapshots of the system's user interface
-At least 4 snapshots with brief descriptions.
+
+<img src="diagrams\board1.png" alt="login" title="b_login" width="30%" style="margin: 0;"/>
+<img src="diagrams\board3.png" alt="board" title="b_h" width="30%" style="margin: 0;"/>
+<img src="diagrams\board2.png" alt="fcts" title="b_f" width="30%" style="margin: 0;"/>
+
+- The login page of SmartCampus.
+- The home page of SmartCampus, including brief summary of today overview and popular functions.
+- The function pafe of SmartCampus, including all functions of four subsystems.
+
+### 7.3 Life Service
+<img src="diagrams/ls1.png" alt="ls_v" title="vendor" width="30%" style="margin: 0;"/>
+<img src="diagrams/ls2.png" alt="ls_f" title="food" width="30%" style="margin: 0;"/>
+<img src="diagrams/ls3.png" alt="ls_o" title="orders" width="30%" style="margin: 0;"/>
+
+- Vendor dashboard: manage menu, set hours, update stock, and process incoming orders.
+- Menu view: browse items, see images, customize options, and add selections to the cart.
+- Order timeline: shows order status from placement to pickup, with payment and tracking details.
+
+<img src="diagrams/ls4.png" alt="package" title="pl" width="30%" style="margin: 0;"/>
+
+- Package notification flow: register parcels, generate pickup codes, notify students, and manage collection.
 
 ## 8. AI tool usage disclosure
-If you have used an AI tool or technology to generate an output which you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list.
-
-If you have used an AI tool or technology in the process of completing the above tasks (for example, brainstorming, outlining, generating examples, rendering diagrams, creating UIs, editing), an acknowledgement of how you have used AI tools or technologies is required.
+We used Claude 4 Sonnet (document writing, editing, and modification suggestions) and diagrams.net/draw.io (use case and activity diagram creation). Claude 4 Sonnet was primarily used to assist with document content writing, language polishing, and providing modification suggestions for use case and activity diagram designs. All AI suggestions were reviewed and revised by the project team; final analysis and decisions are the team's responsibility. No confidential personal data was submitted to external AI services. Verbatim AI outputs or substantial paraphrases are cited in the references. For alternate citation styles or to update tool names/dates, contact the team and we will revise this statement.
 
 ## 9. References
 1 domain-related book and/or 2 reference articles, with a brief description (30 to 60 words each). 
+
+[1]Claude 4 Sonnet (AI Assistant). (2025, November 1). Document writing assistance and diagram design suggestions for SmartCampus system analysis. Anthropic. Used for document content generation, language editing, and providing modification suggestions for use case diagrams and activity diagrams in the SmartCampus project documentation.
 
 ## 10. Team member contributions 
 | Members  | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Percent |
