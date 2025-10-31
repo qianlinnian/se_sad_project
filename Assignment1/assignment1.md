@@ -13,9 +13,9 @@
     - [2.3 Initiatives](#23-initiatives)
   - [3. Roadmap](#3-roadmap)
   - [4. Use case modelling and Business Process Modelling](#4-use-case-modelling-and-business-process-modelling)
-    - [4.3 Life Services Subsystem](#43-life-services-subsystem)
-      - [4.3.1 Meal Ordering:](#431-meal-ordering)
-      - [4.3.2 Package Notification](#432-package-notification)
+      - [4.1.3 Life Services Subsystem](#413-life-services-subsystem)
+    - [4.2 Activity Diagrams](#42-activity-diagrams)
+      - [4.2.3 Life Service](#423-life-service)
   - [5. Glossary of terms](#5-glossary-of-terms)
   - [6. Supplementary specification](#6-supplementary-specification)
   - [7. Initial snapshots of the system's user interface](#7-initial-snapshots-of-the-systems-user-interface)
@@ -23,6 +23,7 @@
   - [9. References](#9-references)
   - [10. Team member contributions](#10-team-member-contributions)
   - [11. Agile artifacts](#11-agile-artifacts)
+    - [11.1 Persona](#111-persona)
 
 ## 1. Introduction
 **SmartCampus** — Your Campus Life Helper
@@ -141,7 +142,7 @@ The development follows agile methodology with iterative sprints, continuous use
   Detailed use cases: concise text descriptions (two to four lines each) for all the above use cases, as well as detailed specifications for at least 5 use cases.
   Necessary activity diagrams or BPMN diagrams to illustrate the primary business process.
 
-### 4.3 Life Services Subsystem
+#### 4.1.3 Life Services Subsystem
 User Case Diagram:
 <img src="diagrams/Life_Services.svg" alt="use_case_ls" title="usecase_life" width="auto" style="margin: 0;"/>
 
@@ -174,7 +175,7 @@ Short written summary:
 
 Above is a brief summary of life service use cases. Following this, we will select two main use cases,meal ordering and package notification, to develop detailed specifications.
 
-#### 4.3.1 Meal Ordering:
+- Meal Ordering:
 <img src="diagrams/Meal_Ordering.svg" alt="use_case_mo" title="Meal_Ordering" width="auto" style="margin: 0;"/>
  
 |USE CASE|MEAL ORDERING|
@@ -188,10 +189,9 @@ Above is a brief summary of life service use cases. Following this, we will sele
 |Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Vendor receives order details<br>• Student can track order status<br>• Order appears in student's order history|
 
 
-#### 4.3.2 Package Notification  
+- Package Notification  
 <img src="diagrams/Package_Notification.svg" alt="use_case_pn" title="Package_Notification" width="auto" style="margin: 0;"/>
  
-
 |USE CASE|PACKAGE NOTIFICATION|
 | ---- | ---- |
 |ID|*UC02*|
@@ -202,6 +202,20 @@ Above is a brief summary of life service use cases. Following this, we will sele
 |Alternative Path|**1a:** Invalid postal number<br>• System displays error message and prompts re-entry<br><br>**4a:** Package delivery delayed<br>• System sends delay notification to student<br><br>**6a:** System cannot recognize package<br>• System records unregistered package for manual processing<br><br>**7a:** Pickup code generation fails<br>• System regenerates pickup code and notifies student<br><br>**8a:** Notification delivery fails<br>• System attempts alternative notification methods<br><br>**10a:** Pickup code expires<br>• Student can request new pickup code through app<br>• System provides automatic renewal options for extended storage needs<br><br>**11a:** Preferred pickup method unavailable<br>• System provides alternative pickup options<br>• Student can reselect pickup method|
 |Post-condition|• Student receives package arrival notification<br>• Package location and pickup instructions are provided<br>• Package status is updated to "Ready for Pickup"<br>• Unique pickup code is generated to ensure secure retrieval<br>• Notification record is logged in system<br>• Prevents unauthorized access and maintains package security throughout pickup process|
  
+### 4.2 Activity Diagrams
+
+#### 4.2.3 Life Service
+<img src="diagrams\ad_life_service.svg" alt="ad_ls" title="ad_life" width="auto" style="margin: 0;"/>
+This picture is the the activity diagram of life service. It descripe the main process of the student using the life service.
+
+And then we choose the Meal Ordering and Package Notification part to make detail description.
+- Meal Ordering 
+<img src="diagrams\ad_meal_ordering.svg" alt="ad_mo" title="ad_meal" width="auto" style="margin: 0;"/>
+This activity diagram illustrates a meal ordering system workflow across three swimlanes (User, System, Payment System). It shows the complete process from user login verification through vendor/menu selection, order customization, payment processing, to final order confirmation, including error handling for unavailable vendors, out-of-stock items, and payment failures.
+
+- Package Notification
+<img src="diagrams\ad_package_notification.svg" alt="ad_pn" title="ad_pkg" width="auto" style="margin: 0;"/>
+This activity diagram illustrates a package notification system workflow where users register packages and set preferences, while the system verifies information, creates records, and manages package arrivals. The process includes validation checks, notification generation for registered packages, and handles both successful pickups and error scenarios through appropriate system responses.
 
 ## 5. Glossary of terms
 At least 10 terms related to the problem's domain.
@@ -228,5 +242,6 @@ If you have used an AI tool or technology in the process of completing the above
 | Yu Yilian  2352993 | | |✓ | | | | | | | |
 
 ## 11. Agile artifacts
+### 11.1 Persona
 The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
   <img src="diagrams/persona.png" alt="persona_page" title="persona" width="auto" style="margin: 0;"/>
