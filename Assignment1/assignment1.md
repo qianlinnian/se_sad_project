@@ -1,4 +1,8 @@
 # System Analysis and Design
+<p align="center">
+  <img src="diagrams/logo.png" alt="logo" title="logo" width="100px" style="margin: 0;"/>
+</p>
+
 - [System Analysis and Design](#system-analysis-and-design)
   - [1. Introduction](#1-introduction)
     - [1.1 Background](#11-background)
@@ -13,6 +17,7 @@
     - [2.3 Initiatives](#23-initiatives)
   - [3. Roadmap](#3-roadmap)
   - [4. Use case modelling and Business Process Modelling](#4-use-case-modelling-and-business-process-modelling)
+    - [4.1 Use Case](#41-use-case)
       - [4.1.3 Life Services Subsystem](#413-life-services-subsystem)
     - [4.2 Activity Diagrams](#42-activity-diagrams)
       - [4.2.3 Life Service](#423-life-service)
@@ -141,7 +146,7 @@ The development follows agile methodology with iterative sprints, continuous use
   Necessary use case diagrams
   Detailed use cases: concise text descriptions (two to four lines each) for all the above use cases, as well as detailed specifications for at least 5 use cases.
   Necessary activity diagrams or BPMN diagrams to illustrate the primary business process.
-
+### 4.1 Use Case
 #### 4.1.3 Life Services Subsystem
 User Case Diagram:
 <img src="diagrams/Life_Services.svg" alt="use_case_ls" title="usecase_life" width="auto" style="margin: 0;"/>
