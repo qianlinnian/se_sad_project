@@ -1,0 +1,194 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0" version="28.2.8">
+  <diagram id="wFE0QG_FPsp0jaGvCLVb" name="Page-1">
+    <mxGraphModel dx="2189" dy="759" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_5mSTuPxr-ZiKRkBDSY7-1" value="" style="swimlane;fontStyle=2;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;swimlaneFillColor=none;fontFamily=Comic Sans MS;fontSize=16;points=[];verticalAlign=top;stackBorder=0;resizable=1;strokeWidth=2;sketch=1;disableMultiStroke=1;" parent="1" vertex="1">
+          <mxGeometry y="90" width="1160" height="649" as="geometry" />
+        </mxCell>
+        <object label="Stage of Journey" status="New" id="_5mSTuPxr-ZiKRkBDSY7-2">
+          <mxCell style="swimlane;strokeWidth=2;fontFamily=Comic Sans MS;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=default;swimlaneFillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
+            <mxGeometry y="28" width="180" height="621" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="User" placeholders="1" id="_5mSTuPxr-ZiKRkBDSY7-3">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#d5e8d4;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;strokeColor=#82b366;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
+            <mxGeometry x="20" y="21" width="140" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Events" placeholders="1" id="_5mSTuPxr-ZiKRkBDSY7-4">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;strokeColor=#6c8ebf;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
+            <mxGeometry x="20" y="121" width="140" height="79" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Touchpoints" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-16">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;strokeColor=#6c8ebf;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
+            <mxGeometry x="20" y="220" width="140" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Feeling" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-17">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;strokeColor=#6c8ebf;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
+            <mxGeometry x="20" y="320" width="140" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-38" value="" style="endArrow=none;html=1;rounded=0;fontFamily=Comic Sans MS;" parent="_5mSTuPxr-ZiKRkBDSY7-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="512" as="sourcePoint" />
+            <mxPoint x="902" y="512" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <object label="Emotion" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-18">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;strokeColor=#6c8ebf;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
+            <mxGeometry x="20" y="420" width="140" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Opportunities" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-19">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;strokeColor=#6c8ebf;" parent="_5mSTuPxr-ZiKRkBDSY7-2" vertex="1">
+            <mxGeometry x="20" y="520" width="140" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Explore" status="New" id="7V4wO9x8OLWOLXkMa94R-5">
+          <mxCell style="swimlane;strokeWidth=2;fontFamily=Comic Sans MS;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=none;gradientColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
+            <mxGeometry x="180" y="28" width="220" height="621" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Task 2&lt;br&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;&lt;i&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%status%&lt;/font&gt;&lt;/i&gt;&lt;/span&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-7">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;" parent="7V4wO9x8OLWOLXkMa94R-5" vertex="1">
+            <mxGeometry x="20" y="21" width="180" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div&gt;&lt;font style=&quot;line-height: 70%; font-size: 8px;&quot;&gt;-Browse the system homepage to understand various service functions.&lt;br&gt; - Search library collection information and availability status.&lt;br&gt; - View campus shuttle real-time locations and schedules.&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;line-height: 70%; font-size: 8px;&quot;&gt;-&amp;nbsp;Understand logistics repair processes and contact methods&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-14">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffe6cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=left;strokeColor=#d79b00;" parent="7V4wO9x8OLWOLXkMa94R-5" vertex="1">
+            <mxGeometry x="20" y="121" width="180" height="79" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-8" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;-&amp;nbsp;&lt;/span&gt;System homepage&lt;/div&gt;&lt;div&gt;- Library seat map&lt;/div&gt;&lt;div&gt;- Book search interface&lt;/div&gt;&lt;div&gt;- Canteen menu board&lt;/div&gt;&lt;div&gt;- Shuttle tracking map&lt;/div&gt;&lt;div&gt;- Service guidelines&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffe6cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d79b00;" parent="7V4wO9x8OLWOLXkMa94R-5" vertex="1">
+          <mxGeometry x="20" y="220" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-21" value="&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- &quot;What specific problems can this system help me solve?&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- &quot;Can I borrow the book I&#39;m looking for?&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- &quot;What delicious options are available in the cafeteria today?&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- &quot;When will the next campus shuttle arrive?&quot;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffe6cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d79b00;" parent="7V4wO9x8OLWOLXkMa94R-5" vertex="1">
+          <mxGeometry x="20" y="320" width="180" height="80" as="geometry" />
+        </mxCell>
+        <object label="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;😐&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;neutral&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-25">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffe6cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d79b00;" parent="7V4wO9x8OLWOLXkMa94R-5" vertex="1">
+            <mxGeometry x="20" y="420" width="180" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-26" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;- Personalized recommendations&lt;/div&gt;&lt;div&gt;- Guided onboarding tours&lt;/div&gt;&lt;div&gt;- Availability predictions&lt;/div&gt;&lt;div&gt;- Smart search filters&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffe6cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d79b00;" parent="7V4wO9x8OLWOLXkMa94R-5" vertex="1">
+          <mxGeometry x="20" y="520" width="180" height="80" as="geometry" />
+        </mxCell>
+        <object label="Select" status="New" id="7V4wO9x8OLWOLXkMa94R-10">
+          <mxCell style="swimlane;strokeWidth=2;fontFamily=Comic Sans MS;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
+            <mxGeometry x="400" y="28" width="280" height="621" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Task 1&lt;br&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;&lt;i&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%status%&lt;/font&gt;&lt;/i&gt;&lt;/span&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-11">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;" parent="7V4wO9x8OLWOLXkMa94R-10" vertex="1">
+            <mxGeometry x="20" y="21" width="240" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt;- Choose preferred library study areas and time slots&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt;- Determine books to borrow and add to borrowing list&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt;- Identify dormitory facility types needing repair&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 8px;&quot;&gt;- Select canteen stalls and meals to add to shopping cart.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;font style=&quot;line-height: 70%;&quot;&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Choose campus card recharge amount and payment method.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Determine sports facility reservation time and venue.&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-12">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=left;strokeColor=#d6b656;" parent="7V4wO9x8OLWOLXkMa94R-10" vertex="1">
+            <mxGeometry x="20" y="121" width="240" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-13" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;- Seat selection panel&lt;/div&gt;&lt;div&gt;- Book borrowing cart&lt;/div&gt;&lt;div&gt;- Meal ordering cart&lt;/div&gt;&lt;div&gt;- Repair type selector&lt;/div&gt;&lt;div&gt;- Payment amount panel&lt;/div&gt;&lt;div&gt;- Time slot picker&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d6b656;" parent="7V4wO9x8OLWOLXkMa94R-10" vertex="1">
+          <mxGeometry x="20" y="221" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-22" value="&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;div style=&quot;font-size: 9px;&quot;&gt;- &quot;Which repair category is most appropriate?&quot;&lt;/div&gt;&lt;div style=&quot;font-size: 9px;&quot;&gt;- &quot;How much money should I top up to last a week?&quot;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px; line-height: 80%;&quot;&gt;- &quot;Will this time slot be too crowded?&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px; line-height: 80%;&quot;&gt;- &quot;Is this meal set enough to satisfy my appetite?&quot;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d6b656;" parent="7V4wO9x8OLWOLXkMa94R-10" vertex="1">
+          <mxGeometry x="20" y="321" width="240" height="80" as="geometry" />
+        </mxCell>
+        <object label="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;🙂 &lt;br&gt; Satisfied&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-27">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d6b656;" parent="7V4wO9x8OLWOLXkMa94R-10" vertex="1">
+            <mxGeometry x="20" y="421" width="240" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-28" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;- Comparison tools&lt;/div&gt;&lt;div&gt;- Favorite selections&lt;/div&gt;&lt;div&gt;- Quick reorder options&lt;/div&gt;&lt;div&gt;- Batch operations&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#d6b656;" parent="7V4wO9x8OLWOLXkMa94R-10" vertex="1">
+          <mxGeometry x="20" y="521" width="240" height="80" as="geometry" />
+        </mxCell>
+        <object label="Participate" status="New" id="7V4wO9x8OLWOLXkMa94R-1">
+          <mxCell style="swimlane;strokeWidth=2;fontFamily=Comic Sans MS;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
+            <mxGeometry x="680" y="28" width="270" height="621" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Task 1&lt;br&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;&lt;i&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%status%&lt;/font&gt;&lt;/i&gt;&lt;/span&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-2">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;" parent="7V4wO9x8OLWOLXkMa94R-1" vertex="1">
+            <mxGeometry x="20" y="21" width="230" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- Complete seat reservation and receive confirmation notification.&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Successfully borrow books and obtain pickup location.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;-&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Submit canteen order and complete online payment.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;-&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Submit dormitory repair request with uploaded photos.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;-&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Complete campus card recharge and check balance.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;-&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 8px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Confirm sports venue reservation and view usage rules.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-3">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f8cecc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=left;strokeColor=#b85450;" parent="7V4wO9x8OLWOLXkMa94R-1" vertex="1">
+            <mxGeometry x="20" y="121" width="230" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-4" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;- Reservation confirmation&lt;/div&gt;&lt;div&gt;- Borrowing success page&lt;/div&gt;&lt;div&gt;- Payment processing&lt;/div&gt;&lt;div&gt;- Request submission&lt;/div&gt;&lt;div&gt;- Recharge completion&lt;/div&gt;&lt;div&gt;- Booking confirmation&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f8cecc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#b85450;" parent="7V4wO9x8OLWOLXkMa94R-1" vertex="1">
+          <mxGeometry x="20" y="221" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-23" value="&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px; line-height: 80%;&quot;&gt;- &quot;Was my reservation successful? When will I receive confirmation?&quot;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px; line-height: 80%;&quot;&gt;- &quot;Where do I pick up the book? What if I can&#39;t find it?&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px; line-height: 80%;&quot;&gt;- &quot;When will the maintenance staff arrive?&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f8cecc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#b85450;" parent="7V4wO9x8OLWOLXkMa94R-1" vertex="1">
+          <mxGeometry x="20" y="321" width="230" height="80" as="geometry" />
+        </mxCell>
+        <object label="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;😁&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;excited&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-29">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f8cecc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#b85450;" parent="7V4wO9x8OLWOLXkMa94R-1" vertex="1">
+            <mxGeometry x="20" y="421" width="230" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-30" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;- Progress tracking&lt;/div&gt;&lt;div&gt;- Instant notifications&lt;/div&gt;&lt;div&gt;- Multiple payment options&lt;/div&gt;&lt;div&gt;- One-click confirmations&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f8cecc;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#b85450;" parent="7V4wO9x8OLWOLXkMa94R-1" vertex="1">
+          <mxGeometry x="20" y="521" width="230" height="80" as="geometry" />
+        </mxCell>
+        <object label="Feedback" status="In progress" id="_5mSTuPxr-ZiKRkBDSY7-6">
+          <mxCell style="swimlane;strokeWidth=2;fontFamily=Comic Sans MS;html=0;startSize=1;verticalAlign=bottom;spacingBottom=5;points=[];childLayout=stackLayout;stackBorder=20;stackSpacing=20;resizeLast=0;resizeParent=1;horizontalStack=0;collapsible=0;sketch=1;strokeColor=none;fillStyle=solid;fillColor=none;" parent="_5mSTuPxr-ZiKRkBDSY7-1" vertex="1">
+            <mxGeometry x="950" y="28" width="210" height="621" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="Task 4&lt;br&gt;&lt;span style=&quot;font-weight: normal&quot;&gt;&lt;i&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%status%&lt;/font&gt;&lt;/i&gt;&lt;/span&gt;" placeholders="1" id="_5mSTuPxr-ZiKRkBDSY7-7">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
+            <mxGeometry x="20" y="21" width="170" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div style=&quot;line-height: 80%;&quot;&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- Submit feedback and suggestions.&lt;br&gt; - Rate experience satisfaction.&lt;br&gt; -&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;Suggest improvements for system user experience&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px; line-height: 80%;&quot;&gt;- Share usage experiences with other students&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="_5mSTuPxr-ZiKRkBDSY7-8">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#e1d5e7;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=left;strokeColor=#9673a6;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
+            <mxGeometry x="20" y="121" width="170" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-20" value="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div&gt;- Rating pop-ups&lt;/div&gt;&lt;div&gt;- Comment sections&lt;/div&gt;&lt;div&gt;- Feedback forms&lt;/div&gt;&lt;div&gt;- Suggestion boxes&lt;/div&gt;&lt;div&gt;- Social share buttons&lt;/div&gt;&lt;div&gt;- Experience surveys&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#e1d5e7;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#9673a6;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
+          <mxGeometry x="20" y="221" width="170" height="80" as="geometry" />
+        </mxCell>
+        <object label="&lt;div style=&quot;font-size: 9px;&quot;&gt;&quot;Will my suggestions be adopted?”&lt;br&gt;“Some areas could be improved.”&lt;br&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-24">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#e1d5e7;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#9673a6;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
+            <mxGeometry x="20" y="321" width="170" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;div style=&quot;border-color: var(--border-color); font-size: 12px;&quot;&gt;🙂 &lt;br&gt; Satisfied&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-31">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#e1d5e7;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#9673a6;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
+            <mxGeometry x="20" y="421" width="170" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div style=&quot;font-size: 9px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Offer a friendly feedback section and forums for users to share experiences and suggestions.&lt;/span&gt;&lt;/div&gt;" placeholders="1" id="7V4wO9x8OLWOLXkMa94R-32">
+          <mxCell style="whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#e1d5e7;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;align=center;strokeColor=#9673a6;" parent="_5mSTuPxr-ZiKRkBDSY7-6" vertex="1">
+            <mxGeometry x="20" y="521" width="170" height="80" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="I want to efficiently complete various academic and daily life tasks through the SmartCampus system, including seat reservations, book borrowing, meal ordering, and handling logistics issues, to improve campus life efficiency and quality." placeholders="1" id="_5mSTuPxr-ZiKRkBDSY7-5">
+          <mxCell style="whiteSpace=wrap;strokeWidth=2;fillColor=swimlane;fontStyle=1;spacingTop=0;rounded=1;arcSize=9;points=[];sketch=1;fontFamily=Comic Sans MS;hachureGap=8;fillWeight=1;" parent="1" vertex="1">
+            <mxGeometry x="200" y="138" width="940" height="82" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-15" value="" style="endArrow=none;html=1;rounded=0;fontFamily=Comic Sans MS;" parent="1" source="7V4wO9x8OLWOLXkMa94R-34" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="230" as="sourcePoint" />
+            <mxPoint x="900" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-36" value="" style="endArrow=none;html=1;rounded=0;fontFamily=Comic Sans MS;" parent="1" target="7V4wO9x8OLWOLXkMa94R-34" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="230" as="sourcePoint" />
+            <mxPoint x="870" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7V4wO9x8OLWOLXkMa94R-34" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;Customer Experience&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry y="215" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

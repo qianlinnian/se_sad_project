@@ -216,7 +216,7 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 
 **Use Case Diagram**
 <p align="center">
-  <img src="diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/usecase4.1.svg" alt="Library System Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
 </p>
 
 - Brief Description 
@@ -252,6 +252,8 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 | Basic Path | 1. Student searches for books by ISBN, title, author, or other information<br>2. System displays detailed book information and collection status<br>3. Student selects available books for borrowing<br>4. System verifies borrowing eligibility (maximum book limit, outstanding fees, etc.)<br>5. Student confirms borrowing operation<br>6. System generates borrowing record and updates book status<br>7. System sends borrowing success notification and due date reminder |
 | Alternative Path | 4a. If borrowing eligibility requirements are not met, system displays specific reasons (e.g., "Maximum borrowing limit reached")<br>5a. Student cancels borrowing operation, returns to book search interface<br>6a. Book status update fails, system rolls back operation and prompts to retry |
 | Post-condition | Book borrowing successful, borrowing record updated, book status changes to "Borrowed" |
+
+- 
 
 #### 5.1.2 Academic Affairs Service Subsystem
 
@@ -495,9 +497,31 @@ Above is a brief summary of life service use cases. Following this, we will sele
 | **Post condition**   | Monthly bills generated and notifications dispatched; billing records persisted.|
 
 ### 5.2 Activity Diagrams
+#### 5.2.1 Library Subsystem
+**Borrow Books**
+This activity diagram maps the core circulation workflows within the SmartCampus Library System, encompassing the processes for borrowing, renewing, and returning books. It begins with user authentication and clearly outlines the divergent paths for each action.
+
+The diagram effectively visualizes key system decision points, such as checking a book's availability for borrowing, verifying a user's eligibility for renewal, and determining if a book is overdue upon return. Successful transactions result in updated records and success messages, while rule violations (like being unqualified or having an overdue book) trigger appropriate error or fine notifications, ensuring users are informed at every step.
+
+<p align="center">
+  <img src="diagrams/BorrowBooksLibraryActivityMap.svg" alt="Borrow Books Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>
+
+**Reserve Study Space**
+This activity diagram illustrates the user journey for reserving a study space through the SmartCampus system. It begins with the student selecting a reservation function and typically involves searching for available spaces based on criteria like location, time, and facilities. The core of the process is governed by system rules, which check the user's eligibility and the space's availability. A successful reservation culminates in a system confirmation and a calendar update, while rule violations result in clear error messages.
+
+<p align="center">
+  <img src="diagrams/ReserveStudySpaceActivityMap.svg" alt="Reserve Study Space Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>
+
+**View Reading History**
+This activity diagram outlines the process for a user to access and review their personal reading history within the library system. The workflow begins with user authentication and navigates to a dedicated dashboard or history section. The system then retrieves and filters the user's past borrowing records from the database, presenting them in a chronological or categorized list. Users can typically interact with this history by applying filters—such as by date, title, or author—and view detailed information for each entry, creating a personalized record of their academic engagement.
+
+<p align="center">
+  <img src="diagrams/ReadingHistoryActivityMap.svg" alt="Reading History Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>
 
 #### 5.2.2 Academic Affairs Service Subsystem
-
 **Online Course Selection**
 
 The process begins with "Login and Enter the System", indicating that the student logs in and accesses the interface. The student can then "Search Courses" and "Browse Available Courses". After selecting a course, the student performs the "Register for Courses" action. The system checks for any time or resource conflicts in the selected courses, leading to a decision node: "No Conflicts?".
