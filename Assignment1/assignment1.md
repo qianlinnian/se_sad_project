@@ -29,6 +29,7 @@
       - [5.1.3 Life Services Subsystem](#513-life-services-subsystem)
       - [5.1.4 Logistics Management Subsystem](#514-logistics-management-subsystem)
     - [5.2 Activity Diagrams](#52-activity-diagrams)
+      - [5.2.1 Library Subsystem](#521-library-subsystem)
       - [5.2.2 Academic Affairs Service Subsystem](#522-academic-affairs-service-subsystem)
       - [5.2.3 Life Service](#523-life-service)
   - [6. Glossary of Terms](#6-glossary-of-terms)
@@ -753,10 +754,10 @@ All AI-generated outputs were thoroughly reviewed, edited, and corrected by team
 5. Claude 4 Sonnet (AI Assistant). Anthropic. Used for document content generation, language editing, and providing modification suggestions for use case diagrams and activity diagrams in the SmartCampus project documentation.
 
 ## 11. Contributions
-| Members               | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 |  Part 10 | Percent |
-| --------------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------- |------- |
-| Feng Juncai  2353924  | ✓      | ✓      | ✓      |        |        |        |        |        |        |        |         |
-| Ji Peng  2351869      |        |        | ✓      |        |        |        |        |        |        |         |        |
-| Zhang Shikou  2353240 |        |        | ✓      |        |        |        |        |        |        |         |        |
-| Yu Yilian  2352993    |        |        | ✓      |        |        |        |        |        |        |         |        |
+| Members (Name / Student ID) | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Part 10 | Percent |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Feng Juncai (2353924)  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  | ✓ | ✓ | ✓ | 25% |
+| Ji Peng (2351869)      |  |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 25% |
+| Zhang Shikou (2353240) |  |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 25% |
+| Yu Yilian (2352993)    |  |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 25% |
 
