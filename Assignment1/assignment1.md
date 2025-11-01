@@ -253,6 +253,8 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 | Alternative Path | 4a. If borrowing eligibility requirements are not met, system displays specific reasons (e.g., "Maximum borrowing limit reached")<br>5a. Student cancels borrowing operation, returns to book search interface<br>6a. Book status update fails, system rolls back operation and prompts to retry |
 | Post-condition | Book borrowing successful, borrowing record updated, book status changes to "Borrowed" |
 
+- 
+
 #### 5.1.2 Academic Affairs Service Subsystem
 
 **Use Case Diagram**
@@ -495,9 +497,15 @@ Above is a brief summary of life service use cases. Following this, we will sele
 | **Post condition**   | Monthly bills generated and notifications dispatched; billing records persisted.|
 
 ### 5.2 Activity Diagrams
+#### 5.2.1 Library Subsystem
+**Borrow Books**
+This activity diagram visually outlines the streamlined process a student follows to borrow a book through the SmartCampus system. It details the crucial system checks for both book availability and the student's borrowing eligibility. The workflow progresses through the confirmation and finalization of the loan, culminating in the system updating records and notifying the student of a successful borrowing transaction. The diagram effectively maps the complete journey, highlighting key decision points and system interactions that ensure a smooth and efficient user experience.
+
+<p align="center">
+  <img src="diagrams/LibraryActivityMap.svg" alt="Borrow Books Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>
 
 #### 5.2.2 Academic Affairs Service Subsystem
-
 **Online Course Selection**
 
 The process begins with "Login and Enter the System", indicating that the student logs in and accesses the interface. The student can then "Search Courses" and "Browse Available Courses". After selecting a course, the student performs the "Register for Courses" action. The system checks for any time or resource conflicts in the selected courses, leading to a decision node: "No Conflicts?".
