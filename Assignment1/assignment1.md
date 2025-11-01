@@ -29,8 +29,7 @@
       - [5.1.3 Life Services Subsystem](#513-life-services-subsystem)
       - [5.1.4 Logistics Management Subsystem](#514-logistics-management-subsystem)
     - [5.2 Activity Diagrams](#52-activity-diagrams)
-      - [5.2.1 Online Course Selection](#521-online-course-selection)
-      - [5.2.2 Course Schedule Query](#522-course-schedule-query)
+      - [5.2.2 Academic Affairs Service Subsystem](#522-academic-affairs-service-subsystem)
       - [5.2.3 Life Service](#523-life-service)
   - [6. Glossary of Terms](#6-glossary-of-terms)
   - [7. Supplementary Specification](#7-supplementary-specification)
@@ -253,8 +252,8 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 Use Case: **Select Courses**
 
 |Use Case| Select Courses |
-| :---: | :--- | 
-| ID | UC01 | 
+| :---: | :--- |
+| ID | UC-03 | 
 | Specification | Students query course information through the system and register for courses of interest. The system automatically checks for time conflicts and updates the schedule. | 
 | Actors | Student | 
 | Pre-condition | - Student is logged into the system.<br>- The course registration period is open.<br>- Student has not reached the maximum course limit.| 
@@ -266,8 +265,8 @@ Use Case: **Select Courses**
 Use Case: **Drop Courses**
 
 |Use Case| Drop Courses |
-| :---: | :--- | 
-| ID | UC02 | 
+| :---: | :--- |
+| ID | UC-04 | 
 | Specification | Students remove selected courses from their current schedule. The system checks for any impact on other arrangements and updates the schedule. | 
 | Actors | Student | 
 | Pre-condition | - Student is logged into the system.<br>- Student has selected at least one course.<br>- The course drop period is open | 
@@ -279,8 +278,8 @@ Use Case: **Drop Courses**
 Use Case: **Courses Schedule Query**
 
 |Use Case| Courses Schedule Query |
-| :---: | :--- | 
-| ID | UC03 | 
+| :---: | :--- |
+| ID | UC-05 | 
 | Specification | Students, teachers, and administrators can query course schedule information, but their permissions and accessible content differ. Administrators have the highest level of authority and can perform management operations. | 
 | Actors | Student , Teacher , Administrator | 
 | Pre-condition | - The user (student, teacher, or administrator) has successfully logged into the system.<br>- Valid course schedule data has been entered into the system. | 
@@ -345,7 +344,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
  
 |USE CASE|MEAL ORDERING|
 | ---- | ---- |
-|ID|*UC01*|
+|ID|UC-06|
 |Specification|Students can pre-order meals from campus canteens and vendor through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
 |Actors|Student, Vendor, Payment System|
 |Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor have updated menus available|
@@ -359,7 +358,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
  
 |USE CASE|PACKAGE NOTIFICATION|
 | ---- | ---- |
-|ID|*UC02*|
+|ID|UC-07|
 |Specification|System automatically notifies students when their registered packages arrive at campus pickup points, ensuring timely collection and reducing package accumulation.|
 |Actors|**Primary Actor:** Student<br>**Secondary Actors:** Package Manager, Delivery Service|
 |Pre-condition|• Package has been registered in the system<br>• Delivery service integration with SmartCampus is active<br>• Student has valid contact information in the system|
@@ -377,17 +376,17 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **Submit Maintenance Request**                                   |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC01***                                                       |
+| **ID**               | UC-08                                                       |
 | **Specification**    | Student submits a dormitory maintenance request with issue details and optional photos; system creates a ticket and notifies maintenance staff/admin for assignment.|
 | **Actors**           | **Student**, **System**, **System Admin**|
 | **Pre-condition**    | Student authenticated via SSO; student has a registered dormitory record.|
-| **Basic Path**       | 1. Student opens Maintenance module. <br/>2. Student selects building/room and issue category. <br/>3. Student types issue description and optionally attaches photos (may invoke UC02). <br/>4. Student submits request. <br/>5. System validates input and creates ticket with unique ID. <br/>6. System attempts automatic assignment to available maintenance staff or places ticket in admin queue. <br/>7. Student receives confirmation and ticket ID. |
+| **Basic Path**       | 1. Student opens Maintenance module. <br/>2. Student selects building/room and issue category. <br/>3. Student types issue description and optionally attaches photos (may invoke UC-09). <br/>4. Student submits request. <br/>5. System validates input and creates ticket with unique ID. <br/>6. System attempts automatic assignment to available maintenance staff or places ticket in admin queue. <br/>7. Student receives confirmation and ticket ID. |
 | **Alternative Path** | 1. **Validation fail:** System returns form errors and requests correction. <br/>2. **Auto-assignment fail:** Ticket routed to admin for manual assignment (triggers admin notification). <br/>3. **Student cancels:** Submission aborted and no ticket created.|
-| **Post condition**   | Ticket created and persisted; notification sent to assigned staff/admin; student can track ticket (UC03).|
+| **Post condition**   | Ticket created and persisted; notification sent to assigned staff/admin; student can track ticket (UC-10).|
 
 | USE CASE             | **Upload Issue Photos**                                          |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC02***                                                       |
+| **ID**               | UC-09                                                       |
 | **Specification**    | Student uploads one or more photos to support maintenance request; photos are stored and linked to the ticket. |
 | **Actors**           | **Student**, **System**              |
 | **Pre-condition**    | Student is in the Submit Maintenance Request flow or editing an existing ticket; storage service reachable.|
@@ -397,7 +396,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **Track Maintenance Status**                                     |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC03***                                                       |
+| **ID**               | UC-10                                                       |
 | **Specification**    | Student views real-time status and history of their maintenance ticket, including assigned staff, status updates, and expected completion time. |
 | **Actors**           | **Student**, **Maintenance Staff**, **System**         |
 | **Pre-condition**    | Ticket exists and status updates are posted by staff/admin.|
@@ -407,7 +406,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **Update Repair Progress**                                       |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC04***                                                       |
+| **ID**               | UC-11                                                       |
 | **Specification**    | Maintenance staff updates ticket status (accepted, in-progress, completed), attaches repair notes and photos, and indicates time spent. |
 | **Actors**           | **Maintenance Staff**, **System Admin**, **System**    |
 | **Pre-condition**    | Staff authenticated and assigned ticket; ticket active.          |
@@ -417,7 +416,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **Provide Feedback / Confirm Completion**                        |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC05***                                                       |
+| **ID**               | UC-12                                                       |
 | **Specification**    | Student confirms whether repair was satisfactory and may provide rating/comments; unsatisfactory reports reopen the ticket. |
 | **Actors**           | **Student**, **System**, **System Admin**              |
 | **Pre-condition**    | Ticket status is “Completed” by staff and student notified.      |
@@ -433,7 +432,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **View Utility Bill**                                           |
 | -------------------- | --------------------------------------------------------------- |
-| **ID**               | ***UC06***                                                      |
+| **ID**               | UC-13                                                      |
 | **Specification**    | Student queries current and historical water/electricity bills for their dormitory, including usage, amount due, and due date. |
 | **Actors**           | **Student**, **Finance System**            |
 | **Pre-condition**    | Student authenticated; finance system API accessible; student’s dorm linked to billing account. |
@@ -443,7 +442,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **Pay Utility Bill**                                             |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC07***                                                       |
+| **ID**               | UC-14                                                       |
 | **Specification**    | Student pays outstanding utility bill using campus card or third-party mobile payment; system coordinates with finance system to record payment.     |
 | **Actors**           | **Student**, **Payment Gateway**, **Finance System** |
 | **Pre-condition**    | Student authenticated; selected payment method configured; finance/payment APIs operational.   |
@@ -453,7 +452,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **View Payment History**                                         |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC08***                                                       |
+| **ID**               | UC-15                                                       |
 | **Specification**    | Student reviews historical payment transactions, receipts, and statuses for utility payments.|
 | **Actors**           | **Student**, **System**, **Finance System**            |
 | **Pre-condition**    | Student authenticated; transaction records exist.                |
@@ -463,7 +462,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 | USE CASE             | **Notify Due Date / Generate Monthly Bill**                      |
 | -------------------- | ---------------------------------------------------------------- |
-| **ID**               | ***UC09***                                                       |
+| **ID**               | UC-16                                                       |
 | **Specification**    | System or finance backend generates monthly bills and sends due-date reminders/notifications to students via app push/SMS/email.|
 | **Actors**           | **System**, **Finance System**, **Student**|
 | **Pre-condition**    | Billing cycle configured; finance data aggregated and available. |
@@ -473,7 +472,10 @@ Above is a brief summary of life service use cases. Following this, we will sele
 
 ### 5.2 Activity Diagrams
 
-#### 5.2.1 Online Course Selection
+#### 5.2.2 Academic Affairs Service Subsystem
+
+**Online Course Selection**
+
 The process begins with "Login and Enter the System", indicating that the student logs in and accesses the interface. The student can then "Search Courses" and "Browse Available Courses". After selecting a course, the student performs the "Register for Courses" action. The system checks for any time or resource conflicts in the selected courses, leading to a decision node: "No Conflicts?".
 If there are conflicts: The student must first "Resolve Conflicts", for example, by changing the course or adjusting the schedule.
 If there are no conflicts: The process proceeds directly to the next step.
@@ -484,7 +486,7 @@ Throughout the process, the student can also choose "Drop Courses", which bypass
 
 <img src="diagrams/OSC-AD.svg" alt="Online Course Selection Activity Diagram" title="scope" width="auto" style="margin: 0;"/>
 
-#### 5.2.2 Course Schedule Query
+**Course Schedule Query**
 
 This diagram illustrates the process through which students and teachers access their relevant course information after identity authentication. The system, acting as an intermediary, is responsible for identity verification and data presentation, ensuring the security and personalized display of information. Students log in and enter the course schedule section to perform a query operation; after the system verifies their identity, it displays the details of the courses they have selected. Teachers also perform query operations, upon which the system verifies their identity and displays detailed information about the courses they are responsible for. Teachers can then view the details of the courses they teach, concluding the process.
 
@@ -530,7 +532,6 @@ This activity diagram illustrates a package notification system workflow where u
 | **User Journey Map** | A tool that visualizes the entire process of user interaction with a product, analyzing experience pain points and improvement opportunities. |
 | **Agile Development** | A development methodology characterized by iterative increments, emphasizing rapid response to requirement changes and user feedback.|
 | **Course Capacity** | The maximum number of students a course can accommodate. When the number of enrolled students reaches this upper limit, the system will not allow additional students to join, making it a key constraint in the course selection system.|
-| **Time Conflict Detection** | The system automatically checks whether the class time of a newly selected course overlaps with the times of courses already selected by the student. If a conflict is found, enrollment is blocked to ensure the reasonableness of the student's schedule.|
 | **Prerequisite** | A course that a student must have successfully completed before being allowed to enroll in a specific course. The course selection system needs to verify that students meet the prerequisite requirements to ensure the continuity of their learning.|
 | **Enrollment Status** | Refers to a student's current participation status for a course, such as "Enrolled," "Dropped," "Pending Review," or "On Waitlist." It is used to track and manage student enrollment records.|
 
@@ -651,28 +652,13 @@ This snapshot illustrates the main interface for submitting a dormitory maintena
 
 ## 9. AI Tool Usage Disclosure
 
-During the completion of this SmartCampus system analysis and design project, our team utilized AI-assisted tools in a limited and responsible manner to support specific tasks. The use of AI was strictly supplementary; all core analytical thinking, architectural decisions, and final content were driven and owned by the team members.
+During the completion of this SmartCampus system analysis and design project, our team utilized AI-assisted tools in a limited and responsible manner to support specific tasks. The use of AI was strictly supplementary, with all core analytical thinking, architectural decisions, and final content driven and owned by the team members.
 
-In this system design project, we utilized AI tools to assist in several key phases:
-- Used AI tools for initial requirements research and functional ideation
-- Leveraged conversational interactions to identify user pain points and scenario requirements
-- Checked the structure and terminology consistency of technical documentation
-- Assisted in accurate translation of technical terms between Chinese and English
+We employed **OpenAI ChatGPT** and **Claude 4 Sonnet** as auxiliary tools throughout various project phases, including initial requirements research and functional ideation, documentation drafting and language polishing, technical term translation between Chinese and English, UML diagram structure analysis, and academic reference recommendations. Additionally, **diagrams.net/draw.io** was used for creating use case and activity diagrams.
 
-Specifically, **OpenAI ChatGPT** and **Claude 4 Sonnet** were employed as tools to aid in the following areas:
+The AI tools primarily assisted in brainstorming during the early project phase to generate broad ideas for all four subsystems, which the team then critically evaluated and developed into our final design. They also helped create initial drafts for certain report sections such as supplementary specifications and user stories, serving as starting points that were substantially revised and validated by the team. The most frequent use was for proofreading and refining language to improve clarity and academic tone, while ensuring all technical descriptions remained the product of our team's work.
 
-- **Brainstorming Assistance:** In the initial project phase, the AI tool was used to help generate and organize broad ideas for all four subsystems (Academic, Library, Logistics, and Daily Life Services), which the team then critically evaluated, filtered, and developed into our final design.
-- **Documentation Drafting and Structuring:** The AI tool assisted in creating initial drafts and outlines for certain sections of the report, such as the Supplementary Specification and User Stories. These drafts served as a starting point and were substantially revised, expanded, and validated by the team to ensure accuracy and relevance to our specific project context.
-- **Language Polishing and Editing:** The primary use of the AI tool was for proofreading and refining the language of team-written content to improve clarity, consistency, and academic tone. All technical descriptions and key concepts remained the product of the team's work.
-- **Translation Assistance:** The AI tool helped with Chinese-to-English and English-to-Chinese translations to ensure accurate translation of technical terms.
-- **UML Diagram Analysis:** We uploaded activity diagrams and requested the AI to help analyze the logical structure of the UML activity diagrams.
-- **Reference Recommendations:** The AI tool helped find books related to the subject area, recommending relevant monographs with information such as authors, publishers, and core content.
-
-**Tools Used:**
-- **Claude 4 Sonnet:** Document writing, editing, and modification suggestions for content and UML diagrams
-- **diagrams.net/draw.io:** Use case and activity diagram creation
-
-All outputs generated with AI assistance were thoroughly reviewed, edited, and corrected by the team members. The final deliverables represent the team's own understanding, analysis, and design efforts. All AI suggestions were reviewed and revised by the project team; final analysis and decisions are the team's responsibility. No confidential personal data was submitted to external AI services. Verbatim AI outputs or substantial paraphrases are cited in the references.
+All AI-generated outputs were thoroughly reviewed, edited, and corrected by team members. The final deliverables represent the team's own understanding, analysis, and design efforts. No confidential data was submitted to external AI services, and all AI contributions have been appropriately cited in our references.
 
 ## 10. References
 
