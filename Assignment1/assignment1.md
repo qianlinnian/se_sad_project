@@ -577,6 +577,32 @@ This activity diagram illustrates a meal ordering system workflow across three s
 
 This activity diagram illustrates a package notification system workflow where users register packages and set preferences, while the system verifies information, creates records, and manages package arrivals. The process includes validation checks, notification generation for registered packages, and handles both successful pickups and error scenarios through appropriate system responses.
 
+#### 5.2.4 Logistics Management Subsystem
+
+**Dormitory Maintenance Request**
+
+This activity diagram visualizes the complete workflow of the dormitory maintenance process within the Logistics Management Subsystem. It starts when a student logs into the SmartCampus platform and submits a maintenance request specifying the problem type, description, and photo evidence.
+
+The system validates the input data and automatically generates a repair record with a unique ticket ID. Depending on configuration, it either auto-assigns the task to an available maintenance staff member or forwards it to an administrator for manual assignment. Both the student and the staff receive notifications, after which the staff updates the repair progress.
+
+Once the repair is completed, the system notifies the student, who can confirm completion or request rework. The process concludes when the student provides feedback and the system closes the ticket, ensuring a complete feedback loop for quality assurance.
+
+<p align="center">
+  <img src="diagrams/ad_dormitory_maintenance.png" alt="Dormitory Maintenance Activity Diagram" title="ad_dorm" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>  
+
+**Utility Bill Management**
+
+This activity diagram outlines the workflow for students managing their utility bills through the SmartCampus Logistics Management Subsystem. The process begins when the user logs in and accesses the “Utility Bill” interface, prompting the system to retrieve billing data from the university’s financial system.
+
+Students can view their electricity and water bill summaries, check payment statuses, and initiate payment for unpaid bills. The system validates payment information and communicates with a third-party payment gateway to process transactions.
+
+Depending on the result—success, pending, or failure—the system updates the bill status, sends a confirmation or failure notice to the user, and records all transaction details in the database. This ensures transparency, traceability, and seamless integration between the SmartCampus platform and the university’s financial systems.
+
+<p align="center">
+  <img src="diagrams/ad_utility_bill.png" alt="Utility Bill Management Activity Diagram" title="ad_bill" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>  
+
 ## 6. Glossary of Terms
 
 | terms                      | Terminology interpretation                                   |
