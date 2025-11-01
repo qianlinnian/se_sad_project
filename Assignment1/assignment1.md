@@ -17,30 +17,47 @@
     - [2.2 Goals](#22-goals)
     - [2.3 Initiatives](#23-initiatives)
   - [3. Roadmap](#3-roadmap)
-  - [4. Use case modelling and Business Process Modelling](#4-use-case-modelling-and-business-process-modelling)
-    - [4.1 Use Case](#41-use-case)
-      - [4.1.3 Life Services Subsystem](#413-life-services-subsystem)
-    - [4.2 Activity Diagrams](#42-activity-diagrams)
-      - [4.2.3 Life Service](#423-life-service)
-  - [5. Glossary of terms](#5-glossary-of-terms)
-  - [6. Supplementary specification](#6-supplementary-specification)
-  - [7. Initial snapshots of the system's user interface](#7-initial-snapshots-of-the-systems-user-interface)
-    - [7.3 Life Service](#73-life-service)
-  - [8. AI tool usage disclosure](#8-ai-tool-usage-disclosure)
-  - [9. References](#9-references)
-  - [10. Team member contributions](#10-team-member-contributions)
-  - [11. Agile artifacts](#11-agile-artifacts)
-    - [11.1 Persona](#111-persona)
+  - [4. Agile Artifacts](#4-agile-artifacts)
+    - [4.1 Persona](#41-persona)
+    - [4.2 User Story](#42-user-story)
+    - [4.3 User Journey Map](#43-user-journey-map)
+    - [4.4 User Story Map](#44-user-story-map)
+  - [5. Use Case Modelling and Business Process Modelling](#5-use-case-modelling-and-business-process-modelling)
+    - [5.1 Use Case](#51-use-case)
+      - [5.1.1 Library Subsystem](#511-library-subsystem)
+      - [5.1.2 Academic Affairs Service Subsystem](#512-academic-affairs-service-subsystem)
+      - [5.1.3 Life Services Subsystem](#513-life-services-subsystem)
+      - [5.1.4 Logistics Management Subsystem](#514-logistics-management-subsystem)
+    - [5.2 Activity Diagrams](#52-activity-diagrams)
+      - [5.2.1 Online Course Selection](#521-online-course-selection)
+      - [5.2.2 Course Schedule Query](#522-course-schedule-query)
+      - [5.2.3 Life Service](#523-life-service)
+  - [6. Glossary of Terms](#6-glossary-of-terms)
+  - [7. Supplementary Specification](#7-supplementary-specification)
+    - [7.1 Usability](#71-usability)
+    - [7.2 Security and Stability](#72-security-and-stability)
+    - [7.3 Performance and Technical Specifications](#73-performance-and-technical-specifications)
+  - [8. Initial Snapshots of the System's User Interface](#8-initial-snapshots-of-the-systems-user-interface)
+    - [8.1 Base Page Snapshot](#81-base-page-snapshot)
+    - [8.2 Library Service](#82-library-service)
+    - [8.3 Academic Affairs Service](#83-academic-affairs-service)
+    - [8.4 Life Service](#84-life-service)
+    - [8.5 Dormitory Repair Request Interface](#85-dormitory-repair-request-interface)
+  - [9. AI Tool Usage Disclosure](#9-ai-tool-usage-disclosure)
+  - [10. References](#10-references)
+  - [11. Contributions](#11-contributions)
 
 ## 1. Introduction
 
 **SmartCampus** — Your Campus Life Helper
-**Team Name**：CampusCode
-**Team Members**：
-2353924 Feng Juncai    冯俊财
-2351869 Ji Peng        纪鹏
-2353240 Zhang Shikou   张诗蔻
-2352993 Yu Yilian      于伊莲
+
+**Team Name**: CampusCode
+
+**Team Members**:
+- 2353924 Feng Juncai (冯俊财)
+- 2351869 Ji Peng (纪鹏)
+- 2353240 Zhang Shikou (张诗蔻)
+- 2352993 Yu Yilian (于伊莲)
 
 ### 1.1 Background
 
@@ -156,13 +173,40 @@ Build an agile or MVP roadmap to provide a clear vision and timeline.
 
 The development follows agile methodology with iterative sprints, continuous user feedback integration, and phased rollout to minimize risks and ensure quality delivery.
 
-## 4. Use case modelling and Business Process Modelling
- 
+## 4. Agile Artifacts
 
-## 4.1. Use Cases Modeling
+### 4.1 Persona
 
-### 4.1.1 Library System Use Case Diagram
-<img src="../Assignment1/diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="zoom:80%;" />
+The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
+
+<img src="diagrams/persona.png" alt="User Persona" title="persona" width="auto" style="margin: 0;"/>
+
+### 4.2 User Story
+
+The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
+
+<img src="diagrams/UserStory.png" alt="User Story" width="380"/>
+
+### 4.3 User Journey Map
+
+In the system design process, we have mapped out the complete user journey by analyzing students' interactions with SmartCampus across four critical stages: exploration, selection, participation, and feedback. This approach goes beyond simply documenting functional requirements to capture users' evolving psychological states and emotional responses throughout their experience. By examining the key questions students ask at each phase, we gain deep insights into their underlying needs and anxieties. The journey mapping reveals not only where students encounter friction but also where opportunities exist to build trust and deliver delight. This comprehensive understanding enables us to design features that proactively address user concerns, streamline complex processes, and create emotional connections that transform routine campus tasks into satisfying experiences. Through this user-centered approach, we ensure SmartCampus evolves from a mere service platform into an indispensable companion that genuinely understands and supports students' academic and daily life needs.
+
+<img src="diagrams/journry map.png" alt="User Journey Map" style="zoom:80%;" />
+
+### 4.4 User Story Map
+
+Based on an in-depth understanding of user needs, we focused on the Smart Campus One-Stop Service Platform, identifying the most critical and urgent functional requirements while uncovering numerous innovative points for optimization. By evaluating the priority of these needs, we created a clear user story map. This map not only provides a blueprint for defining the platform's functional modules and facilitating team collaboration, but also ensures that the development direction is highly aligned with user expectations. Leveraging the agile development model, we were able to quickly build a prototype of the platform and, in subsequent iterations, continuously gather feedback from teachers and students to dynamically adjust features, ensuring the platform genuinely addresses pain points in campus life and delivers a convenient, efficient user experience. This development approach has also significantly improved project efficiency, enabling the team to flexibly respond to the rapid changes in educational informatization and continuously refine services that better fit the campus context.
+
+<img src="diagrams/USM.png" alt="User Story Map" title="scope" width="auto" style="margin: 0;"/>
+
+## 5. Use Case Modelling and Business Process Modelling
+
+### 5.1 Use Case
+
+#### 5.1.1 Library Subsystem 
+
+**Use Case Diagram**
+<img src="diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="zoom:80%;" />
 
 - Brief Description 
 
@@ -198,15 +242,15 @@ The development follows agile methodology with iterative sprints, continuous use
 | Alternative Path | 4a. If borrowing eligibility requirements are not met, system displays specific reasons (e.g., "Maximum borrowing limit reached")<br>5a. Student cancels borrowing operation, returns to book search interface<br>6a. Book status update fails, system rolls back operation and prompts to retry |
 | Post-condition | Book borrowing successful, borrowing record updated, book status changes to "Borrowed" |
 
-### 4.1.2. Academic Affairs Service Subsystem
+#### 5.1.2 Academic Affairs Service Subsystem
 
-- Use Case Diagram
-<img src="diagrams/AASS-UCD.svg" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
+**Use Case Diagram**
 
-- Detailed Specification for Use Case
+<img src="diagrams/AASS-UCD.svg" alt="Academic Affairs Service Subsystem Use Case Diagram" title="scope" width="auto" style="margin: 0;"/>
+
+**Detailed Specification for Use Case**
 
 Use Case: **Select Courses**
----
 
 |Use Case| Select Courses |
 | :---: | :--- | 
@@ -217,12 +261,9 @@ Use Case: **Select Courses**
 | Basic Path | 1. Student selects the "Select Courses" function.<br>2. System executes Search Courses.<br>3. Student browses the list of available courses.<br>4. Student selects one or more courses to register for.<br>5. System executes Register for Courses.<br>6. System invokes Check Conflicts.<br>7. If no conflicts, system executes Update Schedule.<br>8. System displays "Course selection successful." | 
 | Alternative Path | 1. Course is full:<br>- System displays "This course is full," registration denied.<br>- Flow ends.<br>2. Time conflict exists:<br>- System displays "Selected course conflicts with existing schedule."<br>- User can choose to cancel or proceed.<br>- If proceeding, mark the conflict status (e.g., "Pending confirmation").<br>3. Exceeds maximum course limit:<br>- System displays "Maximum course limit reached."<br>- Prevents adding more courses.| 
 | Exception Flows| 1. Network interruption:<br>- Display "Operation failed, please try again"<br>2. System timeout:<br>- Automatically return to the main menu  |
-| Post condition | <br>- Successfully selected courses are added to the student's schedule.<br>- The system records the registration information.<br>- If conflicts exist, the user is notified | 
-
-<br></br>
+| Post condition | - Successfully selected courses are added to the student's schedule.<br>- The system records the registration information.<br>- If conflicts exist, the user is notified |
 
 Use Case: **Drop Courses**
----
 
 |Use Case| Drop Courses |
 | :---: | :--- | 
@@ -233,12 +274,9 @@ Use Case: **Drop Courses**
 | Basic Path | 1. Student selects the "Drop Courses" function.<br>2. System displays the list of currently selected courses.<br>3. Student selects a course to drop.<br>4. System executes Register for Courses (in reverse).<br>5. System invokes Check Conflicts (to check if other courses are affected).<br>6. If no conflicts, system executes Update Schedule.<br>7. System displays "Course drop successful." | 
 | Alternative Path | 1. Course cannot be dropped:<br>- System displays "This course cannot be dropped."<br>- Flow ends.<br>2. Dropping causes credit deficit:<br>- System displays "Total credits fall below the minimum requirement after dropping."<br>- User can choose to proceed or cancel.<br>3.Past the drop deadline:<br>- System displays "The course drop period has ended."<br>- Prevents dropping the course.| 
 | Exception Flows| 1. Database write failure : <br>Display "Course drop failed, please contact administrator".<br>2. Network interruption:<br>Return to error page.  |
-| Post condition | - The selected course is removed from the student's schedule.<br>- The system updates course enrollment numbers and schedule information.<br>- May release a spot for another student | 
-
-<br></br>
+| Post condition | - The selected course is removed from the student's schedule.<br>- The system updates course enrollment numbers and schedule information.<br>- May release a spot for another student |
 
 Use Case: **Courses Schedule Query**
----
 
 |Use Case| Courses Schedule Query |
 | :---: | :--- | 
@@ -248,33 +286,31 @@ Use Case: **Courses Schedule Query**
 | Pre-condition | - The user (student, teacher, or administrator) has successfully logged into the system.<br>- Valid course schedule data has been entered into the system. | 
 | Basic Path | 1.The user (student, teacher, or administrator) navigates to the "Course Schedule Query" interface.<br>2. The system displays relevant query options and interface elements based on the user's role.<br>3. The user enters query criteria.<br>4. The system retrieves and displays the course schedule information that matches the criteria. | 
 | Alternative Path | 1. A student performs a query operation:<br>- The system displays the detailed schedule for the courses the student has selected .<br>2. A teacher performs a query operation:<br>- The system displays the detailed schedule for the courses the teacher is teaching.<br>3. An administrator performs a query operation:<br>- The system displays the complete schedule information for all courses.<br>- The administrator can perform management operations, including: Adding, editing, deleting course schedules or reviewing and approving requests to change course schedules. | 
-| Post condition | - The course schedule information corresponding to the user's role has been successfully displayed. | 
+| Post condition | - The course schedule information corresponding to the user's role has been successfully displayed. |
 
-<br></br>
+**Concise Text Descriptions**
 
-#### concise text descriptions:<br>
-Use Case : **Exam Arrangement Query**<br>
+Use Case: **Exam Arrangement Query**
 This use case involves students, teachers, and administrators in querying and updating exam arrangement information.
 
 - **Students** can query the exam times, locations, and related details for specific courses; view their own exam schedules to plan their review times and arrange other activities.
 - **Teachers** can view the exam arrangements for the courses they are responsible for, including proctoring information; update or modify exam arrangements, such as changing exam times or locations.
 - **Administrators** can manage the exam arrangement information for the entire school; review and approve exam arrangement updates submitted by teachers; publish new exam arrangements or make global adjustments to existing arrangements.
 
-<br>
-
-Use Case : **Grade Query and Analysis**<br>
+Use Case: **Grade Query and Analysis**
 This use case involves students, teachers, and administrators in querying, analyzing, and managing grade information.
 
 - **Students** can query their own grades, including course grades, exam scores, and overall performance; analyze their grade trends, comparing performance across different semesters or different courses; request grade re-evaluation if they have doubts about their grades.
 - **Teachers** can view and analyze the grades of students in the courses they teach; manage the entry and updating of grades to ensure accuracy; handle students' grade query requests and grade re-evaluation requests.
 - **Administrators** can oversee the entire school's grade management process, ensuring the fairness and transparency of grades, and deal with system-level issues related to grade queries and analysis, such as data inconsistencies or system errors.
 
+#### 5.1.3 Life Services Subsystem
 
-#### 4.1.3 Life Services Subsystem
-User Case Diagram:
-<img src="diagrams/Life_Services.svg" alt="use_case_ls" title="usecase_life" width="auto" style="margin: 0;"/>
+**Use Case Diagram**
 
-Short written summary:
+<img src="diagrams/Life_Services.svg" alt="Life Services Subsystem Use Case Diagram" title="usecase_life" width="auto" style="margin: 0;"/>
+
+**Short Written Summary**
 1. Meal Ordering: Students can order meals via SmartCampus "Meal Ordering" function before they arrive at the canteens or other food sellers, and then they can reduce the time wasting on food waiting, helping them to have more rest time.
 2. Browse Menu: Students can choose different food sellers and kinds of food on the browse food menu. The browser can offer many food photos and names directly, making it easy to explore available dining options.
 3. Search Food Items: Students can also directly search for the food they would like to have, avoiding moving from the top to the bottom to find the food on the browse menu, providing quick access to specific items.
@@ -301,10 +337,11 @@ Short written summary:
 24. Manage System Content: System administrators can manage and update various content including menus, facility information, shuttle schedules, and system announcements to ensure accurate and current information for all users.
 25. View Reports: Administrators can view comprehensive reports on system usage, popular services, user feedback, and operational statistics to make data-driven decisions for system improvements and resource allocation.
 
-Above is a brief summary of life service use cases. Following this, we will select two main use cases,meal ordering and package notification, to develop detailed specifications.
+Above is a brief summary of life service use cases. Following this, we will select two main use cases, meal ordering and package notification, to develop detailed specifications.
 
-- Meal Ordering:
-<img src="diagrams/Meal_Ordering.svg" alt="use_case_mo" title="Meal_Ordering" width="auto" style="margin: 0;"/>
+**Meal Ordering**
+
+<img src="diagrams/Meal_Ordering.svg" alt="Meal Ordering Use Case Diagram" title="Meal_Ordering" width="auto" style="margin: 0;"/>
  
 |USE CASE|MEAL ORDERING|
 | ---- | ---- |
@@ -316,9 +353,9 @@ Above is a brief summary of life service use cases. Following this, we will sele
 |Alternative Path|3a: No vendors available<br>• System displays "No vendors currently available" message<br>6a: Item out of stock<br>• System notifies student <br>8a: Payment fails<br>• System prompts student to retry or change payment method<br>9a: Order cancellation<br>• Student can cancel order before preparation begins<br>• System processes refund if applicable|
 |Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Vendor receives order details<br>• Student can track order status<br>• Order appears in student's order history|
 
+**Package Notification**
 
-- Package Notification  
-<img src="diagrams/Package_Notification.svg" alt="use_case_pn" title="Package_Notification" width="auto" style="margin: 0;"/>
+<img src="diagrams/Package_Notification.svg" alt="Package Notification Use Case Diagram" title="Package_Notification" width="auto" style="margin: 0;"/>
  
 |USE CASE|PACKAGE NOTIFICATION|
 | ---- | ---- |
@@ -329,16 +366,14 @@ Above is a brief summary of life service use cases. Following this, we will sele
 |Basic Path|1. Student registers package postal number in SmartCampus app<br>2. Student sets special instructions (delivery method, preferred pickup time, or specific handling requirements)<br>3. System monitors package delivery status<br>4. Package arrives at campus pickup point<br>5. Delivery service updates package status in system<br>6. System recognizes registered package<br>7. System generates unique pickup code for each package to ensure secure retrieval<br>8. System sends arrival notification via SMS, email, or app notification<br>9. Student receives notification with pickup details<br>10. Student can view pickup code and location information<br>11. Student can choose preferred pickup method (self-pickup at designated locations, delivery to dormitory, or pickup by authorized representatives)<br>12. Student can set pickup code expiry time to enhance security|
 |Alternative Path|**1a:** Invalid postal number<br>• System displays error message and prompts re-entry<br><br>**4a:** Package delivery delayed<br>• System sends delay notification to student<br><br>**6a:** System cannot recognize package<br>• System records unregistered package for manual processing<br><br>**7a:** Pickup code generation fails<br>• System regenerates pickup code and notifies student<br><br>**8a:** Notification delivery fails<br>• System attempts alternative notification methods<br><br>**10a:** Pickup code expires<br>• Student can request new pickup code through app<br>• System provides automatic renewal options for extended storage needs<br><br>**11a:** Preferred pickup method unavailable<br>• System provides alternative pickup options<br>• Student can reselect pickup method|
 |Post-condition|• Student receives package arrival notification<br>• Package location and pickup instructions are provided<br>• Package status is updated to "Ready for Pickup"<br>• Unique pickup code is generated to ensure secure retrieval<br>• Notification record is logged in system<br>• Prevents unauthorized access and maintains package security throughout pickup process|
- 
 
-#### 4.1.4 Logistics Management Subsystem
+#### 5.1.4 Logistics Management Subsystem
+
 **Use Case Diagram**
 
-<img src="../Assignment1/diagrams/uc4-7.png" alt="Dormitory Maintenance Request Use Case Diagram" style="zoom:80%;" />
+<img src="diagrams/uc4-7.png" alt="Dormitory Maintenance Request Use Case Diagram" style="zoom:80%;" />
 
-Use Case: **Dormitory Maintenance Request**
-
----
+**Use Case: Dormitory Maintenance Request**
 
 | USE CASE             | **Submit Maintenance Request**                                   |
 | -------------------- | ---------------------------------------------------------------- |
@@ -350,8 +385,6 @@ Use Case: **Dormitory Maintenance Request**
 | **Alternative Path** | 1. **Validation fail:** System returns form errors and requests correction. <br/>2. **Auto-assignment fail:** Ticket routed to admin for manual assignment (triggers admin notification). <br/>3. **Student cancels:** Submission aborted and no ticket created.|
 | **Post condition**   | Ticket created and persisted; notification sent to assigned staff/admin; student can track ticket (UC03).|
 
----
-
 | USE CASE             | **Upload Issue Photos**                                          |
 | -------------------- | ---------------------------------------------------------------- |
 | **ID**               | ***UC02***                                                       |
@@ -361,8 +394,6 @@ Use Case: **Dormitory Maintenance Request**
 | **Basic Path**       | 1. Student selects file(s) to upload while composing request. <br/>2. System performs client-side validation (file type/size). <br/>3. System uploads file(s) to storage and returns URLs. <br/>4. System associates uploaded photo URLs with the maintenance ticket. <br/>5. Student completes submission. |
 | **Alternative Path** | 1. **File too large/invalid type:** System rejects file and shows error. <br/>2. **Upload network failure:** System retries upload or lets user retry manually. <br/>3. **Storage quota exceeded:** System notifies admin and allows submission without photos.                                             |
 | **Post condition**   | Photos stored and linked to ticket; thumbnails visible in student/staff dashboards.  |
-
----
 
 | USE CASE             | **Track Maintenance Status**                                     |
 | -------------------- | ---------------------------------------------------------------- |
@@ -374,8 +405,6 @@ Use Case: **Dormitory Maintenance Request**
 | **Alternative Path** | 1. **No updates available:** System shows “No updates yet” and expected SLA. <br/>2. **Ticket archived:** System shows closed status and read-only history.  |
 | **Post condition**   | Student obtains up-to-date ticket information; any student comment is appended to ticket log.|
 
----
-
 | USE CASE             | **Update Repair Progress**                                       |
 | -------------------- | ---------------------------------------------------------------- |
 | **ID**               | ***UC04***                                                       |
@@ -385,8 +414,6 @@ Use Case: **Dormitory Maintenance Request**
 | **Basic Path**       | 1. Staff logs into staff dashboard. <br/>2. Staff views assigned tickets. <br/>3. Staff opens a ticket and updates status to “In Progress”. <br/>4. Staff performs repair, uploads completion photos and notes, and marks ticket “Completed”. <br/>5. System notifies student of completion. |
 | **Alternative Path** | 1. **Need parts/unable to complete:** Staff updates status to “Awaiting Parts” with ETA; ticket remains open. <br/>2. **Incorrect assignment:** Staff flags admin to reassign.  |
 | **Post condition**   | Ticket status and repair details updated; completion triggers student confirmation.|
-
----
 
 | USE CASE             | **Provide Feedback / Confirm Completion**                        |
 | -------------------- | ---------------------------------------------------------------- |
@@ -398,19 +425,11 @@ Use Case: **Dormitory Maintenance Request**
 | **Alternative Path** | 1. **No response within SLA:** System auto-closes after reminder cycle (configurable). <br/>2. **Student disputes charge/time:** System routes to admin review. |
 | **Post condition**   | Ticket closed and feedback stored, or ticket reopened and returned to staff queue. |
 
----
-
-- Utility Bill Payment
+**Use Case: Utility Bill Payment**
 
 **Use Case Diagram**
 
-<img src="../Assignment1/diagrams/uc4-8.png" alt="Dormitory Maintenance Request Use Case Diagram" style="zoom:80%;" />
-
-**Detailed Specification for Use Cases**
-
-Use Case: **Utility Bill Payment**
-
----
+<img src="diagrams/uc4-8.png" alt="Utility Bill Payment Use Case Diagram" style="zoom:80%;" />
 
 | USE CASE             | **View Utility Bill**                                           |
 | -------------------- | --------------------------------------------------------------- |
@@ -422,8 +441,6 @@ Use Case: **Utility Bill Payment**
 | **Alternative Path** | 1. **Finance API unavailable:** System shows an error and cached last-known data if available. <br/>2. **No billing record:** System shows “No bills found for this account.”       |
 | **Post condition**   | Student views accurate billing information or receives an explanatory error.|
 
----
-
 | USE CASE             | **Pay Utility Bill**                                             |
 | -------------------- | ---------------------------------------------------------------- |
 | **ID**               | ***UC07***                                                       |
@@ -432,9 +449,7 @@ Use Case: **Utility Bill Payment**
 | **Pre-condition**    | Student authenticated; selected payment method configured; finance/payment APIs operational.   |
 | **Basic Path**       | 1. Student selects bill to pay and chooses payment method. <br/>2. Student confirms payment amount and authorizes transaction. <br/>3. System invokes payment gateway / campus card service. <br/>4. Upon success, system updates bill status and notifies finance system. <br/>5. Student receives payment confirmation and transaction receipt. |
 | **Alternative Path** | 1. **Insufficient balance:** System prompts for campus card recharge (could invoke separate recharge flow). <br/>2. **Payment gateway error:** Transaction fails and student is shown error with retry option. <br/>3. **Timeout:** Transaction marked “Pending” until confirmation.  |
-| **Post condition**   | Bill state updated to “Paid” (or “Pending”); transaction recorded in payment history and finance system. |
-
----
+| **Post condition**   | Bill state updated to "Paid" (or "Pending"); transaction recorded in payment history and finance system. |
 
 | USE CASE             | **View Payment History**                                         |
 | -------------------- | ---------------------------------------------------------------- |
@@ -446,8 +461,6 @@ Use Case: **Utility Bill Payment**
 | **Alternative Path** | 1. **Sync lag with finance system:** Some recent transactions may be pending; system shows pending notice.|
 | **Post condition**   | Student can view/download receipts; records available for audit. |
 
----
-
 | USE CASE             | **Notify Due Date / Generate Monthly Bill**                      |
 | -------------------- | ---------------------------------------------------------------- |
 | **ID**               | ***UC09***                                                       |
@@ -458,12 +471,9 @@ Use Case: **Utility Bill Payment**
 | **Alternative Path** | 1. **Notification delivery failure:** System retries and logs failure. <br/>2. **Bill generation discrepancy:** System flags for admin review and holds notifications until resolved. |
 | **Post condition**   | Monthly bills generated and notifications dispatched; billing records persisted.|
 
----
+### 5.2 Activity Diagrams
 
-
-## 4.2. Activity Diagrams
-
-##### • Online Course Selection<br>
+#### 5.2.1 Online Course Selection
 The process begins with "Login and Enter the System", indicating that the student logs in and accesses the interface. The student can then "Search Courses" and "Browse Available Courses". After selecting a course, the student performs the "Register for Courses" action. The system checks for any time or resource conflicts in the selected courses, leading to a decision node: "No Conflicts?".
 If there are conflicts: The student must first "Resolve Conflicts", for example, by changing the course or adjusting the schedule.
 If there are no conflicts: The process proceeds directly to the next step.
@@ -471,36 +481,40 @@ If there are no conflicts: The process proceeds directly to the next step.
 Regardless of whether conflicts are resolved, the process ultimately executes "Update Schedule" (Update Course Timetable), saving the registration results into the student's course schedule. The process ends with a red solid circle, indicating the completion of the operation.
 
 Throughout the process, the student can also choose "Drop Courses", which bypasses the registration steps and directly enters the conflict-checking phase, ultimately updating the schedule.
-<br></br>
-<img src="diagrams/OSC-AD.svg" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
 
-<br></br>
-##### • Course Schedule Query
+<img src="diagrams/OSC-AD.svg" alt="Online Course Selection Activity Diagram" title="scope" width="auto" style="margin: 0;"/>
+
+#### 5.2.2 Course Schedule Query
+
 This diagram illustrates the process through which students and teachers access their relevant course information after identity authentication. The system, acting as an intermediary, is responsible for identity verification and data presentation, ensuring the security and personalized display of information. Students log in and enter the course schedule section to perform a query operation; after the system verifies their identity, it displays the details of the courses they have selected. Teachers also perform query operations, upon which the system verifies their identity and displays detailed information about the courses they are responsible for. Teachers can then view the details of the courses they teach, concluding the process.
-<br></br>
-<img src="diagrams/OSQ-AD1.svg" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
 
-<br></br>
+<img src="diagrams/OSQ-AD1.svg" alt="Course Schedule Query Activity Diagram - Students and Teachers" title="scope" width="auto" style="margin: 0;"/>
+
 In course schedule management, administrators manage course arrangements through operations such as querying, approving, and modifying. The system is responsible for data display and persistent updates. The process begins at the administrator's end, where the administrator performs a query operation, to which the system responds by displaying the complete schedule for all courses. Based on the displayed results, the administrator conducts management operations. They have the option to either review and approve change requests, prompting the system to execute the changes, or directly add, edit, or delete course schedules, leading the system to update the database accordingly.
-<br></br>
-<img src="diagrams/OSQ-AD2.svg" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
 
-####  • Life Service
-<img src="diagrams\ad_life_service.svg" alt="ad_ls" title="ad_life" width="auto" style="margin: 0;"/>
-This picture is the the activity diagram of life service. It descripe the main process of the student using the life service.
+<img src="diagrams/OSQ-AD2.svg" alt="Course Schedule Query Activity Diagram - Administrators" title="scope" width="auto" style="margin: 0;"/>
 
-And then we choose the Meal Ordering and Package Notification part to make detail description.
-####  • Meal Ordering 
-<img src="diagrams\ad_meal_ordering.svg" alt="ad_mo" title="ad_meal" width="auto" style="margin: 0;"/>
+#### 5.2.3 Life Service
+
+<img src="diagrams/ad_life_service.svg" alt="Life Service Activity Diagram" title="ad_life" width="auto" style="margin: 0;"/>
+
+This activity diagram depicts the main process of students using the life service subsystem.
+
+The following sections provide detailed descriptions of the Meal Ordering and Package Notification activity diagrams.
+
+**Meal Ordering**
+
+<img src="diagrams/ad_meal_ordering.svg" alt="Meal Ordering Activity Diagram" title="ad_meal" width="auto" style="margin: 0;"/>
+
 This activity diagram illustrates a meal ordering system workflow across three swimlanes (User, System, Payment System). It shows the complete process from user login verification through vendor/menu selection, order customization, payment processing, to final order confirmation, including error handling for unavailable vendors, out-of-stock items, and payment failures.
 
-####  • Package Notification
-<img src="diagrams\ad_package_notification.svg" alt="ad_pn" title="ad_pkg" width="auto" style="margin: 0;"/>
+**Package Notification**
+
+<img src="diagrams/ad_package_notification.svg" alt="Package Notification Activity Diagram" title="ad_pkg" width="auto" style="margin: 0;"/>
+
 This activity diagram illustrates a package notification system workflow where users register packages and set preferences, while the system verifies information, creates records, and manages package arrivals. The process includes validation checks, notification generation for registered packages, and handles both successful pickups and error scenarios through appropriate system responses.
 
-
- 
-## 5. Glossary of terms
+## 6. Glossary of Terms
 
 | terms                      | Terminology interpretation                                   |
 | :--------------------------------- | :----------------------------------------------------------- |
@@ -519,11 +533,10 @@ This activity diagram illustrates a package notification system workflow where u
 | **Time Conflict Detection** | The system automatically checks whether the class time of a newly selected course overlaps with the times of courses already selected by the student. If a conflict is found, enrollment is blocked to ensure the reasonableness of the student's schedule.|
 | **Prerequisite** | A course that a student must have successfully completed before being allowed to enroll in a specific course. The course selection system needs to verify that students meet the prerequisite requirements to ensure the continuity of their learning.|
 | **Enrollment Status** | Refers to a student's current participation status for a course, such as "Enrolled," "Dropped," "Pending Review," or "On Waitlist." It is used to track and manage student enrollment records.|
-  
 
-## 6. Supplementary specification
- 
-### 6.1 Usability
+## 7. Supplementary Specification
+
+### 7.1 Usability
 - Learning Time
 The platform features an intuitive user interface design and operational workflows that align with users' mental models, significantly reducing the difficulty for new users to get started. With a simple navigation structure, clear functional icons, and consistent interaction patterns, ordinary users can independently perform core operations upon first login without undergoing complex training. Key business processes are designed in a wizard-style or form-based manner, guiding users step by step to ensure clear operation logic and reduced cognitive load.
 
@@ -533,16 +546,14 @@ To meet the needs of an international campus environment and enhance accessibili
 - Help System
 Next to complex functional modules, a "?" help icon is provided. Clicking the icon displays concise operation instructions or frequently asked questions directly related to the current page content, reducing the effort required for users to locate information. The platform integrates a centralized "Help Center" or "User Guide" module. Users can search by keywords to quickly find required operation instructions, policy explanations, or troubleshooting solutions. Content is presented in structured articles, illustrated tutorials, or short videos for easy comprehension. A convenient "Feedback" entry is provided, allowing users to submit usage issues, feature suggestions, or bug reports with one click.
 
-
-### 6.2 Security and Stability
+### 7.2 Security and Stability
 **Data Encryption**: The system employs end-to-end encryption technology, using AES-256 encryption for transmission and storage of all sensitive data (such as personal information, payment credentials), ensuring data confidentiality and integrity during transmission and storage.
 
 **System Availability**: Through load balancing and cluster deployment, the system ensures 99.9% availability, supports tens of thousands of concurrent requests per second, and automatically scales resources under high load to ensure stable and smooth service.
 
 **Data Backup**: Establishes daily incremental backup and weekly full backup mechanisms, combined with off-site disaster recovery solutions, achieving rapid data recovery and seamless business switching, minimizing data loss risks.
 
-
-### 6.3 Performance and Technical Specifications
+### 7.3 Performance and Technical Specifications
 
 1. **Response Time**:
 
@@ -570,149 +581,120 @@ Next to complex functional modules, a "?" help icon is provided. Clicking the ic
    * Database and storage services will be distributed to ensure scalability and high availability, supporting large-scale data access and storage.
    * Security protocols will include SSL/TLS encryption, OAuth 2.0 for authentication, and regular security audits to protect user data and maintain system integrity.
 
-## 7. Initial snapshots of the system's user interface
+## 8. Initial Snapshots of the System's User Interface
 
-### 7.1 Base Page Snapshot
+### 8.1 Base Page Snapshot
 - The login page of SmartCampus.
 - The home page of SmartCampus, including brief summary of today overview and popular functions.
 - The function pafe of SmartCampus, including all functions of four subsystems.
-<img src="diagrams\board1.png" alt="login" title="b_login" width="30%" style="margin: 0;"/>
-<img src="diagrams\board3.png" alt="board" title="b_h" width="30%" style="margin: 0;"/>
-<img src="diagrams\board2.png" alt="fcts" title="b_f" width="30%" style="margin: 0;"/>
+<img src="diagrams/board1.png" alt="login" title="b_login" width="30%" style="margin: 0;"/>
+<img src="diagrams/board3.png" alt="board" title="b_h" width="30%" style="margin: 0;"/>
+<img src="diagrams/board2.png" alt="fcts" title="b_f" width="30%" style="margin: 0;"/>
 
-### 7.2 Library Seat Reservation Interface
-<img src="../Assignment1/diagrams/LibrarySnapshot.png" alt="LibrarySnapshot" style="zoom:80%;" />
+### 8.2 Library Service
+
+**Library Seat Reservation Interface**
+
+<img src="diagrams/LibrarySnapshot.png" alt="Library Seat Reservation Interface" style="zoom:80%;" />
+
 This clean and intuitive interface allows students to easily reserve study spaces across multiple campus libraries. Users can view real-time seat availability with clear "Vacant/Total" counts for each location. The date selection panel enables quick browsing for today and tomorrow. The design prioritizes essential information - showing current vacancy rates and total capacity - helping students make informed decisions quickly.
 
-### 7.3 Academic Affairs Service
-- Course Schedule Query Interface Snapshot
-  • By clicking on the "Individual Course Schedule" section on the homepage, you can enter the Individual Course Schedule interface where different roles, upon logging in, can view their corresponding personal course schedules. By querying the current semester and time period, you can filter the course arrangements for the current time. The course schedule can be viewed by scrolling left and right, and detailed information about each course can be accessed by clicking and sliding to view further details. By clicking the "More" button at the top right corner, detailed course information can be viewed; for example, students can check course credits, course nature, course notes, etc., while teachers can view the number of students attending, classmate lists, etc.
+### 8.3 Academic Affairs Service
 
-  <img src="diagrams/CSQ-MD.png" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
-  <br></br>
-  • Click on the search box for academic year and semester to select the desired academic year and semester.
-  <br></br>
-  <img src="diagrams/CSQ-MD1.png" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
-  <br></br>
+**Course Schedule Query Interface Snapshot**
 
-- Course Selection Interface Snapshot
-  • By clicking on the course selection section on the homepage, students enter the Online Course Selection interface. They can search for the course types they are interested in, and add desired courses to their course selection list. The specific course schedules for selected course types will be displayed in the related courses list, showing detailed information and the current number of enrolled students. When the number of enrolled students reaches the maximum capacity, the course can no longer be selected. After selecting courses, students can view their current schedule in this interface. If there are any scheduling conflicts, a conflict warning will appear. Schedules without conflicts will be displayed in the temporary timetable, and students must click the "Save" button to finalize and save their course schedule.
+By clicking on the "Individual Course Schedule" section on the homepage, you can enter the Individual Course Schedule interface where different roles, upon logging in, can view their corresponding personal course schedules. By querying the current semester and time period, you can filter the course arrangements for the current time. The course schedule can be viewed by scrolling left and right, and detailed information about each course can be accessed by clicking and sliding to view further details. By clicking the "More" button at the top right corner, detailed course information can be viewed; for example, students can check course credits, course nature, course notes, etc., while teachers can view the number of students attending, classmate lists, etc.
 
-  <img src="diagrams/CSQ-MD2.png" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
-  <br></br>
-  <img src="diagrams/CSQ-MD3.png" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
-  <br></br>
-  <img src="diagrams/CSQ-MD4.png" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
+<img src="diagrams/CSQ-MD.png" alt="Course Schedule Query Interface" title="scope" width="auto" style="margin: 0;"/>
 
+Click on the search box for academic year and semester to select the desired academic year and semester.
 
-### 7.4 Life Service
+<img src="diagrams/CSQ-MD1.png" alt="Academic Year and Semester Selection" title="scope" width="auto" style="margin: 0;"/>
+
+**Course Selection Interface Snapshot**
+
+By clicking on the course selection section on the homepage, students enter the Online Course Selection interface. They can search for the course types they are interested in, and add desired courses to their course selection list. The specific course schedules for selected course types will be displayed in the related courses list, showing detailed information and the current number of enrolled students. When the number of enrolled students reaches the maximum capacity, the course can no longer be selected. After selecting courses, students can view their current schedule in this interface. If there are any scheduling conflicts, a conflict warning will appear. Schedules without conflicts will be displayed in the temporary timetable, and students must click the "Save" button to finalize and save their course schedule.
+
+<img src="diagrams/CSQ-MD2.png" alt="Course Selection Interface" title="scope" width="auto" style="margin: 0;"/>
+
+<img src="diagrams/CSQ-MD3.png" alt="Course Selection with Conflict Warning" title="scope" width="auto" style="margin: 0;"/>
+
+<img src="diagrams/CSQ-MD4.png" alt="Course Selection Final Schedule" title="scope" width="auto" style="margin: 0;"/>
+
+### 8.4 Life Service
+
+**Meal Ordering Interface**
 
 - Vendor dashboard: manage menu, set hours, update stock, and process incoming orders.
 - Menu view: browse items, see images, customize options, and add selections to the cart.
 - Order timeline: shows order status from placement to pickup, with payment and tracking details.
-- 
-<img src="diagrams/ls1.png" alt="ls_v" title="vendor" width="30%" style="margin: 0;"/>
-<img src="diagrams/ls2.png" alt="ls_f" title="food" width="30%" style="margin: 0;"/>
-<img src="diagrams/ls3.png" alt="ls_o" title="orders" width="30%" style="margin: 0;"/>
 
+<img src="diagrams/ls1.png" alt="Vendor Dashboard" title="vendor" width="30%" style="margin: 0;"/>
+<img src="diagrams/ls2.png" alt="Menu View" title="food" width="30%" style="margin: 0;"/>
+<img src="diagrams/ls3.png" alt="Order Timeline" title="orders" width="30%" style="margin: 0;"/>
 
-- Package notification flow: register parcels, generate pickup codes, notify students, and manage collection.
-<img src="diagrams/ls4.png" alt="package" title="pl" width="30%" style="margin: 0;"/>
+**Package Notification Interface**
 
-### 7.5 Dormitory Repair Request Interface
+Package notification flow: register parcels, generate pickup codes, notify students, and manage collection.
 
-<table width="100%">
-<tr>
-<td align="center" width="33%">
-<img src="../Assignment1/diagrams/snapshot7-4-1.png" alt="UserStory" width="300"/>
-</td>
-<td align="center" width="33%">
-<img src="../Assignment1/diagrams/snapshot7-4-2.png" alt="Diagram2" width="300"/>
-</td>
-</tr>
+<img src="diagrams/ls4.png" alt="Package Notification Flow" title="pl" width="30%" style="margin: 0;"/>
 
-</table>
-<table width="100%">
-<tr>
-<td align="center" width="33%">
-<img src="../Assignment1/diagrams/snapshot7-4-3.png" alt="Diagram3" width="300"/>
-</td>
-<td align="center" width="33%">
-<img src="../Assignment1/diagrams/snapshot7-4-4.png" alt="Diagram2" width="300"/>
-</td>
-</tr>
-</table>
+### 8.5 Dormitory Repair Request Interface
+
+<img src="diagrams/snapshot7-4-1.png" alt="Dormitory Repair Request Interface - Category Selection" width="45%" style="margin: 0;"/>
+<img src="diagrams/snapshot7-4-2.png" alt="Dormitory Repair Request Interface - Form Input" width="45%" style="margin: 0;"/>
+
+<img src="diagrams/snapshot7-4-3.png" alt="Dormitory Repair Request Interface - Issue Details" width="45%" style="margin: 0;"/>
+<img src="diagrams/snapshot7-4-4.png" alt="Dormitory Repair Request Interface - Submission" width="45%" style="margin: 0;"/>
 
 This snapshot illustrates the main interface for submitting a dormitory maintenance request. The clean, intuitive design features a blue and white color scheme. A top navigation bar allows students to categorize their issue into: **Furniture/Item Repair**, **Water & Electricity Repair**, **Housing Fittings Repair**, and **Friendly Reminders**. The central form dynamically displays specific items based on the selected category (e.g., desk, chair, bed, light, door, network port, socket, shower, toilet, etc.), enabling users to quickly pinpoint and report the exact problem.
 
-## 8. AI tool usage disclosure 
+## 9. AI Tool Usage Disclosure
+
+During the completion of this SmartCampus system analysis and design project, our team utilized AI-assisted tools in a limited and responsible manner to support specific tasks. The use of AI was strictly supplementary; all core analytical thinking, architectural decisions, and final content were driven and owned by the team members.
+
 In this system design project, we utilized AI tools to assist in several key phases:
 - Used AI tools for initial requirements research and functional ideation
 - Leveraged conversational interactions to identify user pain points and scenario requirements
 - Checked the structure and terminology consistency of technical documentation
 - Assisted in accurate translation of technical terms between Chinese and English
 
+Specifically, **OpenAI ChatGPT** and **Claude 4 Sonnet** were employed as tools to aid in the following areas:
 
-During the completion of this SmartCampus system analysis and design project, our team utilized AI-assisted tools in a limited and responsible manner to support specific tasks. The use of AI was strictly supplementary; all core analytical thinking, architectural decisions, and final content were driven and owned by the team members.
+- **Brainstorming Assistance:** In the initial project phase, the AI tool was used to help generate and organize broad ideas for all four subsystems (Academic, Library, Logistics, and Daily Life Services), which the team then critically evaluated, filtered, and developed into our final design.
+- **Documentation Drafting and Structuring:** The AI tool assisted in creating initial drafts and outlines for certain sections of the report, such as the Supplementary Specification and User Stories. These drafts served as a starting point and were substantially revised, expanded, and validated by the team to ensure accuracy and relevance to our specific project context.
+- **Language Polishing and Editing:** The primary use of the AI tool was for proofreading and refining the language of team-written content to improve clarity, consistency, and academic tone. All technical descriptions and key concepts remained the product of the team's work.
+- **Translation Assistance:** The AI tool helped with Chinese-to-English and English-to-Chinese translations to ensure accurate translation of technical terms.
+- **UML Diagram Analysis:** We uploaded activity diagrams and requested the AI to help analyze the logical structure of the UML activity diagrams.
+- **Reference Recommendations:** The AI tool helped find books related to the subject area, recommending relevant monographs with information such as authors, publishers, and core content.
 
-Specifically, **OpenAI ChatGPT** was employed as a tool to aid in the following areas:
+**Tools Used:**
+- **Claude 4 Sonnet:** Document writing, editing, and modification suggestions for content and UML diagrams
+- **diagrams.net/draw.io:** Use case and activity diagram creation
 
-*   **Brainstorming Assistance:** In the initial project phase, the AI tool was used to help generate and organize broad ideas for all four subsystems (Academic, Library, Logistics, and Daily Life Services), which the team then critically evaluated, filtered, and developed into our final design.
-*   **Documentation Drafting and Structuring:** The AI tool assisted in creating initial drafts and outlines for certain sections of the report, such as the *Supplementary Specification* and *User Stories*. These drafts served as a starting point and were substantially revised, expanded, and validated by the team to ensure accuracy and relevance to our specific project context.
-*   **Language Polishing and Editing:** The primary use of the AI tool was for proofreading and refining the language of team-written content to improve clarity, consistency, and academic tone. All technical descriptions and key concepts remained the product of the team's work.
+All outputs generated with AI assistance were thoroughly reviewed, edited, and corrected by the team members. The final deliverables represent the team's own understanding, analysis, and design efforts. All AI suggestions were reviewed and revised by the project team; final analysis and decisions are the team's responsibility. No confidential personal data was submitted to external AI services. Verbatim AI outputs or substantial paraphrases are cited in the references.
 
-All outputs generated with AI assistance were thoroughly reviewed, edited, and corrected by the team members. The final deliverables represent the team's own understanding, analysis, and design efforts.
-We uploaded an activity diagram and requested the AI to help analyze the logical structure of the UML activity diagram. During the process, I frequently asked for Chinese-to-English and English-to-Chinese translations. I also asked the AI to help find books related to the subject area, and it recommended several relevant monographs, providing information such as authors, publishers, and core content to help me further understand the topic.
+## 10. References
 
-We used Claude 4 Sonnet (document writing, editing, and modification suggestions) and diagrams.net/draw.io (use case and activity diagram creation). Claude 4 Sonnet was primarily used to assist with document content writing, language polishing, and providing modification suggestions for use case and activity diagram designs. All AI suggestions were reviewed and revised by the project team; final analysis and decisions are the team's responsibility. No confidential personal data was submitted to external AI services. Verbatim AI outputs or substantial paraphrases are cited in the references. For alternate citation styles or to update tool names/dates, contact the team and we will revise this statement.
- 
+1. Whitten, J. L., & Bentley, L. D. "Systems Analysis and Design Methods"
+   A comprehensive guide covering structured analysis, design techniques, and project management. It provides practical methodologies for developing information systems through real-world case studies and UML modeling approaches.
 
-## 9. References
-1. "Systems Analysis and Design Methods" by Jeffrey L. Whitten & Lonnie D. Bentley
-A comprehensive guide covering structured analysis, design techniques, and project management. It provides practical methodologies for developing information systems through real-world case studies and UML modeling approaches.
+2. Cohn, M. "User Stories Applied: For Agile Software Development"
+   Focuses on agile requirements through user stories. Offers practical techniques for writing, prioritizing, and planning stories in iterative development, bridging communication between stakeholders and development teams.
 
-2. "User Stories Applied: For Agile Software Development" by Mike Cohn
-Focuses on agile requirements through user stories. Offers practical techniques for writing, prioritizing, and planning stories in iterative development, bridging communication between stakeholders and development teams.
- 
+3. Xiao, W., & Wang, J. (2020). Design and Implementation of a Campus Record Management Web App Based on Vue and Spring Boot. *Computer Applications and Software*, 37(4), 25-30, 88. https://d.wanfangdata.com.cn/periodical/jsjyyyrj202004006
+   This study explores the development of a campus management application using modern web technologies like Vue and Spring Boot. It provides insights into overcoming challenges such as high development costs and limited functionality, offering practical reference for our project's technical stack selection and user experience design.
 
-**[1] Xiao, W., & Wang, J. (2020). Design and Implementation of a Campus Record Management Web App Based on Vue and Spring Boot. *Computer Applications and Software*, 37(4), 25-30, 88.https://d.wanfangdata.com.cn/periodical/jsjyyyrj202004006**
+4. Li, J. "Fundamentals of Smart Campus: Opening the Door to Smart Education"
+   This book provides a comprehensive introduction to the architecture of smart campuses, key technologies, and their applications in education. It covers planning, design, implementation, operation and maintenance, and evaluation systems for smart campuses. The book also offers in-depth discussions on practical explorations and future development trends of smart campuses, encompassing the underlying technological support required for one-stop service platforms.
 
-This study explores the development of a campus management application using modern web technologies like Vue and Spring Boot. It provides insights into overcoming challenges such as high development costs and limited functionality, offering practical reference for our project's technical stack selection and user experience design.
+5. Claude 4 Sonnet (AI Assistant). Anthropic. Used for document content generation, language editing, and providing modification suggestions for use case diagrams and activity diagrams in the SmartCampus project documentation.
 
-1. "Fundamentals of Smart Campus: Opening the Door to Smart Education"<br>
-Author: **Li Jinsheng** <br>
-This book provides a comprehensive introduction to the architecture of smart campuses, key technologies , and their applications in education. It covers planning, design, implementation, operation and maintenance, and evaluation systems for smart campuses. The book also offers in-depth discussions on practical explorations and future development trends of smart campuses, encompassing the underlying technological support required for one-stop service platforms.
-
-2. Claude 4 Sonnet (AI Assistant). Document writing assistance and diagram design suggestions for SmartCampus system analysis. Anthropic. Used for document content generation, language editing, and providing modification suggestions for use case diagrams and activity diagrams in the SmartCampus project documentation.
- 
-## 10. Contributions
+## 11. Contributions
 | Members               | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Percent |
 | --------------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------- |
 | Feng Juncai  2353924  | ✓      | ✓      | ✓      |        |        |        |        |        |        |         |
 | Ji Peng  2351869      |        |        | ✓      |        |        |        |        |        |        |         |
 | Zhang Shikou  2353240 |        |        | ✓      |        |        |        |        |        |        |         |
 | Yu Yilian  2352993    |        |        | ✓      |        |        |        |        |        |        |         |
-
-## 11. Agile artifacts
-
-- Persona
-The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
-  <img src="diagrams/persona.png" alt="persona_page" title="persona" width="auto" style="margin: 0;"/>
-
-- User Personas
-
-The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
-
-<img src="../Assignment1/diagrams/UserStory.png" alt="UserStory" width="380"/>
-
-<div style="page-break-after: always;"></div>
-
-- User Journey Map
-<img src="../Assignment1/diagrams/journry map.png" alt="User Journry Map" style="zoom:80%;" />
-In the system design process, we have mapped out the complete user journey by analyzing students' interactions with SmartCampus across four critical stages: exploration, selection, participation, and feedback. This approach goes beyond simply documenting functional requirements to capture users' evolving psychological states and emotional responses throughout their experience. By examining the key questions students ask at each phase, we gain deep insights into their underlying needs and anxieties. The journey mapping reveals not only where students encounter friction but also where opportunities exist to build trust and deliver delight. This comprehensive understanding enables us to design features that proactively address user concerns, streamline complex processes, and create emotional connections that transform routine campus tasks into satisfying experiences. Through this user-centered approach, we ensure SmartCampus evolves from a mere service platform into an indispensable companion that genuinely understands and supports students' academic and daily life needs.
-
-- User story map
-Based on an in-depth understanding of user needs, we focused on the Smart Campus One-Stop Service Platform, identifying the most critical and urgent functional requirements while uncovering numerous innovative points for optimization. By evaluating the priority of these needs, we created a clear user story map. This map not only provides a blueprint for defining the platform's functional modules and facilitating team collaboration, but also ensures that the development direction is highly aligned with user expectations. Leveraging the agile development model, we were able to quickly build a prototype of the platform and, in subsequent iterations, continuously gather feedback from teachers and students to dynamically adjust features, ensuring the platform genuinely addresses pain points in campus life and delivers a convenient, efficient user experience. This development approach has also significantly improved project efficiency, enabling the team to flexibly respond to the rapid changes in educational informatization and continuously refine services that better fit the campus context.
-<br></br>
-<img src="diagrams/USM.png" alt="allscopes" title="scope" width="auto" style="margin: 0;"/>
 
