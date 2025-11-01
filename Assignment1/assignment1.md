@@ -10,8 +10,6 @@
     - [1.2 Motivation](#12-motivation)
     - [1.3 Scope](#13-scope)
     - [1.4 Target Users](#14-target-users)
-      - [Primary Users: Students](#primary-users-students)
-      - [Secondary Users: Faculty \& Staff](#secondary-users-faculty--staff)
   - [2. Strategic Analysis](#2-strategic-analysis)
     - [2.1 SWOT](#21-swot)
     - [2.2 Goals](#22-goals)
@@ -32,6 +30,7 @@
       - [5.2.1 Library Subsystem](#521-library-subsystem)
       - [5.2.2 Academic Affairs Service Subsystem](#522-academic-affairs-service-subsystem)
       - [5.2.3 Life Service](#523-life-service)
+      - [5.2.4 Logistics Management Subsystem](#524-logistics-management-subsystem)
   - [6. Glossary of Terms](#6-glossary-of-terms)
   - [7. Supplementary Specification](#7-supplementary-specification)
     - [7.1 Usability](#71-usability)
@@ -87,18 +86,18 @@ These four subsystems work together to create a unified, intelligent campus serv
 
 ### 1.4 Target Users
 
-#### Primary Users: Students
+- **Primary Users**: Students
 
-- **Population**: 15,000-30,000 per university
-- **Needs**: Integrated access to library, academic, dining, and logistics services
-- **Usage**: 80%+ mobile, high frequency during peak hours
-- **Pain Points**: Multiple logins, scattered information, time-consuming tasks
+  - **Population**: 15,000-30,000 per university
+  - **Needs**: Integrated access to library, academic, dining, and logistics services
+  - **Usage**: 80%+ mobile, high frequency during peak hours
+  - **Pain Points**: Multiple logins, scattered information, time-consuming tasks
 
-#### Secondary Users: Faculty & Staff
+- **Secondary Users**: Faculty & Staff
 
-- **Faculty**: Library access, course management, facility booking
-- **Service Staff**: Administrators Staff
-- **Needs**: Operational dashboards, real-time updates, reporting tools 
+  - **Faculty**: Library access, course management, facility booking
+  - **Service Staff**: Administrative staff
+  - **Needs**: Operational dashboards, real-time updates, reporting tools 
 
 ## 2. Strategic Analysis
 
@@ -198,7 +197,7 @@ The primary goal of developing "SmartCampus" is to address diverse student needs
 In the system design process, we have mapped out the complete user journey by analyzing students' interactions with SmartCampus across four critical stages: exploration, selection, participation, and feedback. This approach goes beyond simply documenting functional requirements to capture users' evolving psychological states and emotional responses throughout their experience. By examining the key questions students ask at each phase, we gain deep insights into their underlying needs and anxieties. The journey mapping reveals not only where students encounter friction but also where opportunities exist to build trust and deliver delight. This comprehensive understanding enables us to design features that proactively address user concerns, streamline complex processes, and create emotional connections that transform routine campus tasks into satisfying experiences. Through this user-centered approach, we ensure SmartCampus evolves from a mere service platform into an indispensable companion that genuinely understands and supports students' academic and daily life needs.
 
 <p align="center">
-  <img src="diagrams/journry map.png" alt="User Journey Map" style="display:block; margin:0 auto; width:auto; max-width:700px; height:auto;" />
+  <img src="diagrams/journey_map.png" alt="User Journey Map" style="display:block; margin:0 auto; width:auto; max-width:700px; height:auto;" />
 </p>
 
 ### 4.4 User Story Map
@@ -329,12 +328,12 @@ This use case involves students, teachers, and administrators in querying, analy
 </p>
 
 **Short Written Summary**
-1. Meal Ordering: Students can order meals via SmartCampus "Meal Ordering" function before they arrive at the canteens or other food sellers, and then they can reduce the time wasting on food waiting, helping them to have more rest time.
-2. Browse Menu: Students can choose different food sellers and kinds of food on the browse food menu. The browser can offer many food photos and names directly, making it easy to explore available dining options.
+1. Meal Ordering: Students can order meals via SmartCampus "Meal Ordering" function before they arrive at the canteens or other food sellers, reducing waiting time and giving them more time to rest.
+2. Browse Menu: Students can choose different food sellers and kinds of food on the browse food menu. The menu can display many food photos and names, making it easy to explore available dining options.
 3. Search Food Items: Students can also directly search for the food they would like to have, avoiding moving from the top to the bottom to find the food on the browse menu, providing quick access to specific items.
 4. Add to Cart: Students can choose many kinds of food and put them into the cart, then they can pay the whole food cart together, enabling bulk ordering and convenient checkout process.
 5. Customize Order: Students can choose the food type and select the spicy degree or sugar degree, and they can also choose some special accessories such as cheese, butter and other things to personalize their meals.
-6. Make Payment: The students can make payment after choosing the foods on the SmartCampus. They can choose the payment method such as WeChat Pay, Alipay, or bank payment for flexible transaction options.
+6. Make Payment: Students can make payment after choosing food on SmartCampus. They can choose payment methods such as WeChat Pay, Alipay, or bank transfer for flexible transaction options.
 7. Track Order Status: The students can check the order status, such as order sending state, preparing state, finishing state, or cancellation state, providing real-time updates on their food preparation progress.
 8. Package Notification: SmartCampus can send package notification to students when their packages arrive at campus, ensuring timely pickup and reducing package accumulation at delivery points.
 9. Register Package: Students can register the package number on the SmartCampus app, and when the packages arrive at campus, the SmartCampus can recognize the package, then send the notification to the owner automatically.
@@ -342,7 +341,7 @@ This use case involves students, teachers, and administrators in querying, analy
 11. Send Arrival Notification: The campus system can send arrival messages to students via SMS, email, or app notifications when their registered packages are delivered to campus pickup points.
 12. Set Pickup Method: Students can choose their preferred pickup method, such as self-pickup at designated locations, delivery to dormitory, or pickup by authorized representatives for flexible package collection.
 13. Generate Pickup Code: The system generates unique pickup codes for each package to ensure secure package retrieval, preventing unauthorized access and maintaining package security throughout the pickup process.
-14. Set Code Expiry Time: Students can set expiry time for their pickup codes to enhance security and ensure timely package collection, with automatic code renewal options available for extended storage needs.
+14. Set Code Expiry Time: Students can set an expiry time for their pickup codes to enhance security and ensure timely package collection, with automatic code renewal options available for extended storage needs.
 15. Lost & Found: SmartCampus provides a comprehensive lost and found service where students can report lost items and search for found items, facilitating the return of misplaced belongings within the campus community.
 16. Report Item: Students can report lost items by providing detailed descriptions, location information, and contact details, creating searchable records to help reunite owners with their lost belongings efficiently.
 17. Search Items: Students can search through the lost and found database using keywords, categories, or location filters to find their missing items or browse available found items.
@@ -366,10 +365,10 @@ Above is a brief summary of life service use cases. Following this, we will sele
 |USE CASE|MEAL ORDERING|
 | ---- | ---- |
 |ID|UC-06|
-|Specification|Students can pre-order meals from campus canteens and vendor through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
+|Specification|Students can pre-order meals from campus canteens and vendors through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
 |Actors|Student, Vendor, Payment System|
-|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor have updated menus available|
-|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food vendor<br>3. Student selects a vendor and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
+|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor has updated menus available|
+|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food vendors<br>3. Student selects a vendor and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank Transfer)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
 |Alternative Path|3a: No vendors available<br>• System displays "No vendors currently available" message<br>6a: Item out of stock<br>• System notifies student <br>8a: Payment fails<br>• System prompts student to retry or change payment method<br>9a: Order cancellation<br>• Student can cancel order before preparation begins<br>• System processes refund if applicable|
 |Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Vendor receives order details<br>• Student can track order status<br>• Order appears in student's order history|
 
@@ -673,8 +672,9 @@ Next to complex functional modules, a "?" help icon is provided. Clicking the ic
 
 ### 8.1 Base Page Snapshot
 - The login page of SmartCampus.
-- The home page of SmartCampus, including brief summary of today overview and popular functions.
-- The function pafe of SmartCampus, including all functions of four subsystems.
+- The home page of SmartCampus, including a brief dashboard of today's overview and popular functions.
+- The function page of SmartCampus, including all functions of four subsystems.
+
 <div style="display:flex; gap:10px; justify-content:center; flex-wrap:nowrap; overflow-x:auto;">
   <img src="diagrams/board1.png" alt="login" title="b_login" style="width:32%; max-width:320px; height:auto; display:block;" />
   <img src="diagrams/board3.png" alt="board" title="b_h" style="width:32%; max-width:320px; height:auto; display:block;" />
