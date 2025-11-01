@@ -216,7 +216,7 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 
 **Use Case Diagram**
 <p align="center">
-  <img src="diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/usecase4.1.svg" alt="Library System Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
 </p>
 
 - Brief Description 
@@ -499,10 +499,26 @@ Above is a brief summary of life service use cases. Following this, we will sele
 ### 5.2 Activity Diagrams
 #### 5.2.1 Library Subsystem
 **Borrow Books**
-This activity diagram visually outlines the streamlined process a student follows to borrow a book through the SmartCampus system. It details the crucial system checks for both book availability and the student's borrowing eligibility. The workflow progresses through the confirmation and finalization of the loan, culminating in the system updating records and notifying the student of a successful borrowing transaction. The diagram effectively maps the complete journey, highlighting key decision points and system interactions that ensure a smooth and efficient user experience.
+This activity diagram maps the core circulation workflows within the SmartCampus Library System, encompassing the processes for borrowing, renewing, and returning books. It begins with user authentication and clearly outlines the divergent paths for each action.
+
+The diagram effectively visualizes key system decision points, such as checking a book's availability for borrowing, verifying a user's eligibility for renewal, and determining if a book is overdue upon return. Successful transactions result in updated records and success messages, while rule violations (like being unqualified or having an overdue book) trigger appropriate error or fine notifications, ensuring users are informed at every step.
 
 <p align="center">
-  <img src="diagrams/LibraryActivityMap.svg" alt="Borrow Books Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/BorrowBooksLibraryActivityMap.svg" alt="Borrow Books Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>
+
+**Reserve Study Space**
+This activity diagram illustrates the user journey for reserving a study space through the SmartCampus system. It begins with the student selecting a reservation function and typically involves searching for available spaces based on criteria like location, time, and facilities. The core of the process is governed by system rules, which check the user's eligibility and the space's availability. A successful reservation culminates in a system confirmation and a calendar update, while rule violations result in clear error messages.
+
+<p align="center">
+  <img src="diagrams/ReserveStudySpaceActivityMap.svg" alt="Reserve Study Space Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+</p>
+
+**View Reading History**
+This activity diagram outlines the process for a user to access and review their personal reading history within the library system. The workflow begins with user authentication and navigates to a dedicated dashboard or history section. The system then retrieves and filters the user's past borrowing records from the database, presenting them in a chronological or categorized list. Users can typically interact with this history by applying filters—such as by date, title, or author—and view detailed information for each entry, creating a personalized record of their academic engagement.
+
+<p align="center">
+  <img src="diagrams/ReadingHistoryActivityMap.svg" alt="Reading History Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
 </p>
 
 #### 5.2.2 Academic Affairs Service Subsystem
