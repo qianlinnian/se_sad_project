@@ -257,8 +257,6 @@ The diagram below presents an overview of SmartCampus system-level use cases; th
 | Alternative Path | 4a. If borrowing eligibility requirements are not met, system displays specific reasons (e.g., "Maximum borrowing limit reached")<br>5a. Student cancels borrowing operation, returns to book search interface<br>6a. Book status update fails, system rolls back operation and prompts to retry |
 | Post-condition | Book borrowing successful, borrowing record updated, book status changes to "Borrowed" |
 
-- 
-
 #### 5.1.2 Academic Affairs Service Subsystem
 
 **Use Case Diagram**
