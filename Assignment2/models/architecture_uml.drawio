@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="第 1 页" id="RgMCMUENkSsHijeMzSBs">
-        <mxGraphModel dx="2084" dy="1089" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1002" dy="631" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -26,10 +26,7 @@
                     <mxGeometry x="15" y="50" width="105" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="cEeftTlOkGN04h5gXYWJ-21" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt;&lt;div&gt;Native Mobile APPs&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="cEeftTlOkGN04h5gXYWJ-29" vertex="1">
-                    <mxGeometry x="140" y="50" width="105" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="cEeftTlOkGN04h5gXYWJ-22" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt;&lt;div&gt;Web Portal&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="cEeftTlOkGN04h5gXYWJ-29" vertex="1">
-                    <mxGeometry x="260" y="50" width="105" height="40" as="geometry"/>
+                    <mxGeometry x="280" y="50" width="105" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="cEeftTlOkGN04h5gXYWJ-30" value="" style="group" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="350" y="220" width="520" height="110" as="geometry"/>
@@ -118,9 +115,6 @@
                 <mxCell id="SNMEA7PEkVisHpZm8PgG-15" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="cEeftTlOkGN04h5gXYWJ-21" target="cEeftTlOkGN04h5gXYWJ-24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="cEeftTlOkGN04h5gXYWJ-22" target="cEeftTlOkGN04h5gXYWJ-25" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
                 <mxCell id="SNMEA7PEkVisHpZm8PgG-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=70;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" parent="1" source="nS2uRLnSHk0aWFh6Wl3Z-55" target="cEeftTlOkGN04h5gXYWJ-3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
@@ -151,36 +145,6 @@
                 <mxCell id="SNMEA7PEkVisHpZm8PgG-30" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="cEeftTlOkGN04h5gXYWJ-26" target="cEeftTlOkGN04h5gXYWJ-38" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-34" value="" style="group" parent="1" connectable="0" vertex="1">
-                    <mxGeometry x="616" y="510" width="840" height="180" as="geometry"/>
-                </mxCell>
-                <mxCell id="cEeftTlOkGN04h5gXYWJ-10" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=120;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="80" width="390" height="150" as="geometry"/>
-                </mxCell>
-                <mxCell id="cEeftTlOkGN04h5gXYWJ-11" value="Infrastructure&amp;nbsp;&lt;div&gt;Services&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry width="270.00148352463475" height="29.999999999999996" as="geometry"/>
-                </mxCell>
-                <mxCell id="cEeftTlOkGN04h5gXYWJ-18" value="&amp;lt;&amp;lt;infrastructure&amp;gt;&amp;gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="-102.50417584712005" y="19.999999999999996" width="760.00417584712" height="29.999999999999996" as="geometry"/>
-                </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-5" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt;&lt;br&gt;File Storage" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="99.99802196715365" y="101" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
-                </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-6" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Data Analytics" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="352.99732416112175" y="49.99999999999999" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
-                </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-7" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt;&lt;div&gt;Logging Service&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="224.99662086055417" y="49.99999999999999" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
-                </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-8" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Monitoring" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="99.99593404359364" y="49.99999999999999" width="100.00054945356842" height="40.99999999999999" as="geometry"/>
-                </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-10" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Config Center" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="352.9993406557179" y="100" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
-                </mxCell>
-                <mxCell id="SNMEA7PEkVisHpZm8PgG-12" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Message Queue" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="SNMEA7PEkVisHpZm8PgG-34" vertex="1">
-                    <mxGeometry x="224.9986813114358" y="100" width="100.00054945356842" height="40.99999999999999" as="geometry"/>
-                </mxCell>
                 <mxCell id="cEeftTlOkGN04h5gXYWJ-34" value="" style="group" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="20" y="510" width="520" height="110" as="geometry"/>
                 </mxCell>
@@ -207,6 +171,33 @@
                 </mxCell>
                 <mxCell id="SNMEA7PEkVisHpZm8PgG-35" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="cEeftTlOkGN04h5gXYWJ-6" target="cEeftTlOkGN04h5gXYWJ-16" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="cEeftTlOkGN04h5gXYWJ-10" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=120;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="696" y="510" width="390" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="cEeftTlOkGN04h5gXYWJ-11" value="Infrastructure&amp;nbsp;&lt;div&gt;Services&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="616" y="510" width="270.00148352463475" height="29.999999999999996" as="geometry"/>
+                </mxCell>
+                <mxCell id="cEeftTlOkGN04h5gXYWJ-18" value="&amp;lt;&amp;lt;infrastructure&amp;gt;&amp;gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="530" width="390" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="SNMEA7PEkVisHpZm8PgG-5" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt;&lt;br&gt;File Storage" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="715.9980219671536" y="611" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
+                </mxCell>
+                <mxCell id="SNMEA7PEkVisHpZm8PgG-6" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Data Analytics" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="968.9973241611217" y="560" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
+                </mxCell>
+                <mxCell id="SNMEA7PEkVisHpZm8PgG-7" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt;&lt;div&gt;Logging Service&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="840.9966208605542" y="560" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
+                </mxCell>
+                <mxCell id="SNMEA7PEkVisHpZm8PgG-8" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Monitoring" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="715.9959340435936" y="560" width="100.00054945356842" height="40.99999999999999" as="geometry"/>
+                </mxCell>
+                <mxCell id="SNMEA7PEkVisHpZm8PgG-10" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Config Center" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="968.9993406557179" y="610" width="105.00057692624684" height="39.99999999999999" as="geometry"/>
+                </mxCell>
+                <mxCell id="SNMEA7PEkVisHpZm8PgG-12" value="&amp;lt;&amp;lt;component&amp;gt;&amp;gt; Message Queue" style="rounded=0;whiteSpace=wrap;html=1;container=0;" parent="1" vertex="1">
+                    <mxGeometry x="840.9986813114358" y="610" width="100.00054945356842" height="40.99999999999999" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
