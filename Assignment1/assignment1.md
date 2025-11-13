@@ -1,17 +1,15 @@
-# System Analysis and Design
+# SmartCampus
 
 <p align="center">
   <img src="diagrams/logo.png" alt="logo" title="logo" width="100px" style="margin: 0;"/>
 </p>
 
-- [System Analysis and Design](#system-analysis-and-design)
+- [SmartCampus](#smartcampus)
   - [1. Introduction](#1-introduction)
     - [1.1 Background](#11-background)
     - [1.2 Motivation](#12-motivation)
     - [1.3 Scope](#13-scope)
     - [1.4 Target Users](#14-target-users)
-      - [Primary Users: Students](#primary-users-students)
-      - [Secondary Users: Faculty \& Staff](#secondary-users-faculty--staff)
   - [2. Strategic Analysis](#2-strategic-analysis)
     - [2.1 SWOT](#21-swot)
     - [2.2 Goals](#22-goals)
@@ -29,8 +27,10 @@
       - [5.1.3 Life Services Subsystem](#513-life-services-subsystem)
       - [5.1.4 Logistics Management Subsystem](#514-logistics-management-subsystem)
     - [5.2 Activity Diagrams](#52-activity-diagrams)
+      - [5.2.1 Library Subsystem](#521-library-subsystem)
       - [5.2.2 Academic Affairs Service Subsystem](#522-academic-affairs-service-subsystem)
       - [5.2.3 Life Service](#523-life-service)
+      - [5.2.4 Logistics Management Subsystem](#524-logistics-management-subsystem)
   - [6. Glossary of Terms](#6-glossary-of-terms)
   - [7. Supplementary Specification](#7-supplementary-specification)
     - [7.1 Usability](#71-usability)
@@ -71,7 +71,7 @@ SmartCampus reimagines integrated campus platforms with a student-first approach
 SmartCampus focuses specifically on enhancing students' campus life by intelligently managing diverse services through four integrated subsystems. 
 
 <p align="center">
-  <img src="diagrams/scopeall.svg" alt="allscopes" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/scopeall.svg" alt="allscopes" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 - The **Daily Life Service** Subsystem facilitates convenient canteen meal ordering with mobile payment integration, real-time package collection notifications linked to campus courier services, a comprehensive lost-and-found platform connecting the campus community, sports facility booking for gyms and courts, and campus shuttle schedule access with real-time location tracking.
@@ -86,18 +86,18 @@ These four subsystems work together to create a unified, intelligent campus serv
 
 ### 1.4 Target Users
 
-#### Primary Users: Students
+- **Primary Users**: Students
 
-- **Population**: 15,000-30,000 per university
-- **Needs**: Integrated access to library, academic, dining, and logistics services
-- **Usage**: 80%+ mobile, high frequency during peak hours
-- **Pain Points**: Multiple logins, scattered information, time-consuming tasks
+  - **Population**: 15,000-30,000 per university
+  - **Needs**: Integrated access to library, academic, dining, and logistics services
+  - **Usage**: 80%+ mobile, high frequency during peak hours
+  - **Pain Points**: Multiple logins, scattered information, time-consuming tasks
 
-#### Secondary Users: Faculty & Staff
+- **Secondary Users**: Faculty & Staff
 
-- **Faculty**: Library access, course management, facility booking
-- **Service Staff**: Administrators Staff
-- **Needs**: Operational dashboards, real-time updates, reporting tools 
+  - **Faculty**: Library access, course management, facility booking
+  - **Service Staff**: Administrative staff
+  - **Needs**: Operational dashboards, real-time updates, reporting tools 
 
 ## 2. Strategic Analysis
 
@@ -181,7 +181,7 @@ The development follows agile methodology with iterative sprints, continuous use
 The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
 
 <p align="center">
-  <img src="diagrams/persona.png" alt="User Persona" title="persona" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/persona.png" alt="User Persona" title="persona" style="display:block; margin:0 auto; width:70%; max-width:500px; height:auto;"/>
 </p>
 
 ### 4.2 User Story
@@ -189,7 +189,7 @@ The primary goal of developing "SmartCampus" is to address diverse student needs
 The primary goal of developing "SmartCampus" is to address diverse student needs effectively across our campus community. Recognizing that students have varying requirements, behaviors, and pain points in their daily campus life, we have developed detailed user personas to guide our design and development decisions. These personas capture multiple dimensions including daily challenges, functional needs, and usage contexts, helping us understand what students need, why they need it, and how they would use it in real scenarios. This persona-driven approach ensures that SmartCampus remains intuitive, accessible, and effective for all users, keeping our development process truly user-centered throughout the project lifecycle.
 
 <p align="center">
-  <img src="diagrams/UserStory.png" alt="User Story" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/UserStory.png" alt="User Story" style="display:block; margin:0 auto; width:70%; max-width:500px; height:auto;" />
 </p>
 
 ### 4.3 User Journey Map
@@ -197,7 +197,7 @@ The primary goal of developing "SmartCampus" is to address diverse student needs
 In the system design process, we have mapped out the complete user journey by analyzing students' interactions with SmartCampus across four critical stages: exploration, selection, participation, and feedback. This approach goes beyond simply documenting functional requirements to capture users' evolving psychological states and emotional responses throughout their experience. By examining the key questions students ask at each phase, we gain deep insights into their underlying needs and anxieties. The journey mapping reveals not only where students encounter friction but also where opportunities exist to build trust and deliver delight. This comprehensive understanding enables us to design features that proactively address user concerns, streamline complex processes, and create emotional connections that transform routine campus tasks into satisfying experiences. Through this user-centered approach, we ensure SmartCampus evolves from a mere service platform into an indispensable companion that genuinely understands and supports students' academic and daily life needs.
 
 <p align="center">
-  <img src="diagrams/journry map.png" alt="User Journey Map" style="display:block; margin:0 auto; width:auto; max-width:700px; height:auto;" />
+  <img src="diagrams/journey_map.png" alt="User Journey Map" style="display:block; margin:0 auto; width:auto; max-width:700px; height:auto;" />
 </p>
 
 ### 4.4 User Story Map
@@ -211,12 +211,16 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 ## 5. Use Case Modelling and Business Process Modelling
 
 ### 5.1 Use Case
+The diagram below presents an overview of SmartCampus system-level use cases; the following sections provide detailed descriptions of each subsystem.
+<p align="center">
+  <img src="diagrams/all_use_case.svg" alt="SmartCampus overall use case diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+</p> 
 
 #### 5.1.1 Library Subsystem 
 
 **Use Case Diagram**
 <p align="center">
-  <img src="diagrams/usecase4.1.png" alt="Library System Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/usecase4.1.svg" alt="Library System Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:500px; height:auto;" />
 </p>
 
 - Brief Description 
@@ -258,7 +262,7 @@ Based on an in-depth understanding of user needs, we focused on the Smart Campus
 **Use Case Diagram**
 
 <p align="center">
-  <img src="diagrams/AASS-UCD.svg" alt="Academic Affairs Service Subsystem Use Case Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/AASS-UCD.svg" alt="Academic Affairs Service Subsystem Use Case Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:500px; height:auto;"/>
 </p>
 
 **Detailed Specification for Use Case**
@@ -322,16 +326,16 @@ This use case involves students, teachers, and administrators in querying, analy
 **Use Case Diagram**
 
 <p align="center">
-  <img src="diagrams/Life_Services.svg" alt="Life Services Subsystem Use Case Diagram" title="usecase_life" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/Life_Services.svg" alt="Life Services Subsystem Use Case Diagram" title="usecase_life" style="display:block; margin:0 auto; width:50%; max-width:600px; height:auto;"/>
 </p>
 
 **Short Written Summary**
-1. Meal Ordering: Students can order meals via SmartCampus "Meal Ordering" function before they arrive at the canteens or other food sellers, and then they can reduce the time wasting on food waiting, helping them to have more rest time.
-2. Browse Menu: Students can choose different food sellers and kinds of food on the browse food menu. The browser can offer many food photos and names directly, making it easy to explore available dining options.
+1. Meal Ordering: Students can order meals via SmartCampus "Meal Ordering" function before they arrive at the canteens or other food sellers, reducing waiting time and giving them more time to rest.
+2. Browse Menu: Students can choose different food sellers and kinds of food on the browse food menu. The menu can display many food photos and names, making it easy to explore available dining options.
 3. Search Food Items: Students can also directly search for the food they would like to have, avoiding moving from the top to the bottom to find the food on the browse menu, providing quick access to specific items.
 4. Add to Cart: Students can choose many kinds of food and put them into the cart, then they can pay the whole food cart together, enabling bulk ordering and convenient checkout process.
 5. Customize Order: Students can choose the food type and select the spicy degree or sugar degree, and they can also choose some special accessories such as cheese, butter and other things to personalize their meals.
-6. Make Payment: The students can make payment after choosing the foods on the SmartCampus. They can choose the payment method such as WeChat Pay, Alipay, or bank payment for flexible transaction options.
+6. Make Payment: Students can make payment after choosing food on SmartCampus. They can choose payment methods such as WeChat Pay, Alipay, or bank transfer for flexible transaction options.
 7. Track Order Status: The students can check the order status, such as order sending state, preparing state, finishing state, or cancellation state, providing real-time updates on their food preparation progress.
 8. Package Notification: SmartCampus can send package notification to students when their packages arrive at campus, ensuring timely pickup and reducing package accumulation at delivery points.
 9. Register Package: Students can register the package number on the SmartCampus app, and when the packages arrive at campus, the SmartCampus can recognize the package, then send the notification to the owner automatically.
@@ -339,7 +343,7 @@ This use case involves students, teachers, and administrators in querying, analy
 11. Send Arrival Notification: The campus system can send arrival messages to students via SMS, email, or app notifications when their registered packages are delivered to campus pickup points.
 12. Set Pickup Method: Students can choose their preferred pickup method, such as self-pickup at designated locations, delivery to dormitory, or pickup by authorized representatives for flexible package collection.
 13. Generate Pickup Code: The system generates unique pickup codes for each package to ensure secure package retrieval, preventing unauthorized access and maintaining package security throughout the pickup process.
-14. Set Code Expiry Time: Students can set expiry time for their pickup codes to enhance security and ensure timely package collection, with automatic code renewal options available for extended storage needs.
+14. Set Code Expiry Time: Students can set an expiry time for their pickup codes to enhance security and ensure timely package collection, with automatic code renewal options available for extended storage needs.
 15. Lost & Found: SmartCampus provides a comprehensive lost and found service where students can report lost items and search for found items, facilitating the return of misplaced belongings within the campus community.
 16. Report Item: Students can report lost items by providing detailed descriptions, location information, and contact details, creating searchable records to help reunite owners with their lost belongings efficiently.
 17. Search Items: Students can search through the lost and found database using keywords, categories, or location filters to find their missing items or browse available found items.
@@ -357,23 +361,23 @@ Above is a brief summary of life service use cases. Following this, we will sele
 **Meal Ordering**
 
 <p align="center">
-  <img src="diagrams/Meal_Ordering.svg" alt="Meal Ordering Use Case Diagram" title="Meal_Ordering" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/Meal_Ordering.svg" alt="Meal Ordering Use Case Diagram" title="Meal_Ordering" style="display:block; margin:0 auto; width:70%; max-width:500px; height:auto;"/>
 </p>
  
 |USE CASE|MEAL ORDERING|
 | ---- | ---- |
 |ID|UC-06|
-|Specification|Students can pre-order meals from campus canteens and vendor through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
+|Specification|Students can pre-order meals from campus canteens and vendors through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
 |Actors|Student, Vendor, Payment System|
-|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor have updated menus available|
-|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food vendor<br>3. Student selects a vendor and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
+|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor has updated menus available|
+|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food vendors<br>3. Student selects a vendor and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank Transfer)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
 |Alternative Path|3a: No vendors available<br>• System displays "No vendors currently available" message<br>6a: Item out of stock<br>• System notifies student <br>8a: Payment fails<br>• System prompts student to retry or change payment method<br>9a: Order cancellation<br>• Student can cancel order before preparation begins<br>• System processes refund if applicable|
 |Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Vendor receives order details<br>• Student can track order status<br>• Order appears in student's order history|
 
 **Package Notification**
 
 <p align="center">
-  <img src="diagrams/Package_Notification.svg" alt="Package Notification Use Case Diagram" title="Package_Notification" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/Package_Notification.svg" alt="Package Notification Use Case Diagram" title="Package_Notification" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
  
 |USE CASE|PACKAGE NOTIFICATION|
@@ -391,7 +395,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 **Use Case Diagram**
 
 <p align="center">
-  <img src="diagrams/uc4-7.png" alt="Dormitory Maintenance Request Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/uc4-7.png" alt="Dormitory Maintenance Request Use Case Diagram" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;" />
 </p>
 
 **Use Case: Dormitory Maintenance Request**
@@ -451,7 +455,7 @@ Above is a brief summary of life service use cases. Following this, we will sele
 **Use Case Diagram**
 
 <p align="center">
-  <img src="diagrams/uc4-8.png" alt="Utility Bill Payment Use Case Diagram" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/uc4-8.png" alt="Utility Bill Payment Use Case Diagram" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;" />
 </p>
 
 | USE CASE             | **View Utility Bill**                                           |
@@ -495,9 +499,31 @@ Above is a brief summary of life service use cases. Following this, we will sele
 | **Post condition**   | Monthly bills generated and notifications dispatched; billing records persisted.|
 
 ### 5.2 Activity Diagrams
+#### 5.2.1 Library Subsystem
+**Borrow Books**
+This activity diagram maps the core circulation workflows within the SmartCampus Library System, encompassing the processes for borrowing, renewing, and returning books. It begins with user authentication and clearly outlines the divergent paths for each action.
+
+The diagram effectively visualizes key system decision points, such as checking a book's availability for borrowing, verifying a user's eligibility for renewal, and determining if a book is overdue upon return. Successful transactions result in updated records and success messages, while rule violations (like being unqualified or having an overdue book) trigger appropriate error or fine notifications, ensuring users are informed at every step.
+
+<p align="center">
+  <img src="diagrams/BorrowBooksLibraryActivityMap.svg" alt="Borrow Books Activity Diagram" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+**Reserve Study Space**
+This activity diagram illustrates the user journey for reserving a study space through the SmartCampus system. It begins with the student selecting a reservation function and typically involves searching for available spaces based on criteria like location, time, and facilities. The core of the process is governed by system rules, which check the user's eligibility and the space's availability. A successful reservation culminates in a system confirmation and a calendar update, while rule violations result in clear error messages.
+
+<p align="center">
+  <img src="diagrams/ReserveStudySpaceActivityMap.svg" alt="Reserve Study Space Activity Diagram" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+**View Reading History**
+This activity diagram outlines the process for a user to access and review their personal reading history within the library system. The workflow begins with user authentication and navigates to a dedicated dashboard or history section. The system then retrieves and filters the user's past borrowing records from the database, presenting them in a chronological or categorized list. Users can typically interact with this history by applying filters—such as by date, title, or author—and view detailed information for each entry, creating a personalized record of their academic engagement.
+
+<p align="center">
+  <img src="diagrams/ReadingHistoryActivityMap.svg" alt="Reading History Activity Diagram" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
 
 #### 5.2.2 Academic Affairs Service Subsystem
-
 **Online Course Selection**
 
 The process begins with "Login and Enter the System", indicating that the student logs in and accesses the interface. The student can then "Search Courses" and "Browse Available Courses". After selecting a course, the student performs the "Register for Courses" action. The system checks for any time or resource conflicts in the selected courses, leading to a decision node: "No Conflicts?".
@@ -509,7 +535,7 @@ Regardless of whether conflicts are resolved, the process ultimately executes "U
 Throughout the process, the student can also choose "Drop Courses", which bypasses the registration steps and directly enters the conflict-checking phase, ultimately updating the schedule.
 
 <p align="center">
-  <img src="diagrams/OSC-AD.svg" alt="Online Course Selection Activity Diagram" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/OSC-AD.svg" alt="Online Course Selection Activity Diagram" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 **Course Schedule Query**
@@ -517,19 +543,19 @@ Throughout the process, the student can also choose "Drop Courses", which bypass
 This diagram illustrates the process through which students and teachers access their relevant course information after identity authentication. The system, acting as an intermediary, is responsible for identity verification and data presentation, ensuring the security and personalized display of information. Students log in and enter the course schedule section to perform a query operation; after the system verifies their identity, it displays the details of the courses they have selected. Teachers also perform query operations, upon which the system verifies their identity and displays detailed information about the courses they are responsible for. Teachers can then view the details of the courses they teach, concluding the process.
 
 <p align="center">
-  <img src="diagrams/OSQ-AD1.svg" alt="Course Schedule Query Activity Diagram - Students and Teachers" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/OSQ-AD1.svg" alt="Course Schedule Query Activity Diagram - Students and Teachers" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 In course schedule management, administrators manage course arrangements through operations such as querying, approving, and modifying. The system is responsible for data display and persistent updates. The process begins at the administrator's end, where the administrator performs a query operation, to which the system responds by displaying the complete schedule for all courses. Based on the displayed results, the administrator conducts management operations. They have the option to either review and approve change requests, prompting the system to execute the changes, or directly add, edit, or delete course schedules, leading the system to update the database accordingly.
 
 <p align="center">
-  <img src="diagrams/OSQ-AD2.svg" alt="Course Schedule Query Activity Diagram - Administrators" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/OSQ-AD2.svg" alt="Course Schedule Query Activity Diagram - Administrators" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 #### 5.2.3 Life Service
 
 <p align="center">
-  <img src="diagrams/ad_life_service.svg" alt="Life Service Activity Diagram" title="ad_life" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/ad_life_service.svg" alt="Life Service Activity Diagram" title="ad_life" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 This activity diagram depicts the main process of students using the life service subsystem.
@@ -539,7 +565,7 @@ The following sections provide detailed descriptions of the Meal Ordering and Pa
 **Meal Ordering**
 
 <p align="center">
-  <img src="diagrams/ad_meal_ordering.svg" alt="Meal Ordering Activity Diagram" title="ad_meal" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/ad_meal_ordering.svg" alt="Meal Ordering Activity Diagram" title="ad_meal" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 This activity diagram illustrates a meal ordering system workflow across three swimlanes (User, System, Payment System). It shows the complete process from user login verification through vendor/menu selection, order customization, payment processing, to final order confirmation, including error handling for unavailable vendors, out-of-stock items, and payment failures.
@@ -547,10 +573,36 @@ This activity diagram illustrates a meal ordering system workflow across three s
 **Package Notification**
 
 <p align="center">
-  <img src="diagrams/ad_package_notification.svg" alt="Package Notification Activity Diagram" title="ad_pkg" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/ad_package_notification.svg" alt="Package Notification Activity Diagram" title="ad_pkg" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 This activity diagram illustrates a package notification system workflow where users register packages and set preferences, while the system verifies information, creates records, and manages package arrivals. The process includes validation checks, notification generation for registered packages, and handles both successful pickups and error scenarios through appropriate system responses.
+
+#### 5.2.4 Logistics Management Subsystem
+
+**Dormitory Maintenance Request**
+
+This activity diagram visualizes the complete workflow of the dormitory maintenance process within the Logistics Management Subsystem. It starts when a student logs into the SmartCampus platform and submits a maintenance request specifying the problem type, description, and photo evidence.
+
+The system validates the input data and automatically generates a repair record with a unique ticket ID. Depending on configuration, it either auto-assigns the task to an available maintenance staff member or forwards it to an administrator for manual assignment. Both the student and the staff receive notifications, after which the staff updates the repair progress.
+
+Once the repair is completed, the system notifies the student, who can confirm completion or request rework. The process concludes when the student provides feedback and the system closes the ticket, ensuring a complete feedback loop for quality assurance.
+
+<p align="center">
+  <img src="diagrams/ad_dormitory_maintenance.png" alt="Dormitory Maintenance Activity Diagram" title="ad_dorm" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>  
+
+**Utility Bill Management**
+
+This activity diagram outlines the workflow for students managing their utility bills through the SmartCampus Logistics Management Subsystem. The process begins when the user logs in and accesses the “Utility Bill” interface, prompting the system to retrieve billing data from the university’s financial system.
+
+Students can view their electricity and water bill summaries, check payment statuses, and initiate payment for unpaid bills. The system validates payment information and communicates with a third-party payment gateway to process transactions.
+
+Depending on the result—success, pending, or failure—the system updates the bill status, sends a confirmation or failure notice to the user, and records all transaction details in the database. This ensures transparency, traceability, and seamless integration between the SmartCampus platform and the university’s financial systems.
+
+<p align="center">
+  <img src="diagrams/ad_utility_bill.png" alt="Utility Bill Management Activity Diagram" title="ad_bill" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>  
 
 ## 6. Glossary of Terms
 
@@ -622,8 +674,9 @@ Next to complex functional modules, a "?" help icon is provided. Clicking the ic
 
 ### 8.1 Base Page Snapshot
 - The login page of SmartCampus.
-- The home page of SmartCampus, including brief summary of today overview and popular functions.
-- The function pafe of SmartCampus, including all functions of four subsystems.
+- The home page of SmartCampus, including a brief dashboard of today's overview and popular functions.
+- The function page of SmartCampus, including all functions of four subsystems.
+
 <div style="display:flex; gap:10px; justify-content:center; flex-wrap:nowrap; overflow-x:auto;">
   <img src="diagrams/board1.png" alt="login" title="b_login" style="width:32%; max-width:320px; height:auto; display:block;" />
   <img src="diagrams/board3.png" alt="board" title="b_h" style="width:32%; max-width:320px; height:auto; display:block;" />
@@ -635,7 +688,7 @@ Next to complex functional modules, a "?" help icon is provided. Clicking the ic
 **Library Seat Reservation Interface**
 
 <p align="center">
-  <img src="diagrams/LibrarySnapshot.png" alt="Library Seat Reservation Interface" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;" />
+  <img src="diagrams/LibrarySnapshot.png" alt="Library Seat Reservation Interface" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;" />
 </p>
 
 This clean and intuitive interface allows students to easily reserve study spaces across multiple campus libraries. Users can view real-time seat availability with clear "Vacant/Total" counts for each location. The date selection panel enables quick browsing for today and tomorrow. The design prioritizes essential information - showing current vacancy rates and total capacity - helping students make informed decisions quickly.
@@ -647,13 +700,13 @@ This clean and intuitive interface allows students to easily reserve study space
 By clicking on the "Individual Course Schedule" section on the homepage, you can enter the Individual Course Schedule interface where different roles, upon logging in, can view their corresponding personal course schedules. By querying the current semester and time period, you can filter the course arrangements for the current time. The course schedule can be viewed by scrolling left and right, and detailed information about each course can be accessed by clicking and sliding to view further details. By clicking the "More" button at the top right corner, detailed course information can be viewed; for example, students can check course credits, course nature, course notes, etc., while teachers can view the number of students attending, classmate lists, etc.
 
 <p align="center">
-  <img src="diagrams/CSQ-MD.png" alt="Course Schedule Query Interface" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/CSQ-MD.png" alt="Course Schedule Query Interface" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 Click on the search box for academic year and semester to select the desired academic year and semester.
 
 <p align="center">
-  <img src="diagrams/CSQ-MD1.png" alt="Academic Year and Semester Selection" title="scope" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/CSQ-MD1.png" alt="Academic Year and Semester Selection" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 **Course Selection Interface Snapshot**
@@ -685,7 +738,7 @@ By clicking on the course selection section on the homepage, students enter the 
 Package notification flow: register parcels, generate pickup codes, notify students, and manage collection.
 
 <p align="center">
-  <img src="diagrams/ls4.png" alt="Package Notification Flow" title="pl" style="display:block; margin:0 auto; width:70%; max-width:700px; height:auto;"/>
+  <img src="diagrams/ls4.png" alt="Package Notification Flow" title="pl" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 ### 8.5 Dormitory Repair Request Interface
@@ -729,10 +782,10 @@ All AI-generated outputs were thoroughly reviewed, edited, and corrected by team
 5. Claude 4 Sonnet (AI Assistant). Anthropic. Used for document content generation, language editing, and providing modification suggestions for use case diagrams and activity diagrams in the SmartCampus project documentation.
 
 ## 11. Contributions
-| Members               | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 |  Part 10 | Percent |
-| --------------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------- |------- |
-| Feng Juncai  2353924  | ✓      | ✓      | ✓      |        |        |        |        |        |        |        |         |
-| Ji Peng  2351869      |        |        | ✓      |        |        |        |        |        |        |         |        |
-| Zhang Shikou  2353240 |        |        | ✓      |        |        |        |        |        |        |         |        |
-| Yu Yilian  2352993    |        |        | ✓      |        |        |        |        |        |        |         |        |
+| Members (Name / Student ID) | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Part 9 | Part 10 | Percent |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Feng Juncai (2353924)  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  | ✓ | ✓ | ✓ | 25% |
+| Ji Peng (2351869)      |  |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 25% |
+| Zhang Shikou (2353240) |  |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 25% |
+| Yu Yilian (2352993)    |  |  | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 25% |
 
