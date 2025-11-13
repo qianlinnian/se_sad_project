@@ -36,12 +36,11 @@
   - [4. Updated Requirements](#4-updated-requirements)
     - [4.1 Use Case Update: Order Reservation Functionality](#41-use-case-update-order-reservation-functionality)
   - [5. Updated Snapshots of the System's User Interface](#5-updated-snapshots-of-the-systems-user-interface)
+    - [5.1 Updated Snapshots of Meal Order](#51-updated-snapshots-of-meal-order)
   - [6. Open Issues](#6-open-issues)
   - [7. \[Optional\] AI Tool Usage Declaration](#7-optional-ai-tool-usage-declaration)
   - [8. Annotated References](#8-annotated-references)
   - [9. Contributions of Team Members](#9-contributions-of-team-members)
-  - [Presentation Requirements](#presentation-requirements)
-  - [Submission Note](#submission-note)
 
 
 ## 1. Introduction
@@ -199,19 +198,29 @@ This diagram illustrates order status tracking from preparation to completion. S
 
 Through analysis of the current meal ordering system, we found that the existing system only supports immediate ordering (Browse Menu → Select Dishes → Place Order → Make Payment). However, in practice, students frequently encounter several issues: excessive waiting times during peak dining hours (11:30-12:30 and 17:30-18:30), popular dishes often being sold out during these peak periods, and students' strong desire to schedule meals in advance - particularly when they have tight class schedules.
 
-To address these problems, we have upgraded the reservation function. Students can now make meal reservations, select specific ordering times, and manage their reservations (including cancellation when needed).
+To address these problems, we have upgraded the reservation function. Students can now make meal reservations, select specific ordering times, and manage their reservations, including cancellation when needed.
+
 <p align="center">
   <img src="diagrams/uc_mealorder.svg" alt="mealorder" title="uc_mealorder" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
 
 ## 5. Updated Snapshots of the System's User Interface
-Provide at least five (5) updated snapshots of system UIs with accompanying descriptions:
-- If your system provides business reports or statistical analytics in a visual format to its users, then the visual format and any specialized visualization design (if applicable) should be provided
-- If your system frequently needs to communicate with the end user through notifications, you should also attach samples of those messages
+### 5.1 Updated Snapshots of Meal Order
+The interface update includes adding a shopping cart section on the meal selection interface and providing more detailed display of order contents.
+<div style="display:flex; gap:10px; justify-content:center; flex-wrap:nowrap; overflow-x:auto;">
+  <img src="diagrams/sp_mealorder1.png" alt="mealorder1" title="mealorder1" style="width:32%; max-width:320px; height:auto; display:block;" />
+  <img src="diagrams/sp_mealorder2.png" alt="mealorder2" title="mealorder2" style="width:32%; max-width:320px; height:auto; display:block;" />
+</div>
+
 
 ## 6. Open Issues
-List the challenges and design tasks to explore in the next stage
+
+**Real-time Data Consistency:**
+Managing real-time inventory updates across multiple dining locations poses significant challenges. When students make reservations or immediate orders, the system must ensure accurate availability information and prevent overbooking scenarios during peak dining hours.
+
+**Scalability Concerns:**
+The meal ordering subsystem experiences highly concentrated traffic during specific time windows (11:30-12:30, 17:30-18:30). Our current architecture needs stress testing and optimization to handle concurrent reservation requests and payment processing without system degradation.
 
 ## 7. [Optional] AI Tool Usage Declaration
 - If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list
@@ -221,15 +230,11 @@ List the challenges and design tasks to explore in the next stage
 Describe how the project references (for instance, the project domain book and reference articles) relate to your project. The description for a reference should be between 200 and 300 words.
 
 ## 9. Contributions of Team Members
+ 
+| Members               | Part 1 | Part 2 | Part 3 | Part 4 | Part 5 | Part 6 | Part 7 | Part 8 | Percent |
+| --------------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |------- |
+| Feng Juncai  2353924  | ✓      | ✓      |       |        |        |        |        |        |        |        |         |
+| Ji Peng  2351869      |        |        |      |        |        |        |        |        |        |         |        |
+| Zhang Shikou  2353240 |        |        |      |        |        |        |        |        |        |         |        |
+| Yu Yilian  2352993    |        |        |      |        |        |        |        |        |        |         |        |
 
----
-
-## Presentation Requirements
-Before submitting the final version of this document, each team must prepare a **10-minute presentation** in class (2025-11-17 and 2025-11-24) to explain your current solution.
-
----
-
-## Submission Note
-You must submit both:
-- The document 
-- The corresponding UML, SysML, or C4 model (models can be included in the document)
