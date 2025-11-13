@@ -1,0 +1,235 @@
+# System analysis 
+
+**Team Name**: CampusCode  
+**Team Members**:
+- 2353924 Feng Juncai (冯俊财)
+- 2351869 Ji Peng (纪鹏)  
+- 2353240 Zhang Shikou (张诗蔻)
+- 2352993 Yu Yilian (于伊莲)
+
+
+## 0. Table of Contents
+- [System analysis](#system-analysis)
+  - [0. Table of Contents](#0-table-of-contents)
+  - [1. Introduction](#1-introduction)
+    - [1.1 Project Goals](#11-project-goals)
+    - [1.2 Progress Since Requirements Modeling](#12-progress-since-requirements-modeling)
+    - [1.3 Key Changes and Refinements](#13-key-changes-and-refinements)
+    - [1.4 Current Project Status](#14-current-project-status)
+  - [2. Architecture Analysis](#2-architecture-analysis)
+    - [2.1 High-Level Architecture Overview](#21-high-level-architecture-overview)
+      - [2.1.1 Architecture Pattern Selection](#211-architecture-pattern-selection)
+    - [2.2 System-Level Architecture Diagram](#22-system-level-architecture-diagram)
+    - [2.3 Layer Analysis](#23-layer-analysis)
+      - [2.3.1 Presentation Layer](#231-presentation-layer)
+      - [2.3.2 Security \& Gateway Layer](#232-security--gateway-layer)
+      - [2.3.3 Business Logic Layer](#233-business-logic-layer)
+      - [2.3.4 Data Access Layer](#234-data-access-layer)
+      - [2.3.5 Infrastructure Services](#235-infrastructure-services)
+      - [2.3.6 Data Storage Layer](#236-data-storage-layer)
+    - [2.4 Technology Stack Selection Rationale](#24-technology-stack-selection-rationale)
+    - [2.5 Future Evolution Considerations](#25-future-evolution-considerations)
+  - [3. Analysis Model](#3-analysis-model)
+    - [3.1 OrderMeal](#31-ordermeal)
+      - [3.1.1 Class diagram](#311-class-diagram)
+      - [3.1.2 Interaction diagrams](#312-interaction-diagrams)
+  - [4. Updated Requirements](#4-updated-requirements)
+    - [4.1 Use Case Update: Order Reservation Functionality](#41-use-case-update-order-reservation-functionality)
+  - [5. Updated Snapshots of the System's User Interface](#5-updated-snapshots-of-the-systems-user-interface)
+  - [6. Open Issues](#6-open-issues)
+  - [7. \[Optional\] AI Tool Usage Declaration](#7-optional-ai-tool-usage-declaration)
+  - [8. Annotated References](#8-annotated-references)
+  - [9. Contributions of Team Members](#9-contributions-of-team-members)
+  - [Presentation Requirements](#presentation-requirements)
+  - [Submission Note](#submission-note)
+
+
+## 1. Introduction
+
+### 1.1 Project Goals 
+
+SmartCampus is a comprehensive digital platform designed to unify fragmented campus services into a single, intelligent ecosystem. Our primary goal is to reduce students' daily task management time through seamless integration of four core subsystems: Library Services, Academic Affairs, Daily Life Services, and Logistics Management. The platform adopts a student-first approach, enhancing rather than replacing existing campus infrastructure while providing unified authentication and personalized experiences.
+
+Scope:
+<p align="center">
+  <img src="diagrams/scopeall.svg" alt="allscopes" title="scope" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+These subsystems work together to create a unified, intelligent campus service ecosystem that addresses students' comprehensive needs throughout their daily campus life.
+### 1.2 Progress Since Requirements Modeling
+In our previous requirements modeling document, we provided readers with a comprehensive overview of SmartCampus functionality. Since our initial requirements modeling phase, progress has been achieved across multiple dimensions:
+
+**Architectural Design**: We have evolved from conceptual service integration to concrete architectural decisions, selecting a microservices approach with API gateway integration to ensure scalability and maintainability.
+
+**Technical Foundation**: The technology stack has been finalized, incorporating modern web technologies with mobile-first responsive design principles and progressive web application capabilities.
+
+**User Research Enhancement**: User personas have been refined, and detailed user journey mapping has identified critical touchpoints and optimization opportunities.
+
+### 1.3 Key Changes and Refinements
+
+**Integration Strategy Evolution**: We have adopted an enhancement strategy that leverages existing campus APIs and databases. This reduces implementation complexity and ensures compatibility with established infrastructure.
+
+**Scope Clarification**: While maintaining our comprehensive service vision, we have identified a clear MVP path prioritizing high-impact, frequently-used features including basic meal ordering, essential academic schedule management, fundamental maintenance requests, and other life services.
+
+**Detailed System Analysis**: Given the complexity of interactions across different systems, we have selected the Daily Life Services system for detailed analysis as a representative case study. This system provides in-depth insights into system interaction patterns and design principles. This system encompasses multiple aspects including dining services, dormitory management, campus card services, and other areas, featuring representative user interaction scenarios and business processes.
+
+### 1.4 Current Project Status
+
+This document builds upon our requirements modeling foundation to detail the progress of our analysis model and architectural design.
+
+**Development Readiness**: The project has reached a critical milestone with all core architectural decisions finalized. We have created a layered architecture diagram that outlines the system's structural hierarchy and illustrates the components within each layer.
+
+**Analysis Model Completion**: To enhance system reliability and simplify development, we have completed an in-depth analysis model composed of class diagrams. This provides a solid foundation for the upcoming implementation phase.
+
+**System Refinements**: During the analysis phase, we identified system update requirements to enhance functionality and user experience. We have refined the system interface design to reflect these improvements, making the interface more user-friendly and powerful.
+
+**Project Milestone**: Through comprehensive analysis modeling and architectural design, the project has established a complete technical pathway from concept to implementation, laying a solid foundation for subsequent work.
+
+## 2. Architecture Analysis
+
+### 2.1 High-Level Architecture Overview
+
+The Smart Campus Platform adopts a **layered architecture pattern** to promote separation of concerns, maintainability, and scalability. The system is designed as a distributed microservices architecture with six distinct layers.
+
+#### 2.1.1 Architecture Pattern Selection
+
+The reasons for choosing **layered architecture** as the primary architectural pattern are:
+
+- **Separation of Concerns**: The platform involves multiple business domains (academic affairs, library services, campus life). Layered architecture enables each layer to focus on specific responsibilities, making the complex system easier to understand and maintain.
+- **Technology Independence**: The platform supports multiple frontend technologies (WeChat Mini Programs, mobile apps, web portals) and integrates different storage technologies (MySQL, MongoDB, Redis). Each layer can adopt the most suitable technology stack independently.
+- **Scalability**: With large user numbers and diverse access patterns, layers can be independently scaled based on actual load, such as scaling academic services during course selection peaks.
+- **Testability**: Complex campus business logic can be independently tested for each module, improving system quality and reliability.
+- **Team Organization**: Multiple professional teams can develop their respective layers in parallel, improving development efficiency.
+
+### 2.2 System-Level Architecture Diagram
+
+![Smart Campus Platform Architecture](diagrams/ad_architecture_uml.svg)
+
+### 2.3 Layer Analysis
+
+#### 2.3.1 Presentation Layer
+![Presentation Layer](diagrams/ad_Presentation_Layer.svg)
+
+**Purpose**: Provide mobile user interfaces to adapt to campus users' mobile usage habits.
+
+**Components**: WeChat Mini Program and native mobile applications enable quick access and social sharing features.
+
+#### 2.3.2 Security & Gateway Layer
+![Security Layer](diagrams/ad_safety_layer.svg)
+
+**Purpose**: Centrally handle security concerns and provide unified entry point for all client requests.
+
+**Components**: OAuth 2.0 authentication, Single Sign-On (SSO), API gateway for request routing, and load balancer for request distribution.
+
+#### 2.3.3 Business Logic Layer
+![Business Layer](diagrams/ad_business_layer.svg)
+
+**Purpose**: Implement core business functions organized by domain areas.
+
+**Components**: Academic Affairs (student registration, course management), Library Services (book resources, reservations), Campus Life Services (activities, announcements), and Logistics Services (facility management, maintenance).
+
+#### 2.3.4 Data Access Layer
+![Data Access Layer](diagrams/ad_data_access.svg)
+
+**Purpose**: Abstract data persistence operations and provide consistent data access patterns.
+
+**Components**: Spring Data JPA for MySQL operations, MyBatis-Plus for complex SQL operations, MongoDB client for document storage, and Redis client for caching and session management.
+
+#### 2.3.5 Infrastructure Services
+![Infrastructure Services](diagrams/ad_Infrastructure.svg)
+
+**Purpose**: Provide cross-cutting concerns and operational capabilities.
+
+**Components**: Monitoring, logging services, data analytics, file storage, message queues, and configuration center.
+
+#### 2.3.6 Data Storage Layer
+![Data Storage Layer](diagrams/ad_data_storage.svg)
+
+**Purpose**: Provide persistent storage solutions optimized for different data types and access patterns.
+
+**Components**: MySQL for relational data, MongoDB for document storage, Redis for high-performance caching, and external APIs for third-party integration.
+
+### 2.4 Technology Stack Selection Rationale
+
+**Backend**: Spring Boot for rapid development, Spring Data JPA for simplified data access, MyBatis-Plus for complex queries, OAuth 2.0 for security.
+
+**Database**: MySQL for transactional consistency, MongoDB for flexible document storage, Redis for high-performance caching.
+
+**Infrastructure**: Docker for containerization, Kubernetes for orchestration, ELK Stack for logging and monitoring.
+
+### 2.5 Future Evolution Considerations
+
+**Technology Evolution**: Consider Istio service mesh, event-driven architecture, and cloud-native technologies.
+
+**Functional Extension**: API management platforms, external system integration, and progressive web applications.
+
+This layered architecture provides a solid foundation for the Smart Campus Platform, ensuring scalability, maintainability, and extensibility while supporting rapid development and stable operation.
+
+## 3. Analysis Model
+### 3.1 OrderMeal
+#### 3.1.1 Class diagram
+
+This UML class diagram represents a Campus Food Ordering System with four main classes. The Student class manages user information and authentication. The Order class handles ordering processes with status tracking and price calculations. The Dish class represents food items with availability management. The Restaurant class maintains restaurant details and dish relationships.
+
+Key relationships include Student-Order (one-to-many), Order-Dish (many-to-many), and Restaurant-Dish (one-to-many). This architecture supports complete workflows from student registration through order creation, payment processing, and tracking, providing an efficient campus dining platform with scalable business logic for both students and restaurants.
+
+<p align="center">
+  <img src="diagrams/cd_ordermeal.svg" alt="cd_ordermeal" title="cd_ordermeal" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+#### 3.1.2 Interaction diagrams
+
+**Meal Ordering**
+This diagram describes the meal ordering process in a restaurant system. Students browse the menu, select dishes, and add them to orders. Upon confirmation, the system calculates totals and checks dish availability. If dishes are available, payment processing begins through PaymentService, which verifies account balance with UserAccount. The system handles two error scenarios: dish unavailability and insufficient balance. For successful transactions, the system deducts payment, creates order records, sets status to "Paid", updates inventory, and sends confirmation messages. This complete workflow ensures proper validation, payment processing, and order management.
+
+
+<p align="center">
+  <img src="diagrams/id_ordermeal.svg" alt="id_ordermeal" title="id_ordermeal" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+**Order Status Tracking**
+This diagram illustrates order status tracking from preparation to completion. Students query order status through OrderSystem, which retrieves information from StatusTracker. The system shows automated status updates: KitchenSystem updates status to "preparing" and "ready", triggering notifications to students. When ready, a pickup code is provided. Students confirm pickup, updating status to "completed" with final notification. This process demonstrates real-time order tracking with automated notifications at each stage, keeping students informed throughout the preparation and pickup process.
+<p align="center">
+  <img src="diagrams/id_ordertrack.svg" alt="id_ordertrack" title="id_ordertrack" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+## 4. Updated Requirements
+
+### 4.1 Use Case Update: Order Reservation Functionality
+
+Through analysis of the current meal ordering system, we found that the existing system only supports immediate ordering (Browse Menu → Select Dishes → Place Order → Make Payment). However, in practice, students frequently encounter several issues: excessive waiting times during peak dining hours (11:30-12:30 and 17:30-18:30), popular dishes often being sold out during these peak periods, and students' strong desire to schedule meals in advance - particularly when they have tight class schedules.
+
+To address these problems, we have upgraded the reservation function. Students can now make meal reservations, select specific ordering times, and manage their reservations (including cancellation when needed).
+<p align="center">
+  <img src="diagrams/uc_mealorder.svg" alt="mealorder" title="uc_mealorder" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
+</p>
+
+
+## 5. Updated Snapshots of the System's User Interface
+Provide at least five (5) updated snapshots of system UIs with accompanying descriptions:
+- If your system provides business reports or statistical analytics in a visual format to its users, then the visual format and any specialized visualization design (if applicable) should be provided
+- If your system frequently needs to communicate with the end user through notifications, you should also attach samples of those messages
+
+## 6. Open Issues
+List the challenges and design tasks to explore in the next stage
+
+## 7. [Optional] AI Tool Usage Declaration
+- If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list
+- If you have used an AI tool or technology in the process of completing the above tasks (for example, generating architectural descriptions, creating UML/SysML/C4 diagrams, exploring technical solutions, editing reports), an acknowledgment of how you have used AI tools or technologies is required
+
+## 8. Annotated References
+Describe how the project references (for instance, the project domain book and reference articles) relate to your project. The description for a reference should be between 200 and 300 words.
+
+## 9. Contributions of Team Members
+
+---
+
+## Presentation Requirements
+Before submitting the final version of this document, each team must prepare a **10-minute presentation** in class (2025-11-17 and 2025-11-24) to explain your current solution.
+
+---
+
+## Submission Note
+You must submit both:
+- The document 
+- The corresponding UML, SysML, or C4 model (models can be included in the document)
