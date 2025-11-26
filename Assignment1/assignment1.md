@@ -367,12 +367,12 @@ Above is a brief summary of life service use cases. Following this, we will sele
 |USE CASE|MEAL ORDERING|
 | ---- | ---- |
 |ID|UC-06|
-|Specification|Students can pre-order meals from campus canteens and vendors through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
-|Actors|Student, Vendor, Payment System|
-|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Vendor has updated menus available|
-|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food vendors<br>3. Student selects a vendor and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank Transfer)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
-|Alternative Path|3a: No vendors available<br>• System displays "No vendors currently available" message<br>6a: Item out of stock<br>• System notifies student <br>8a: Payment fails<br>• System prompts student to retry or change payment method<br>9a: Order cancellation<br>• Student can cancel order before preparation begins<br>• System processes refund if applicable|
-|Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Vendor receives order details<br>• Student can track order status<br>• Order appears in student's order history|
+|Specification|Students can pre-order meals from campus canteens and merchant users through the SmartCampus platform to reduce waiting time and improve dining efficiency.|
+|Actors|Student, Merchant user, Payment System|
+|Pre-condition|• Student is logged into SmartCampus app<br>• Student has valid payment method registered<br>• Merchant user has updated menus available|
+|Basic Path|1. Student opens "Meal Ordering" function<br>2. System displays available food merchant users<br>3. Student selects a merchant user and browses menu<br>4. Student searches or selects food items<br>5. Student customizes order (spice level, accessories, etc.)<br>6. Student adds items to cart<br>7. Student reviews cart and proceeds to payment<br>8. Student selects payment method (WeChat Pay/Alipay/Bank Transfer)<br>9. System processes payment and confirms order<br>10. System generates order number and estimated pickup time<br>11. Student receives order confirmation|
+|Alternative Path|3a: No merchant users available<br>• System displays "No merchant users currently available" message<br>6a: Item out of stock<br>• System notifies student <br>8a: Payment fails<br>• System prompts student to retry or change payment method<br>9a: Order cancellation<br>• Student can cancel order before preparation begins<br>• System processes refund if applicable|
+|Post condition|• Order is successfully placed and confirmed<br>• Payment is processed<br>• Merchant user receives order details<br>• Student can track order status<br>• Order appears in student's order history|
 
 **Package Notification**
 
@@ -568,7 +568,7 @@ The following sections provide detailed descriptions of the Meal Ordering and Pa
   <img src="diagrams/ad_meal_ordering.svg" alt="Meal Ordering Activity Diagram" title="ad_meal" style="display:block; margin:0 auto; width:50%; max-width:500px; height:auto;"/>
 </p>
 
-This activity diagram illustrates a meal ordering system workflow across three swimlanes (User, System, Payment System). It shows the complete process from user login verification through vendor/menu selection, order customization, payment processing, to final order confirmation, including error handling for unavailable vendors, out-of-stock items, and payment failures.
+This activity diagram illustrates a meal ordering system workflow across three swimlanes (User, System, Payment System). It shows the complete process from user login verification through merchant user/menu selection, order customization, payment processing, to final order confirmation, including error handling for unavailable merchant users, out-of-stock items, and payment failures.
 
 **Package Notification**
 
@@ -723,12 +723,12 @@ By clicking on the course selection section on the homepage, students enter the 
 
 **Meal Ordering Interface**
 
-- Vendor dashboard: manage menu, set hours, update stock, and process incoming orders.
+- Merchant user dashboard: manage menu, set hours, update stock, and process incoming orders.
 - Menu view: browse items, see images, customize options, and add selections to the cart.
 - Order timeline: shows order status from placement to pickup, with payment and tracking details.
 
 <div style="display:flex; gap:10px; justify-content:center; flex-wrap:nowrap; overflow-x:auto;">
-  <img src="diagrams/ls1.png" alt="Vendor Dashboard" title="vendor" style="width:32%; max-width:320px; height:auto; display:block;" />
+  <img src="diagrams/ls1.png" alt="Merchant user Dashboard" title="merchant user" style="width:32%; max-width:320px; height:auto; display:block;" />
   <img src="diagrams/ls2.png" alt="Menu View" title="food" style="width:32%; max-width:320px; height:auto; display:block;" />
   <img src="diagrams/ls3.png" alt="Order Timeline" title="orders" style="width:32%; max-width:320px; height:auto; display:block;" />
 </div>
