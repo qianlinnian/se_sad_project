@@ -13,9 +13,14 @@
       - [2.1.3 Microservices Decomposition](#213-microservices-decomposition)
       - [2.1.4 Hybrid Data Storage Strategy](#214-hybrid-data-storage-strategy)
       - [2.1.5 Deployment \& Security](#215-deployment--security)
-    - [2.2. Provide a list of subsystems and interfaces](#22-provide-a-list-of-subsystems-and-interfaces)
+    - [2.2. List of subsystems and interfaces](#22-list-of-subsystems-and-interfaces)
+      - [2.2.1 Meal Ordering Subsystem - Interface Catalog](#221-meal-ordering-subsystem---interface-catalog)
     - [2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems](#23-demonstrate-interface-specification-in-detail-with-one-or-several-samples-between-your-system-and-external-systems)
-    - [2.4. Select one subsystem as an example to specify its interfaces in detail](#24-select-one-subsystem-as-an-example-to-specify-its-interfaces-in-detail)
+    - [2.4. Meal Ordering Subsystem - Interface Specification](#24-meal-ordering-subsystem---interface-specification)
+      - [2.4.1. Order Creation Interface](#241-order-creation-interface)
+      - [2.4.2. Order Status Query Interface](#242-order-status-query-interface)
+      - [2.4.3. Review Submission Interface](#243-review-submission-interface)
+      - [2.4.4. Menu Retrieval Interface](#244-menu-retrieval-interface)
   - [3. Select any two analysis mechanisms identified in your analysis model, find suitable solutions in your implementation platform, and then provide a detailed description of the corresponding design mechanisms](#3-select-any-two-analysis-mechanisms-identified-in-your-analysis-model-find-suitable-solutions-in-your-implementation-platform-and-then-provide-a-detailed-description-of-the-corresponding-design-mechanisms)
   - [4. Design two use case realizations by incorporating the design mechanisms and the refined architecture](#4-design-two-use-case-realizations-by-incorporating-the-design-mechanisms-and-the-refined-architecture)
   - [5. Architectural styles used and critical design decisions made in your solution](#5-architectural-styles-used-and-critical-design-decisions-made-in-your-solution)
@@ -122,11 +127,243 @@ The hybrid multi-modal storage architecture refines Assignment 2's generic "data
 
 **Security:** HTTPS enforcement, JWT (HS256, 2h expiration), BCrypt hashing, parameterized queries, daily backups
 
-##### 2.2. Provide a list of subsystems and interfaces  
+##### 2.2. List of subsystems and interfaces  
+
+###### 2.2.1 Meal Ordering Subsystem - Interface Catalog
+
+Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 core classes: 5 entity classes (Student, Order, Dish, Restaurant, Reservation) for business data modeling, 2 boundary classes (SystemInterface, OrderingInterface) for user interaction handling, and 2 control classes (OrderController, MenuController) for business logic coordination. Inter-subsystem interactions include: Meal Service invoking Auth Service for user identity verification (JWT token → User_id), calling Payment Service for campus card deduction (Order_id + Amount → Payment result), utilizing Notification Service for order status updates (Order_id + Status → Push message), and receiving payment callbacks (Transaction_id + Status → Order update).
+
+**API Interface:**
+
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| /api/meal/restaurants | GET | token, location | Get restaurant list by location |
+| /api/meal/menu | GET | token, restaurant_id | Get menu items for specific restaurant |
+| /api/meal/dish/detail | GET | token, dish_id | Get detailed dish information |
+| /api/meal/order/create | POST | token, dish_ids, quantities, restaurant_id | Create new meal order |
+| /api/meal/order/status | GET | token, order_id | Query order status |
+| /api/meal/order/cancel | POST | token, order_id | Cancel pending order |
+| /api/meal/order/history | GET | token, page, size | Get user's order history |
+| /api/meal/review/submit | POST | token, order_id, rating, comment, images | Submit dish review |
+| /api/meal/ranking/daily | GET | token, date | Get daily popular dishes ranking |
+
+
 
 ##### 2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems
 
-##### 2.4. Select one subsystem as an example to specify its interfaces in detail  
+##### 2.4. Meal Ordering Subsystem - Interface Specification
+
+This section provides detailed specifications for the Meal Ordering subsystem's core interfaces, including request/response formats and authentication requirements.
+
+###### 2.4.1. Order Creation Interface
+
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| /api/meal/order/create | POST | token, dish_ids, quantities, restaurant_id | Create new meal order |
+
+**Request Parameters:**
+- `token` (String, Header): JWT authentication token
+- `restaurant_id` (Integer, Body): Target restaurant identifier
+- `items` (Array, Body): Order items list
+  - `dish_id` (Integer): Dish identifier
+  - `quantity` (Integer): Order quantity
+- `delivery_time` (String, Body, Optional): Expected pickup time (format: "HH:mm")
+- `note` (String, Body, Optional): Special instructions (max 200 chars)
+
+**Response:**
+- Success (200): Returns `order_id`, `total_price`, `estimated_time`, `payment_url`
+- Error (400): Invalid dish_id or insufficient stock
+- Error (401): Token expired or invalid
+- Error (403): Restaurant closed or user blacklisted
+
+**Request Example:**
+```json
+POST /api/meal/order/create
+Headers: {
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+Body: {
+  "restaurant_id": 101,
+  "items": [
+    {"dish_id": 2001, "quantity": 2},
+    {"dish_id": 2015, "quantity": 1}
+  ],
+  "delivery_time": "12:30",
+  "note": "Less spicy please"
+}
+```
+
+**Response Example:**
+```json
+{
+  "code": 200,
+  "data": {
+    "order_id": 87654,
+    "total_price": 45.50,
+    "estimated_time": "12:45",
+    "payment_url": "https://pay.smartcampus.com/order/87654"
+  },
+  "message": "Order created successfully"
+}
+```
+
+###### 2.4.2. Order Status Query Interface
+
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| /api/meal/order/status | GET | token, order_id | Query order status |
+
+**Request Parameters:**
+- `token` (String, Header): JWT authentication token
+- `order_id` (Integer, Query): Order identifier
+
+**Response:**
+- Success (200): Returns `order_id`, `status` (PENDING/PREPARING/READY/COMPLETED/CANCELLED), `items`, `total_price`, `restaurant_info`, `create_time`, `update_time`
+- Error (404): Order not found
+- Error (403): Order belongs to different user
+
+**Request Example:**
+```http
+GET /api/meal/order/status?order_id=87654
+Headers: {
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+**Response Example:**
+```json
+{
+  "code": 200,
+  "data": {
+    "order_id": 87654,
+    "status": "PREPARING",
+    "items": [
+      {"dish_name": "Kung Pao Chicken", "quantity": 2, "price": 18.00},
+      {"dish_name": "Fried Rice", "quantity": 1, "price": 9.50}
+    ],
+    "total_price": 45.50,
+    "restaurant_info": {
+      "name": "East Canteen",
+      "location": "Building 12, 1st Floor"
+    },
+    "create_time": "2024-12-13 11:45:30",
+    "update_time": "2024-12-13 12:10:15"
+  }
+}
+```
+
+###### 2.4.3. Review Submission Interface
+
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| /api/meal/review/submit | POST | token, order_id, rating, comment, images | Submit dish review |
+
+**Request Parameters:**
+- `token` (String, Header): JWT authentication token
+- `order_id` (Integer, Body): Completed order identifier
+- `rating` (Integer, Body): Rating score (1-5)
+- `comment` (String, Body): Review text (max 500 chars)
+- `images` (Array, Body, Optional): Image URLs (max 3 images)
+- `dish_ratings` (Array, Body, Optional): Individual dish ratings
+  - `dish_id` (Integer): Dish identifier
+  - `rating` (Integer): Dish-specific rating (1-5)
+
+**Response:**
+- Success (201): Returns `review_id`, `points_earned` (reward points for review)
+- Error (400): Order not completed or already reviewed
+- Error (403): Review content violates policy
+
+**Request Example:**
+```json
+POST /api/meal/review/submit
+Headers: {
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+Body: {
+  "order_id": 87654,
+  "rating": 5,
+  "comment": "Delicious food and fast service!",
+  "images": [
+    "https://cdn.smartcampus.com/reviews/img_001.jpg"
+  ],
+  "dish_ratings": [
+    {"dish_id": 2001, "rating": 5},
+    {"dish_id": 2015, "rating": 4}
+  ]
+}
+```
+
+**Response Example:**
+```json
+{
+  "code": 201,
+  "data": {
+    "review_id": 45621,
+    "points_earned": 10
+  },
+  "message": "Review submitted successfully"
+}
+```
+
+###### 2.4.4. Menu Retrieval Interface
+
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| /api/meal/menu | GET | token, restaurant_id | Get menu items for specific restaurant |
+
+**Request Parameters:**
+- `token` (String, Header): JWT authentication token
+- `restaurant_id` (Integer, Query): Restaurant identifier
+- `category` (String, Query, Optional): Filter by category (e.g., "staple", "beverage")
+- `sort_by` (String, Query, Optional): Sort criteria ("price", "sales", "rating")
+
+**Response:**
+- Success (200): Returns array of dishes with `dish_id`, `name`, `price`, `description`, `category`, `stock`, `image_url`, `rating`, `sales_count`, `is_available`
+- Success (304): Not Modified (if cache valid via ETag)
+- Error (404): Restaurant not found
+
+**Request Example:**
+```http
+GET /api/meal/menu?restaurant_id=101&category=staple&sort_by=sales
+Headers: {
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+**Response Example:**
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "dish_id": 2001,
+      "name": "Kung Pao Chicken",
+      "price": 18.00,
+      "description": "Classic Sichuan dish with peanuts",
+      "category": "staple",
+      "stock": 25,
+      "image_url": "https://cdn.smartcampus.com/dishes/2001.jpg",
+      "rating": 4.8,
+      "sales_count": 156,
+      "is_available": true
+    },
+    {
+      "dish_id": 2015,
+      "name": "Fried Rice",
+      "price": 9.50,
+      "description": "Egg fried rice with vegetables",
+      "category": "staple",
+      "stock": 30,
+      "image_url": "https://cdn.smartcampus.com/dishes/2015.jpg",
+      "rating": 4.5,
+      "sales_count": 203,
+      "is_available": true
+    }
+  ],
+  "cache_time": "2024-12-13 12:00:00"
+}
+```
+
 
 
 #### 3. Select any two analysis mechanisms identified in your analysis model, find suitable solutions in your implementation platform, and then provide a detailed description of the corresponding design mechanisms  
