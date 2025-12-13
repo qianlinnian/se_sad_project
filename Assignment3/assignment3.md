@@ -52,7 +52,18 @@ Here is the fully translated version of your table in English:
 | /api/dishes/{dishId}/comments | GET | page, size | Retrieves a paginated list of user comments for a specific dish. |
 | /api/dishes/{dishId}/comments | POST | userId, content, images | Allows a user to submit a text-and-image comment for a specific dish. |
 
+##### 2.2.3 Feedback Service Subsystem
 
+The Feedback Service Subsystem is responsible for collecting, managing, and processing feedback related to campus dining services. It provides a standardized and traceable mechanism for students to submit dining-related feedback and for administrators to review, process, and respond to these submissions. This subsystem plays a critical role in improving food quality, service efficiency, and management transparency.
+
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| `/api/feedback/submit` | POST | `token`, `content`, `category` | Submit a new dining feedback record by a student. |
+| `/api/feedback/list` | GET | `token`, `status` | Retrieve a list of feedback records based on status (e.g., pending, reviewed). |
+| `/api/feedback/detail` | GET | `token`, `feedbackId` | Query detailed information of a specific feedback record. |
+| `/api/feedback/review` | POST | `token`, `feedbackId`, `decision`, `comment` | Administrator reviews feedback and submits a decision. |
+| `/api/feedback/status/update` | POST | `token`, `feedbackId`, `status` | Update the status of a feedback record after review. |
+| `/api/feedback/notify` | POST | `feedbackId` | Notify the student of the feedback review result. |
 
 #### 3. analysis mechanisms
 ##### 3.1 Data Persistence Mechanism
@@ -109,6 +120,64 @@ At the software architecture level, the persistence layer sits between the busin
 3. **Real-Time Dish Rankings**  
    Based on voting statistics stored in MySQL, a background scheduled task (or event-driven processor) computes the latest rankings and writes the result set (including `dishId`, `score`, and `rank`) into a Redis Sorted Set. The frontend retrieves the full leaderboard with a single `ZRANGE` operation, achieving response times under 10ms.
 
+##### 3.2 Security Mechanism
+
+In the SmartCampus platform, security serves as the critical foundation that enables trustworthy and reliable campus lifestyle services. As the platform integrates multiple sensitive functions—including financial transactions, personal data management, and multi-role interactions—it must handle diverse security requirements: ranging from user authentication and authorization to data protection and attack prevention. To meet these requirements across different scenarios, we adopt a comprehensive security strategy that combines authentication, authorization, encryption, and monitoring to build a multi-layered and robust security architecture.
+
+##### 3.2.1 Security Requirements
+
+Security in SmartCampus encompasses multiple dimensions:
+
+- **Authentication requirements**: Student, merchant, and administrator identities require secure verification with support for mobile access and stateless sessions;
+- **Authorization requirements**: Fine-grained access control across different roles and data isolation between entities;
+- **Data protection requirements**: Sensitive information such as passwords, payment details, and personal data needing encryption at rest and in transit;
+- **Attack prevention requirements**: Protection against common threats including SQL injection, XSS, CSRF, and replay attacks;
+- **Audit and compliance requirements**: Complete logging of sensitive operations and adherence to data protection regulations.
+
+To address these diverse requirements effectively, we implement a defense-in-depth security architecture with multiple protective layers and specialized security components.
+
+##### 3.2.2 Security Architecture and Multi-Layer Protection
+![alt text](source/SmartCampusSecurityArchitecture.png)
+
+Our security architecture is built upon a five-layer defense model:
+
+1. **Infrastructure Security Layer**  
+   Serves as the foundation, implementing security configurations, vulnerability scanning, and the principle of least privilege for all system components. Container security hardening and network segmentation ensure basic protection at the infrastructure level.
+
+2. **Network Security Layer**  
+   Provides transport-level protection with mandatory HTTPS/TLS encryption, Web Application Firewall (WAF) deployment, and proper network isolation between different service tiers. This layer prevents eavesdropping and unauthorized network access.
+
+3. **Session and Access Control Layer**  
+   Manages user authentication, authorization checks, and session security. JWT-based stateless authentication supports mobile clients while maintaining security. Role-based and attribute-based access control ensures proper permission management across the platform.
+
+4. **Application Protection Layer**  
+   Implements input validation, output encoding, and business logic security checks. This layer prevents application-level attacks such as injection and cross-site scripting while ensuring data integrity throughout business processes.
+
+5. **Monitoring and Response Layer**  
+   Provides real-time security monitoring, anomaly detection, and emergency response procedures. Security event correlation and automated alerting enable rapid response to potential threats.
+
+##### 3.2.3 Security Component Design and Framework Integration
+
+At the implementation level, security components are integrated throughout the application stack using Spring Security and complementary technologies:
+
+- **Authentication implementation**: JWT-based stateless authentication using Spring Security filters and custom token services, supporting multiple client types including WeChat Mini Programs;
+- **Authorization implementation**: Three-tier authorization combining URL-level security configuration, method-level `@PreAuthorize` annotations, and custom permission evaluators for data-level access control;
+- **Data protection**: Integration of BCrypt for password hashing, AES encryption for sensitive data, and TLS for secure communications;
+- **Attack prevention**: Built-in protections against common web vulnerabilities through Spring Security configurations and custom security filters.
+
+##### 3.2.4 Typical Security Application Scenarios
+
+1. **Student Payment Transaction Security**  
+   A student's payment request triggers JWT token validation, role-based permission checking, and payment signature verification. The transaction is recorded with complete audit information including timestamp, IP address, and operator identity, ensuring non-repudiation and traceability.
+
+2. **Multi-Role Platform Access Control**  
+   Different user roles (student, merchant, administrator) receive distinct permission sets through JWT claims. The authorization layer enforces access restrictions based on both URL patterns and business method annotations, preventing privilege escalation and unauthorized data access.
+
+3. **Sensitive Data Protection**  
+   User credentials are hashed using BCrypt before storage, while payment information is encrypted using AES-GCM. All sensitive data transmissions employ TLS 1.2+ encryption, and database connections use SSL protection to prevent data interception.
+
+This security mechanism provides comprehensive protection while maintaining performance and usability, forming an essential foundation for the trusted operation of the SmartCampus platform.
+
 
 #### 4. Design two use case realizations by incorporating the design mechanisms and the refined architecture  
 
@@ -163,6 +232,39 @@ Clear status indicators are provided throughout key user flows such as ordering,
 
 This "action-feedback" loop significantly enhances users' sense of control and reduces anxiety, aligning with the usability principles of "clear operational logic" and "minimizing uncertainty".
 
+
+### 6.3 Performance and Scalability Requirements  
+SmartCampus must serve a campus population of thousands, with usage patterns characterized by sharp peaks—particularly during meal times (11:30–13:00 and 17:00–18:30), when hundreds of concurrent meal orders, real-time balance queries, and ranking updates must be handled without degradation. The target of "reducing service delivery time by 40%" can only be achieved through a high-performance, horizontally scalable architecture.
+
+#### 6.3.1 Microservices-Based Horizontal Scaling  
+As detailed in Sections 2.1 and 2.2 of Assignment 2, we adopted a microservices architecture that decouples the system into independently deployable services (e.g., order service, top‑up service, voting service). Each service can be scaled horizontally based on load, using Kubernetes to manage automatic pod replication and service discovery via Spring Cloud Netflix Eureka. This design directly addresses Assignment 2’s requirement that “the system must be capable of scaling to support growth in user numbers and transaction volume.”
+
+#### 6.3.2 Multi-Level Caching Strategy  
+To satisfy the “low-latency access” objective, we implemented a two-tier caching layer:  
+- **In‑memory hot‑data cache**: Frequently accessed data such as today’s menu, dish rankings, and campus‑card balances are stored in Redis, reducing database hits and delivering response times under 50 ms.  
+- **Static resource CDN**: Dish images, help‑page illustrations, and other static assets are distributed via a content‑delivery network, lowering server load and improving page‑load speed for users across different campus locations.  
+These measures collectively ensure that even during peak hours, the system maintains the sub‑second response times required.
+
+#### 6.3.3 Asynchronous Processing and Message Queues  
+Time‑insensitive operations—such as generating weekly dining reports, sending batch notifications, and updating aggregated rankings—are offloaded to background jobs powered by RabbitMQ. This prevents long‑running tasks from blocking critical user‑facing flows and enables the system to handle sudden traffic surges gracefully, thereby meeting the availability target of “99.9% uptime” stipulated.
+
+#### 6.3.4 Database Read‑Write Separation and Connection Pooling  
+MySQL 8.0 is configured with a master‑slave replication setup: write operations (e.g., orders, top‑ups) go to the master, while read‑intensive queries (e.g., menu browsing, ranking displays) are routed to read replicas. Combined with HikariCP connection pooling, this architecture sustains high throughput and avoids database bottlenecks, directly supporting the goal of “improving resource utilization to 85%+.”
+
+### 6.4 Maintainability and Extensibility Requirements  
+SmartCampus is envisioned as a long‑term platform that will evolve with the campus’s needs. Adding new services (e.g., library‑seat booking, sports‑facility reservation) or modifying existing ones must not require extensive re‑engineering or introduce system‑wide instability. The architectural decisions described in Assignment 2 are explicitly guided by Assignment 1’s emphasis on “building scalable architecture supporting 50,000+ concurrent users” and “enabling data‑driven decision making for institutional planning.”
+
+#### 6.4.1 Clear Separation of Concerns and Layered Design  
+The layered architecture (presentation, security/gateway, business logic, data access, infrastructure, and storage) enforces strict boundaries between components, as illustrated in Section 2.3 of Assignment 2. Developers working on the feedback subsystem, for example, need not understand the internals of the payment gateway; they interact only with well‑defined service interfaces. This modularity fulfills the demand for “reducing administrative overhead by 30% through system integration.”
+
+#### 6.4.2 API‑First Development and Contract‑Based Integration  
+All service‑to‑service communication employs RESTful APIs with OpenAPI (Swagger) documentation, and external integrations (e.g., with the campus‑card system or third‑party payment providers) are wrapped behind adapters. This contract‑driven approach ensures that changes in one service do not cascade failures to others, and new features can be added by implementing new APIs without disrupting existing workflows—aligning with the principle of “establishing SmartCampus as the market leader in university digital transformation.”
+
+#### 6.4.3 Centralized Configuration and Versioned Deployments  
+Using Spring Cloud Config, environment‑specific settings (database URLs, feature toggles, external service endpoints) are stored in a version‑controlled repository (Git) and injected at runtime. Combined with Docker‑based containerization and Kubernetes deployment manifests, this allows the same service image to be promoted from development to production with minimal manual intervention, thereby supporting the goal of “enabling rapid, reliable iteration and feature rollout.”
+
+#### 6.4.4 Comprehensive Monitoring and Automated Diagnostics  
+Each microservice exports health and performance metrics via Spring Boot Actuator, which are collected by Prometheus and visualized in Grafana dashboards. Logs from all services are aggregated in the ELK Stack (Elasticsearch, Logstash, Kibana). This observability stack enables engineers to quickly pinpoint the root cause of issues—whether a slow database query, a failing external API, or a memory leak—and proactively address them before they affect users, directly contributing to the target of “maintaining user satisfaction above 4.5/5.0.”
 
 #### 7. Progress on prototyping  
 ##### 7.1. Front-end Prototyping
@@ -319,9 +421,27 @@ public class AuthController {
 --- 
 
 此文档结构清晰体现了 SmartCampus 项目“**移动端优先、微服务驱动、安全可靠**”的技术路线，符合课程对系统分析与设计阶段原型实现的要求。
-##### 7.2. Back-end Prototyping
 
-#### 8. Open issues in your design model  
+##### 7.2. Back-end Prototyping
+ 
+#### 8. Open Issues in the Design Model
+
+##### 8.1. Data Consistency Assurance Mechanism Across Distributed Services
+
+**Problem Description**
+In the current microservices architecture, how to ensure data consistency for business operations that span multiple services? For example, when a user completes a campus card top-up operation, this process involves the payment service, account balance service, transaction record service, and notification service. If one of these service operations fails or experiences a network timeout, how can we ensure that the data across the entire business chain remains in a consistent state?
+
+**Challenge**
+It is necessary to design and implement a reliable distributed transaction coordination mechanism, considering the adoption of patterns such as Saga, TCC (Try-Confirm-Cancel), or event sourcing architecture to ensure eventual data consistency between microservices. This requires balancing the complexity of the solution, its performance impact, and the costs of development and maintenance.
+
+##### 8.2. System Performance Optimization Under Real-Time High-Concurrency Scenarios
+
+**Problem Description**
+How can the system handle sudden high-concurrency requests to services such as order processing, payment, and dish ranking during peak campus dining hours (e.g., 11:30 AM - 1:00 PM)? Can the current architectural design effectively manage peak traffic loads without service degradation or response timeouts?
+
+**Challenge**
+Detailed capacity planning strategies, multi-level caching solutions, and elastic scaling mechanisms need to be formulated. Considerations include setting appropriate rate limiting and circuit breaking rules, optimizing database connection pools and Redis cache configurations, and establishing an effective performance monitoring and early warning system.
+
 
 #### 9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required 
 
