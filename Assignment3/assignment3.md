@@ -656,64 +656,66 @@ For administrative users, we have independently developed a responsive web manag
 Taking the login page as an example, our front-end code is as follows:
 
 ```vue
-<view class="container">
-		<view class="circle-bg top-left"></view>
-		<view class="circle-bg bottom-right"></view>
+<template>
+  <view class="container">
+    <view class="circle-bg top-left"></view>
+    <view class="circle-bg bottom-right"></view>
 
-		<view class="content">
-			<view class="header">
-				<image class="logo" src="/static/logo.png" mode="aspectFill"></image>
-				<view class="title-group">
-					<text class="title">Welcome Back !</text>
-				</view>
-			</view>
+    <view class="content">
+      <view class="header">
+        <image class="logo" src="/static/logo.png" mode="aspectFill"></image>
+        <view class="title-group">
+          <text class="title">Welcome Back !</text>
+        </view>
+      </view>
 
-			<view class="form-card">
-				<view class="input-wrapper">
-					<text class="input-label"> ID </text>
-					<view class="input-box">
-						<input
-							class="input-field"
-							v-model="userId"
-							type="text"
-							placeholder="please input your ID"
-							placeholder-class="placeholder-style"
-							confirm-type="next"
-						/>
-					</view>
-				</view>
+      <view class="form-card">
+        <view class="input-wrapper">
+          <text class="input-label"> ID </text>
+          <view class="input-box">
+            <input
+              class="input-field"
+              v-model="userId"
+              type="text"
+              placeholder="please input your ID"
+              placeholder-class="placeholder-style"
+              confirm-type="next"
+            />
+          </view>
+        </view>
 
-				<view class="input-wrapper">
-					<text class="input-label"> password </text>
-					<view class="input-box">
-						<input
-							class="input-field"
-							v-model="userKey"
-							password
-							type="text"
-							placeholder="please input your password"
-							placeholder-class="placeholder-style"
-							confirm-type="done"
-							@confirm="handleLogin"
-						/>
-					</view>
-				</view>
+        <view class="input-wrapper">
+          <text class="input-label"> password </text>
+          <view class="input-box">
+            <input
+              class="input-field"
+              v-model="userKey"
+              password
+              type="text"
+              placeholder="please input your password"
+              placeholder-class="placeholder-style"
+              confirm-type="done"
+              @confirm="handleLogin"
+            />
+          </view>
+        </view>
 
-				<button 
-					class="login-btn" 
-					:loading="isLoading" 
-					:disabled="isLoading" 
-					@click="handleLogin"
-				>
-					{{ isLoading ? 'Logging in......' : 'Log In' }}
-				</button>
-				
-				<view class="footer-link">
-					<text>Forget password?</text>
-				</view>
-			</view>
-		</view>
-	</view>
+        <button 
+          class="login-btn" 
+          :loading="isLoading" 
+          :disabled="isLoading" 
+          @click="handleLogin"
+        >
+          {{ isLoading ? 'Logging in......' : 'Log In' }}
+        </button>
+        
+        <view class="footer-link">
+          <text>Forget password?</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
 ```
 
 This page is designed based on system UI snapshots, offering a simple and efficient user authentication entry point. It includes fields for entering student ID and password, with secure password masking display and a responsive login button. The interface is optimized for mobile screens, supporting the WeChat Mini Program platform's instant access and use experience. The page effect is shown in the figure below:
@@ -721,7 +723,6 @@ This page is designed based on system UI snapshots, offering a simple and effici
 <p align="center">
   <img src="source/Login_page.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:700px; height:auto;"/>
 </p>
-
 
 ##### 7.2. Back-end Prototyping
 
