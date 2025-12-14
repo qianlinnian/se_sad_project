@@ -1,35 +1,65 @@
 ### System Analysis and Design
 
 #### 0. Table of Contents  
-- [System Analysis and Design](#system-analysis-and-design)
-  - [0. Table of Contents](#0-table-of-contents)
-  - [1. Overview](#1-overview)
-    - [1.1 Overview of Design Progress](#11-overview-of-design-progress)
-    - [1.2 Implementation Platforms and Frameworks](#12-implementation-platforms-and-frameworks)
-  - [2. Architecture Refinement:](#2-architecture-refinement)
-    - [2.1. Platform-dependent architecture with a refined overall structure](#21-platform-dependent-architecture-with-a-refined-overall-structure)
-      - [2.1.1 Architectural Refinement Overview](#211-architectural-refinement-overview)
-      - [2.1.2 Technology Stack Mapping](#212-technology-stack-mapping)
-      - [2.1.3 Microservices Decomposition](#213-microservices-decomposition)
-      - [2.1.4 Hybrid Data Storage Strategy](#214-hybrid-data-storage-strategy)
-      - [2.1.5 Deployment \& Security](#215-deployment--security)
-    - [2.2. List of subsystems and interfaces](#22-list-of-subsystems-and-interfaces)
-      - [2.2.1 Meal Ordering Subsystem - Interface Catalog](#221-meal-ordering-subsystem---interface-catalog)
-    - [2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems](#23-demonstrate-interface-specification-in-detail-with-one-or-several-samples-between-your-system-and-external-systems)
-    - [2.4. Meal Ordering Subsystem - Interface Specification](#24-meal-ordering-subsystem---interface-specification)
-      - [2.4.1. Order Creation Interface](#241-order-creation-interface)
-      - [2.4.2. Order Status Query Interface](#242-order-status-query-interface)
-      - [2.4.3. Review Submission Interface](#243-review-submission-interface)
-      - [2.4.4. Menu Retrieval Interface](#244-menu-retrieval-interface)
-  - [3. Select any two analysis mechanisms identified in your analysis model, find suitable solutions in your implementation platform, and then provide a detailed description of the corresponding design mechanisms](#3-select-any-two-analysis-mechanisms-identified-in-your-analysis-model-find-suitable-solutions-in-your-implementation-platform-and-then-provide-a-detailed-description-of-the-corresponding-design-mechanisms)
-  - [4. Design two use case realizations by incorporating the design mechanisms and the refined architecture](#4-design-two-use-case-realizations-by-incorporating-the-design-mechanisms-and-the-refined-architecture)
-  - [5. Architectural styles used and critical design decisions made in your solution](#5-architectural-styles-used-and-critical-design-decisions-made-in-your-solution)
-  - [6. Non-Functional Requirements have been addressed in your design: Why and How?](#6-non-functional-requirements-have-been-addressed-in-your-design-why-and-how)
-  - [7. Progress on prototyping](#7-progress-on-prototyping)
-  - [8. Open issues in your design model](#8-open-issues-in-your-design-model)
-  - [9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required](#9-if-you-have-used-an-ai-tool-or-technology-to-generate-an-output-that-you-either-paraphrase-or-direct-quote-in-your-writing-you-must-cite-and-reference-this-output-as-a-source-in-your-reference-list-if-you-have-used-an-ai-tool-or-technology-in-the-process-of-completing-the-above-tasks-for-example-generating-technical-solutions-improving-your-architectural-decisions-creating-software-prototypes-implementing-the-poc-and-enhancing-the-contents-of-your-report-an-acknowledgment-of-how-you-have-used-ai-tools-or-technologies-is-required)
-  - [10. Project self-reflection](#10-project-self-reflection)
-  - [11. Contributions of team members](#11-contributions-of-team-members)
+- [0. Table of Contents](#0-table-of-contents)
+- [1. Overview](#1-overview)
+  - [1.1 Overview of Design Progress](#11-overview-of-design-progress)
+  - [1.2 Implementation Platforms and Frameworks](#12-implementation-platforms-and-frameworks)
+- [2. Architecture Refinement:](#2-architecture-refinement)
+  - [2.1. Platform-dependent architecture with a refined overall structure](#21-platform-dependent-architecture-with-a-refined-overall-structure)
+    - [2.1.1 Architectural Refinement Overview](#211-architectural-refinement-overview)
+    - [2.1.2 Technology Stack Mapping](#212-technology-stack-mapping)
+    - [2.1.3 Microservices Decomposition](#213-microservices-decomposition)
+    - [2.1.4 Hybrid Data Storage Strategy](#214-hybrid-data-storage-strategy)
+    - [2.1.5 Deployment \& Security](#215-deployment--security)
+  - [2.2. List of subsystems and interfaces](#22-list-of-subsystems-and-interfaces)
+    - [2.2.1 Meal Ordering Subsystem](#221-meal-ordering-subsystem)
+  - [2.2.2 Dishes recommendation and ranking Subsystem](#222-dishes-recommendation-and-ranking-subsystem)
+  - [2.2.3 Feedback Service Subsystem](#223-feedback-service-subsystem)
+  - [2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems](#23-demonstrate-interface-specification-in-detail-with-one-or-several-samples-between-your-system-and-external-systems)
+  - [2.4. Meal Ordering Subsystem - Interface Specification](#24-meal-ordering-subsystem---interface-specification)
+    - [2.4.1. Order Creation Interface](#241-order-creation-interface)
+    - [2.4.2. Order Status Query Interface](#242-order-status-query-interface)
+    - [2.4.3. Review Submission Interface](#243-review-submission-interface)
+    - [2.4.4. Menu Retrieval Interface](#244-menu-retrieval-interface)
+- [3. Select any two analysis mechanisms identified in your analysis model, find suitable solutions in your implementation platform, and then provide a detailed description of the corresponding design mechanisms](#3-select-any-two-analysis-mechanisms-identified-in-your-analysis-model-find-suitable-solutions-in-your-implementation-platform-and-then-provide-a-detailed-description-of-the-corresponding-design-mechanisms)
+  - [3.1 Data Persistence Mechanism](#31-data-persistence-mechanism)
+  - [3.1.1 Data Persistence Requirements](#311-data-persistence-requirements)
+  - [3.1.2 Persistence Architecture and Multi-Modal Storage Technologies](#312-persistence-architecture-and-multi-modal-storage-technologies)
+  - [3.1.3 Persistence Layer Design and Framework Integration](#313-persistence-layer-design-and-framework-integration)
+  - [3.1.4 Typical Data Persistence Scenarios](#314-typical-data-persistence-scenarios)
+  - [3.2 Security Mechanism](#32-security-mechanism)
+  - [3.2.1 Security Requirements](#321-security-requirements)
+  - [3.2.2 Security Architecture and Multi-Layer Protection](#322-security-architecture-and-multi-layer-protection)
+  - [3.2.3 Security Component Design and Framework Integration](#323-security-component-design-and-framework-integration)
+  - [3.2.4 Typical Security Application Scenarios](#324-typical-security-application-scenarios)
+- [4. Design two use case realizations by incorporating the design mechanisms and the refined architecture](#4-design-two-use-case-realizations-by-incorporating-the-design-mechanisms-and-the-refined-architecture)
+- [5. Architectural styles used and critical design decisions made in your solution](#5-architectural-styles-used-and-critical-design-decisions-made-in-your-solution)
+- [6.1.1 Layered Security Architecture and Evolution of Authentication Mechanism](#611-layered-security-architecture-and-evolution-of-authentication-mechanism)
+- [6.1.2 End-to-End Encryption of Sensitive Data](#612-end-to-end-encryption-of-sensitive-data)
+- [6.1.3 Secure Payment and Transaction Workflow](#613-secure-payment-and-transaction-workflow)
+- [6.1.4 Fine-Grained Permission Control and Operational Auditing](#614-fine-grained-permission-control-and-operational-auditing)
+- [6.2.1 User Journey-Centric Interface Redesign](#621-user-journey-centric-interface-redesign)
+- [6.2.2 Multimodal Interaction and Context-Aware Help](#622-multimodal-interaction-and-context-aware-help)
+- [6.2.3 Seamless Language Switching and Accessibility Support](#623-seamless-language-switching-and-accessibility-support)
+- [6.2.4 Transparent State Visibility and Immediate Feedback](#624-transparent-state-visibility-and-immediate-feedback)
+- [6.3.1 Microservices-Based Horizontal Scaling](#631-microservices-based-horizontal-scaling)
+- [6.3.2 Multi-Level Caching Strategy](#632-multi-level-caching-strategy)
+- [6.3.3 Asynchronous Processing and Message Queues](#633-asynchronous-processing-and-message-queues)
+- [6.3.4 Database Read‑Write Separation and Connection Pooling](#634-database-readwrite-separation-and-connection-pooling)
+- [6.4.1 Clear Separation of Concerns and Layered Design](#641-clear-separation-of-concerns-and-layered-design)
+- [6.4.2 API‑First Development and Contract‑Based Integration](#642-apifirst-development-and-contractbased-integration)
+- [6.4.3 Centralized Configuration and Versioned Deployments](#643-centralized-configuration-and-versioned-deployments)
+- [6.4.4 Comprehensive Monitoring and Automated Diagnostics](#644-comprehensive-monitoring-and-automated-diagnostics)
+- [7. Progress on prototyping](#7-progress-on-prototyping)
+  - [7.1. Front-end Prototyping](#71-front-end-prototyping)
+  - [7.2. Back-end Prototyping](#72-back-end-prototyping)
+- [8. Open Issues in the Design Model](#8-open-issues-in-the-design-model)
+  - [8.1. Data Consistency Assurance Mechanism Across Distributed Services](#81-data-consistency-assurance-mechanism-across-distributed-services)
+  - [8.2. System Performance Optimization Under Real-Time High-Concurrency Scenarios](#82-system-performance-optimization-under-real-time-high-concurrency-scenarios)
+- [9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required](#9-if-you-have-used-an-ai-tool-or-technology-to-generate-an-output-that-you-either-paraphrase-or-direct-quote-in-your-writing-you-must-cite-and-reference-this-output-as-a-source-in-your-reference-list-if-you-have-used-an-ai-tool-or-technology-in-the-process-of-completing-the-above-tasks-for-example-generating-technical-solutions-improving-your-architectural-decisions-creating-software-prototypes-implementing-the-poc-and-enhancing-the-contents-of-your-report-an-acknowledgment-of-how-you-have-used-ai-tools-or-technologies-is-required)
+- [10. Project self-reflection](#10-project-self-reflection)
+- [11. Contributions of team members](#11-contributions-of-team-members)
 
 
 
@@ -45,7 +75,7 @@ To align with our user-centric strategy, the SmartCampus system is engineered as
 
 Frontend Strategy Given that our primary user base consists of students who rely heavily on mobile devices, the system’s presentation layer prioritizes mobile accessibility. We have selected the WeChat Mini Program as our primary client platform due to its instant accessibility and high penetration rate among the student demographic. This is complemented by native mobile applications (iOS/Android) to leverage system-level capabilities where necessary. For administrative purposes, a web-based management dashboard built with Vue.js provides merchants and staff with a comprehensive interface for data management and operational monitoring.
 
-Backend and Infrastructure Supporting the mobile frontend is a scalable microservices architecture built on the Spring Boot 3.x framework. This choice ensures rapid development cycles while maintaining the stability required for a campus-wide system. Security is managed through Spring Security integrated with OAuth 2.0, providing a secure and seamless authentication experience for mobile users.
+Backend and Infrastructure Supporting the mobile frontend is a scalable microservices architecture built on the Spring Boot 3.x framework. This choice ensures rapid development cycles while maintaining the stability required for a campus-wide system. Security is managed through Spring Security with stateless JWT (JSON Web Token) authentication, providing a lightweight, secure, and scalable authentication mechanism optimized for mobile-first applications. JWT tokens are signed using HS256 algorithm with 2-hour expiration, eliminating the need for server-side session storage and enabling seamless horizontal scaling across microservices.
 
 Data Storage and Management Our data strategy employs a hybrid approach to optimize performance for different types of information. We utilize MySQL 8.0 as the primary relational database to handle transactional data requiring strict consistency, such as user accounts and financial records. For unstructured data, such as user reviews and system logs, MongoDB 6.0 offers the necessary flexibility. To ensure a smooth and responsive user experience on mobile devices, Redis 7.0 is implemented as a high-speed caching layer for frequently accessed data, such as daily menus and session tokens. The entire backend ecosystem is containerized using Docker and orchestrated via Kubernetes, ensuring consistent deployment across development and production environments.
 
@@ -517,8 +547,6 @@ This security mechanism provides comprehensive protection while maintaining perf
 
 #### 5. Architectural styles used and critical design decisions made in your solution  
 
-Certainly! Below is the complete English translation of your provided Chinese content for **Section 6: Non-Functional Requirements**, including subsections on **Security** and **Usability**, tailored for an A3-level design document:
- 
 
 ### 6. Non-Functional Requirements
 
@@ -619,7 +647,7 @@ The way to run the front end:
 </p>
 
 
-对于管理侧用户，我们独立开发了一套基于 Vue.js 3 + Vite 的响应式 Web 管理仪表盘。该后台系统采用 npm 作为包管理工具，通过 npm run dev 命令在本地 localhost:5173 启动开发服务器，支持热更新与模块化开发。
+For administrative users, we have independently developed a responsive web management dashboard based on Vue.js 3 + Vite. This backend system uses npm as the package manager and starts the development server on local localhost:5173 through the npm run dev command, supporting hot reload and modular development.
 
 <p align="center">
   <img src="source/vue.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:300px; height:auto;"/>
@@ -695,11 +723,11 @@ This page is designed based on system UI snapshots, offering a simple and effici
 </p>
 
 
-#### 7.2 Back-end Prototyping
+##### 7.2. Back-end Prototyping
 
-后端系统采用 **Spring Boot 3.x** 框架构建，遵循微服务架构原则，将整体功能拆分为多个高内聚、低耦合的服务模块（如餐饮服务、反馈服务、校园卡服务等）。在当前原型阶段，我们暂不引入 Spring Cloud 的完整分布式治理组件（如注册中心、配置中心），而是聚焦于各微服务核心业务逻辑的实现与 API 接口的验证。
+The backend system is built using the **Spring Boot 3.x** framework, following microservices architecture principles. The overall functionality is decomposed into multiple highly cohesive and loosely coupled service modules (such as meal service, feedback service, and campus card service). In the current prototype phase, we have not yet introduced the complete distributed governance components of Spring Cloud (such as service registry and configuration center), but instead focus on implementing the core business logic of each microservice and validating API interfaces.
 
-前后端通过 **RESTful API** 进行通信，接口设计遵循统一规范，支持 JSON 数据格式，并集成全局异常处理与标准化响应结构。
+The frontend and backend communicate through **RESTful APIs**, with interface design following unified specifications, supporting JSON data format, and integrating global exception handling and standardized response structures.
 
 We begin our work by creating a Spring Boot microservice called `auth-service` : 
 
@@ -709,13 +737,13 @@ We begin our work by creating a Spring Boot microservice called `auth-service` :
 
 which is structured as follows:
 
-以 **用户认证微服务**（auth-service） 为例，该服务负责处理学生和管理员的登录、会话管理等安全相关功能。我们为其定义了如下关键接口：
+Taking the **User Authentication Microservice** (auth-service) as an example, this service is responsible for handling security-related functions such as student and administrator login and session management. We have defined the following key interfaces for it:
 
-- `POST /api/auth/login`：用户密码登录
-- `POST /api/auth/logout`：退出登录
-- `GET /api/auth/userinfo`：获取当前用户信息
+- `POST /api/auth/login`: User password login
+- `POST /api/auth/logout`: User logout
+- `GET /api/auth/userinfo`: Get current user information
 
-核心控制器代码片段如下：
+Core controller code snippet:
 
 ```java
 @RestController
@@ -731,32 +759,30 @@ public class AuthController {
     public ResponseEntity<ApiResponse<TokenInfoVO>> login(
             @Valid @RequestBody LoginRequest request) {
         
-        // 验证用户名密码
+        // Validate username and password
         UserInfoBO user = authService.authenticate(request.getUsername(), request.getPassword());
         if (user == null) {
-            return ResponseEntity.badRequest().body(ApiResponse.error("用户名或密码错误"));
+            return ResponseEntity.badRequest().body(ApiResponse.error("Invalid username or password"));
         }
 
-        // 生成 OAuth 2.0 访问令牌
+        // Generate JWT access token
         String accessToken = tokenService.generateToken(user);
         
-        // 返回标准化响应
+        // Return standardized response
         TokenInfoVO tokenVO = new TokenInfoVO(accessToken, user.getUserId(), user.getRole());
         return ResponseEntity.ok(ApiResponse.success(tokenVO));
     }
 }
 ```
 
-安全性方面，我们深度集成 **Spring Security + OAuth 2.0**，实现基于令牌（Token）的无状态认证机制。所有受保护的 API 均需携带有效 Access Token，由网关层统一校验，确保系统安全边界清晰、权限控制精准。
+**Security Implementation:**
 
-目前，各微服务已初步完成核心接口的开发与联调，可通过 Postman 或 Swagger UI 进行测试调用，为后续与前端小程序及管理后台的集成奠定了坚实基础。
+We have deeply integrated **Spring Security + JWT** to implement a stateless token-based authentication mechanism. All protected APIs require a valid JWT Access Token, which is uniformly validated at the gateway layer, ensuring clear system security boundaries and precise permission control.
 
---- 
+**Current Development Status:**
 
-此文档结构清晰体现了 SmartCampus 项目“**移动端优先、微服务驱动、安全可靠**”的技术路线，符合课程对系统分析与设计阶段原型实现的要求。
+Currently, each microservice has initially completed the development and integration testing of core interfaces. Testing can be performed through Postman or Swagger UI, laying a solid foundation for subsequent integration with the frontend mini-program and management backend.
 
-##### 7.2. Back-end Prototyping
- 
 #### 8. Open Issues in the Design Model
 
 ##### 8.1. Data Consistency Assurance Mechanism Across Distributed Services
