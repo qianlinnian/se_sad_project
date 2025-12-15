@@ -7,7 +7,8 @@
 - 2353240 Zhang Shikou (张诗蔻)
 - 2352993 Yu Yilian (于伊莲)
 
-#### 0. Table of Contents  
+#### 0. Table of Contents
+
 - [0. Table of Contents](#0-table-of-contents)
 - [1. Overview](#1-overview)
   - [1.1 Overview of Design Progress](#11-overview-of-design-progress)
@@ -19,7 +20,9 @@
   - [2.4. Meal Ordering Subsystem - Interface Specification](#24-meal-ordering-subsystem---interface-specification)
 - [3. Two Selected Analysis Mechanisms and Their Design Mechanisms](#3-two-selected-analysis-mechanisms-and-their-design-mechanisms)
   - [3.1 Data Persistence Mechanism](#31-data-persistence-mechanism)
+  - [3.1.3 Persistence Layer Design and Framework Integration](#313-persistence-layer-design-and-framework-integration)
   - [3.2 Security Mechanism](#32-security-mechanism)
+  - [3.2.2 Security Architecture and Multi-Layer Protection](#322-security-architecture-and-multi-layer-protection)
 - [4. Two Use Case Realizations](#4-two-use-case-realizations)
   - [4.1 Meal Ordering Use Case](#41-meal-ordering-use-case)
 - [5. Architectural Styles and Design Decisions](#5-architectural-styles-and-design-decisions)
@@ -28,7 +31,9 @@
 - [6. Non-Functional Requirements](#6-non-functional-requirements)
   - [6.1 Security Requirements](#61-security-requirements)
   - [6.2 Usability Requirements](#62-usability-requirements)
+  - [6.2 Usability Requirements](#62-usability-requirements-1)
   - [6.3 Performance and Scalability Requirements](#63-performance-and-scalability-requirements)
+  - [6.3 Performance and Scalability Requirements](#63-performance-and-scalability-requirements-1)
   - [6.4 Maintainability and Extensibility Requirements](#64-maintainability-and-extensibility-requirements)
 - [7. Progress on prototyping](#7-progress-on-prototyping)
   - [7.1. Front-end Prototyping](#71-front-end-prototyping)
@@ -43,11 +48,13 @@
 #### 1. Overview  
 
 ##### 1.1 Overview of Design Progress
+
 Building upon the solid foundation laid during the requirements analysis and initial modeling phases, the SmartCampus project has now advanced into the detailed System Design stage. Our primary focus has shifted from defining the functional requirements—what the system should do—to specifying the technical implementation details—how the system will be built.
 
 In this phase, we have successfully transformed the logical analysis model into a platform-specific design architecture. This involved refining the system boundaries and defining the specific RESTful API contracts that facilitate communication between our mobile clients and the backend services. In parallel, we have moved from conceptual data modeling to concrete database schema design, ensuring that our data structures in MySQL and MongoDB are optimized for performance and integrity. 
 
 ##### 1.2 Implementation Platforms and Frameworks
+
 To align with our user-centric strategy, the SmartCampus system is engineered as a "Mobile-First" application supported by a robust, cloud-native backend infrastructure.
 
 Frontend Strategy Given that our primary user base consists of students who rely heavily on mobile devices, the system’s presentation layer prioritizes mobile accessibility. We have selected the WeChat Mini Program as our primary client platform due to its instant accessibility and high penetration rate among the student demographic. This is complemented by native mobile applications (iOS/Android) to leverage system-level capabilities where necessary. For administrative purposes, a web-based management dashboard built with Vue.js provides merchants and staff with a comprehensive interface for data management and operational monitoring.
@@ -58,28 +65,29 @@ Data Storage and Management Our data strategy employs a hybrid approach to optim
 
 #### 2. Architecture Refinement  
 
-##### 2.1. Platform-dependent architecture with a refined overall structure  
+##### 2.1. Platform-dependent architecture with a refined overall structure
 
 This section refines the logical layered architecture from Assignment 2 into a **platform-specific implementation**, mapping abstract components to concrete technologies. The key evolution is transforming generic architectural layers into executable deployment configurations with specific frameworks, versions, and integration strategies.
 
 <div align="center">
   <img src="diagrams/platform_architecture.png" alt="SmartCampus Platform Architecture" style="width:90%; max-width:900px;"/>
-  
+
 **Figure 2.1: Platform-Dependent Architecture (5-Layer Deployment Model)**
+
 </div>
 
 ###### 2.1.1 Architectural Refinement Overview
 
 **From Assignment 2 (Logical) to Assignment 3 (Physical):**
 
-| Aspect | Assignment 2 (Logical Architecture) | Assignment 3 (Platform-Dependent Architecture) |
-|--------|-------------------------------------|-----------------------------------------------|
-| **Presentation Layer** | Abstract "mobile client" | WeChat Mini Program (HBuilderX + uni-app) |
-| **Business Logic** | Generic "service layer" | 4 Spring Boot microservices (ports 8081-8084) |
-| **Data Access** | "Database layer" | MySQL 8.0 + MongoDB 6.0 + Redis 7.0 (hybrid storage) |
-| **Authentication** | OAuth 2.0 (conceptual) | JWT (JSON Web Token) with HS256 signing |
-| **Deployment** | Not specified | Docker containers orchestrated by Kubernetes |
-| **Communication** | Abstract API calls | RESTful HTTP + JWT authentication via Nginx gateway |
+| Aspect                       | Assignment 2 (Logical Architecture) | Assignment 3 (Platform-Dependent Architecture)       |
+| ---------------------------- | ----------------------------------- | ---------------------------------------------------- |
+| **Presentation Layer** | Abstract "mobile client"            | WeChat Mini Program (HBuilderX + uni-app)            |
+| **Business Logic**     | Generic "service layer"             | 4 Spring Boot microservices (ports 8081-8084)        |
+| **Data Access**        | "Database layer"                    | MySQL 8.0 + MongoDB 6.0 + Redis 7.0 (hybrid storage) |
+| **Authentication**     | OAuth 2.0 (conceptual)              | JWT (JSON Web Token) with HS256 signing              |
+| **Deployment**         | Not specified                       | Docker containers orchestrated by Kubernetes         |
+| **Communication**      | Abstract API calls                  | RESTful HTTP + JWT authentication via Nginx gateway  |
 
 **Microservices Scope Refinement:**
 
@@ -93,14 +101,14 @@ The evolution from OAuth 2.0 to JWT reflects practical mobile-first optimization
 
 **Core Platform Technologies:**
 
-| Layer | Technology | Version | Key Capabilities |
-|-------|-----------|---------|------------------|
-| **Client** | WeChat Mini Program (uni-app) | Vue 3 | HBuilderX IDE, one-click deployment, 90%+ campus penetration |
-| **Gateway** | Nginx + Spring Security | 1.24+ / 6.2+ | SSL termination, JWT authentication, rate limiting |
-| **Services** | Spring Boot + Spring MVC | 3.3+ (JDK 17+) | Microservices, RESTful APIs, embedded Tomcat |
-| **Data Access** | Spring Data JPA + MyBatis-Plus | 3.2+ / 3.5.x | CRUD abstraction, dynamic SQL, MongoDB driver |
-| **Database** | MySQL + MongoDB + Redis | 8.0 / 6.0 / 7.0 | ACID transactions, flexible documents, sub-ms caching |
-| **Infrastructure** | Docker + Kubernetes | 24.x / 1.28+ | Containerization, orchestration, auto-scaling |
+| Layer                    | Technology                     | Version         | Key Capabilities                                             |
+| ------------------------ | ------------------------------ | --------------- | ------------------------------------------------------------ |
+| **Client**         | WeChat Mini Program (uni-app)  | Vue 3           | HBuilderX IDE, one-click deployment, 90%+ campus penetration |
+| **Gateway**        | Nginx + Spring Security        | 1.24+ / 6.2+    | SSL termination, JWT authentication, rate limiting           |
+| **Services**       | Spring Boot + Spring MVC       | 3.3+ (JDK 17+)  | Microservices, RESTful APIs, embedded Tomcat                 |
+| **Data Access**    | Spring Data JPA + MyBatis-Plus | 3.2+ / 3.5.x    | CRUD abstraction, dynamic SQL, MongoDB driver                |
+| **Database**       | MySQL + MongoDB + Redis        | 8.0 / 6.0 / 7.0 | ACID transactions, flexible documents, sub-ms caching        |
+| **Infrastructure** | Docker + Kubernetes            | 24.x / 1.28+    | Containerization, orchestration, auto-scaling                |
 
 ###### 2.1.3 Microservices Decomposition
 
@@ -108,33 +116,33 @@ The four business subsystems identified in Assignment 2 are decomposed into inde
 
 **Core Business Services:**
 
-| Service Name | Port | Responsibilities | Database | External Dependencies |
-|--------------|------|-----------------|----------|----------------------|
-| `auth-service` | 8081 | User authentication, JWT issuance, session management | MySQL (`users`, `roles`) | WeChat Login API |
-| `meal-service` | 8082 | Restaurant/menu management, order processing, ratings & ranking | MySQL + MongoDB + Redis | Payment gateway API |
-| `card-service` | 8083 | Campus card balance query, recharge processing | MySQL + Redis | Alipay/WeChat Pay API |
-| `feedback-service` | 8084 | User feedback submission, admin review workflow | MySQL + MongoDB | - |
+| Service Name         | Port | Responsibilities                                                | Database                     | External Dependencies |
+| -------------------- | ---- | --------------------------------------------------------------- | ---------------------------- | --------------------- |
+| `auth-service`     | 8081 | User authentication, JWT issuance, session management           | MySQL (`users`, `roles`) | WeChat Login API      |
+| `meal-service`     | 8082 | Restaurant/menu management, order processing, ratings & ranking | MySQL + MongoDB + Redis      | Payment gateway API   |
+| `card-service`     | 8083 | Campus card balance query, recharge processing                  | MySQL + Redis                | Alipay/WeChat Pay API |
+| `feedback-service` | 8084 | User feedback submission, admin review workflow                 | MySQL + MongoDB              | -                     |
 
 ###### 2.1.4 Hybrid Data Storage Strategy
 
 The hybrid multi-modal storage architecture refines Assignment 2's generic "data layer" into three specialized databases:
 
-| Data Type | Storage | Schema Design | Access Pattern |
-|-----------|---------|---------------|----------------|
+| Data Type                                                     | Storage          | Schema Design                       | Access Pattern                 |
+| ------------------------------------------------------------- | ---------------- | ----------------------------------- | ------------------------------ |
 | **Transactional** (user accounts, card balance, orders) | MySQL 8.0 InnoDB | Normalized tables with foreign keys | Spring Data JPA + MyBatis-Plus |
-| **Semi-structured** (reviews, feedback, logs) | MongoDB 6.0 | Flexible BSON documents | Spring Data MongoDB |
-| **High-frequency** (menu cache, rankings, sessions) | Redis 7.0 | Key-value + Sorted Sets; TTL 1-2h | Spring Cache annotations |
+| **Semi-structured** (reviews, feedback, logs)           | MongoDB 6.0      | Flexible BSON documents             | Spring Data MongoDB            |
+| **High-frequency** (menu cache, rankings, sessions)     | Redis 7.0        | Key-value + Sorted Sets; TTL 1-2h   | Spring Cache annotations       |
 
 ###### 2.1.5 Deployment & Security
 
-| Environment | Deployment | Configuration |
-|-------------|------------|---------------|
-| **Development** | Docker Compose | Hot-reload, local DBs |
-| **Production** | Kubernetes (3+ nodes) | 2-3 replicas/service, auto-scaling, Persistent Volumes |
+| Environment           | Deployment            | Configuration                                          |
+| --------------------- | --------------------- | ------------------------------------------------------ |
+| **Development** | Docker Compose        | Hot-reload, local DBs                                  |
+| **Production**  | Kubernetes (3+ nodes) | 2-3 replicas/service, auto-scaling, Persistent Volumes |
 
 **Security:** HTTPS enforcement, JWT (HS256, 2h expiration), BCrypt hashing, parameterized queries, daily backups
 
-##### 2.2. List of subsystems and interfaces  
+##### 2.2. List of subsystems and interfaces
 
 ###### 2.2.1 Meal Ordering Subsystem
 
@@ -159,31 +167,31 @@ Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 
 
 Here is the fully translated version of your table in English:
 
-| API Interface | Method | Parameters | Description |
-|---------------|--------|------------|-------------|
-|/api/dishes/rankings | GET | sortType, category, restaurantId | Retrieves a ranked list of dishes, supporting sorting by popularity or rating. |
-| /api/dishes/{dishId}/vote | POST | userId, rating, comment | Allows a student to rate and comment on a specific dish. If the student has already voted, the existing record is updated; otherwise, a new vote is created. |
-| /api/dishes/{dishId} | GET | - | Retrieves detailed information about a specific dish, including name, price, description, associated restaurant, average rating, and total number of votes. |
-| /api/dishes/search | GET | keyword | Searches for dishes based on a keyword (supports fuzzy matching). |
-| /api/dishes/new | GET | month | Retrieves a list of newly recommended dishes for the specified month (defaults to the current month if not provided). |
-| /api/merchants/{merchantId}/dishes | POST | name, price, description, category, allergens, image | Allows a merchant to submit a new dish. The dish status defaults to "pending review". |
-| /api/admin/dishes/pending` | GET | - | Retrieves a list of all dishes with "pending review" status for administrator approval. |
-| /api/admin/dishes/{dishId}/review | PUT | status, rejectionReason | Enables an administrator to review a dish: approve it for publication or reject it (with an optional rejection reason). |
-| /api/dishes/{dishId}/comments | GET | page, size | Retrieves a paginated list of user comments for a specific dish. |
-| /api/dishes/{dishId}/comments | POST | userId, content, images | Allows a user to submit a text-and-image comment for a specific dish. |
+| API Interface                      | Method | Parameters                                           | Description                                                                                                                                                  |
+| ---------------------------------- | ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| /api/dishes/rankings               | GET    | sortType, category, restaurantId                     | Retrieves a ranked list of dishes, supporting sorting by popularity or rating.                                                                               |
+| /api/dishes/{dishId}/vote          | POST   | userId, rating, comment                              | Allows a student to rate and comment on a specific dish. If the student has already voted, the existing record is updated; otherwise, a new vote is created. |
+| /api/dishes/{dishId}               | GET    | -                                                    | Retrieves detailed information about a specific dish, including name, price, description, associated restaurant, average rating, and total number of votes.  |
+| /api/dishes/search                 | GET    | keyword                                              | Searches for dishes based on a keyword (supports fuzzy matching).                                                                                            |
+| /api/dishes/new                    | GET    | month                                                | Retrieves a list of newly recommended dishes for the specified month (defaults to the current month if not provided).                                        |
+| /api/merchants/{merchantId}/dishes | POST   | name, price, description, category, allergens, image | Allows a merchant to submit a new dish. The dish status defaults to "pending review".                                                                        |
+| /api/admin/dishes/pending`         | GET    | -                                                    | Retrieves a list of all dishes with "pending review" status for administrator approval.                                                                      |
+| /api/admin/dishes/{dishId}/review  | PUT    | status, rejectionReason                              | Enables an administrator to review a dish: approve it for publication or reject it (with an optional rejection reason).                                      |
+| /api/dishes/{dishId}/comments      | GET    | page, size                                           | Retrieves a paginated list of user comments for a specific dish.                                                                                             |
+| /api/dishes/{dishId}/comments      | POST   | userId, content, images                              | Allows a user to submit a text-and-image comment for a specific dish.                                                                                        |
 
 ###### 2.2.3 Feedback Service Subsystem
 
 The Feedback Service Subsystem is responsible for collecting, managing, and processing feedback related to campus dining services. It provides a standardized and traceable mechanism for students to submit dining-related feedback and for administrators to review, process, and respond to these submissions. This subsystem plays a critical role in improving food quality, service efficiency, and management transparency.
 
-| API Interface | Method | Parameters | Description |
-|--------------|--------|------------|-------------|
-| `/api/feedback/submit` | POST | `token`, `content`, `category` | Submit a new dining feedback record by a student. |
-| `/api/feedback/list` | GET | `token`, `status` | Retrieve a list of feedback records based on status (e.g., pending, reviewed). |
-| `/api/feedback/detail` | GET | `token`, `feedbackId` | Query detailed information of a specific feedback record. |
-| `/api/feedback/review` | POST | `token`, `feedbackId`, `decision`, `comment` | Administrator reviews feedback and submits a decision. |
-| `/api/feedback/status/update` | POST | `token`, `feedbackId`, `status` | Update the status of a feedback record after review. |
-| `/api/feedback/notify` | POST | `feedbackId` | Notify the student of the feedback review result. |
+| API Interface                   | Method | Parameters                                           | Description                                                                    |
+| ------------------------------- | ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `/api/feedback/submit`        | POST   | `token`, `content`, `category`                 | Submit a new dining feedback record by a student.                              |
+| `/api/feedback/list`          | GET    | `token`, `status`                                | Retrieve a list of feedback records based on status (e.g., pending, reviewed). |
+| `/api/feedback/detail`        | GET    | `token`, `feedbackId`                            | Query detailed information of a specific feedback record.                      |
+| `/api/feedback/review`        | POST   | `token`, `feedbackId`, `decision`, `comment` | Administrator reviews feedback and submits a decision.                         |
+| `/api/feedback/status/update` | POST   | `token`, `feedbackId`, `status`                | Update the status of a feedback record after review.                           |
+| `/api/feedback/notify`        | POST   | `feedbackId`                                       | Notify the student of the feedback review result.                              |
 
 ##### 2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems
 
@@ -193,11 +201,12 @@ This section provides detailed specifications for the Meal Ordering subsystem's 
 
 ###### 2.4.1. Order Creation Interface
 
-| API Interface | Method | Parameters | Description |
-|--------------|--------|------------|-------------|
-| /api/meal/order/create | POST | token, dish_ids, quantities, restaurant_id | Create new meal order |
+| API Interface          | Method | Parameters                                 | Description           |
+| ---------------------- | ------ | ------------------------------------------ | --------------------- |
+| /api/meal/order/create | POST   | token, dish_ids, quantities, restaurant_id | Create new meal order |
 
 **Request Parameters:**
+
 - `token` (String, Header): JWT authentication token
 - `restaurant_id` (Integer, Body): Target restaurant identifier
 - `items` (Array, Body): Order items list
@@ -207,12 +216,14 @@ This section provides detailed specifications for the Meal Ordering subsystem's 
 - `note` (String, Body, Optional): Special instructions (max 200 chars)
 
 **Response:**
+
 - Success (200): Returns `order_id`, `total_price`, `estimated_time`, `payment_url`
 - Error (400): Invalid dish_id or insufficient stock
 - Error (401): Token expired or invalid
 - Error (403): Restaurant closed or user blacklisted
 
 **Request Example:**
+
 ```json
 POST /api/meal/order/create
 Headers: {
@@ -230,6 +241,7 @@ Body: {
 ```
 
 **Response Example:**
+
 ```json
 {
   "code": 200,
@@ -245,20 +257,23 @@ Body: {
 
 ###### 2.4.2. Order Status Query Interface
 
-| API Interface | Method | Parameters | Description |
-|--------------|--------|------------|-------------|
-| /api/meal/order/status | GET | token, order_id | Query order status |
+| API Interface          | Method | Parameters      | Description        |
+| ---------------------- | ------ | --------------- | ------------------ |
+| /api/meal/order/status | GET    | token, order_id | Query order status |
 
 **Request Parameters:**
+
 - `token` (String, Header): JWT authentication token
 - `order_id` (Integer, Query): Order identifier
 
 **Response:**
+
 - Success (200): Returns `order_id`, `status` (PENDING/PREPARING/READY/COMPLETED/CANCELLED), `items`, `total_price`, `restaurant_info`, `create_time`, `update_time`
 - Error (404): Order not found
 - Error (403): Order belongs to different user
 
 **Request Example:**
+
 ```http
 GET /api/meal/order/status?order_id=87654
 Headers: {
@@ -267,6 +282,7 @@ Headers: {
 ```
 
 **Response Example:**
+
 ```json
 {
   "code": 200,
@@ -290,11 +306,12 @@ Headers: {
 
 ###### 2.4.3. Review Submission Interface
 
-| API Interface | Method | Parameters | Description |
-|--------------|--------|------------|-------------|
-| /api/meal/review/submit | POST | token, order_id, rating, comment, images | Submit dish review |
+| API Interface           | Method | Parameters                               | Description        |
+| ----------------------- | ------ | ---------------------------------------- | ------------------ |
+| /api/meal/review/submit | POST   | token, order_id, rating, comment, images | Submit dish review |
 
 **Request Parameters:**
+
 - `token` (String, Header): JWT authentication token
 - `order_id` (Integer, Body): Completed order identifier
 - `rating` (Integer, Body): Rating score (1-5)
@@ -305,11 +322,13 @@ Headers: {
   - `rating` (Integer): Dish-specific rating (1-5)
 
 **Response:**
+
 - Success (201): Returns `review_id`, `points_earned` (reward points for review)
 - Error (400): Order not completed or already reviewed
 - Error (403): Review content violates policy
 
 **Request Example:**
+
 ```json
 POST /api/meal/review/submit
 Headers: {
@@ -330,6 +349,7 @@ Body: {
 ```
 
 **Response Example:**
+
 ```json
 {
   "code": 201,
@@ -343,22 +363,25 @@ Body: {
 
 ###### 2.4.4. Menu Retrieval Interface
 
-| API Interface | Method | Parameters | Description |
-|--------------|--------|------------|-------------|
-| /api/meal/menu | GET | token, restaurant_id | Get menu items for specific restaurant |
+| API Interface  | Method | Parameters           | Description                            |
+| -------------- | ------ | -------------------- | -------------------------------------- |
+| /api/meal/menu | GET    | token, restaurant_id | Get menu items for specific restaurant |
 
 **Request Parameters:**
+
 - `token` (String, Header): JWT authentication token
 - `restaurant_id` (Integer, Query): Restaurant identifier
 - `category` (String, Query, Optional): Filter by category (e.g., "staple", "beverage")
 - `sort_by` (String, Query, Optional): Sort criteria ("price", "sales", "rating")
 
 **Response:**
+
 - Success (200): Returns array of dishes with `dish_id`, `name`, `price`, `description`, `category`, `stock`, `image_url`, `rating`, `sales_count`, `is_available`
 - Success (304): Not Modified (if cache valid via ETag)
 - Error (404): Restaurant not found
 
 **Request Example:**
+
 ```http
 GET /api/meal/menu?restaurant_id=101&category=staple&sort_by=sales
 Headers: {
@@ -367,6 +390,7 @@ Headers: {
 ```
 
 **Response Example:**
+
 ```json
 {
   "code": 200,
@@ -422,23 +446,20 @@ To manage this data efficiently and securely, we abandon a single-database appro
 
 Our persistence architecture is built upon a three-tier data storage model:
 
-1. **MySQL 8.0 (Relational Core Database)**  
-   Serves as the primary transactional database, storing all business entities requiring strong consistency, including `Student`, `CampusCard`, `Order`, and `TopUpTransaction`. The InnoDB engine guarantees ACID compliance and supports complex joins and foreign key constraints, making it ideal for critical operations such as order creation, balance deduction, and top-up confirmation.
+1. **MySQL 8.0 (Relational Core Database)**Serves as the primary transactional database, storing all business entities requiring strong consistency, including `Student`, `CampusCard`, `Order`, and `TopUpTransaction`. The InnoDB engine guarantees ACID compliance and supports complex joins and foreign key constraints, making it ideal for critical operations such as order creation, balance deduction, and top-up confirmation.
+2. **MongoDB 6.0 (Document-Oriented Extension Store)**Handles schema-flexible, write-intensive unstructured data, such as `Comment` documents (containing text and image URLs), `Feedback` submissions, and system audit logs. Its dynamic schema greatly simplifies the storage and evolution of rich-media comments and variable feedback forms.
+3. **Redis 7.0 (In-Memory Caching Layer)**Deployed at the front of the data access path to cache frequently accessed data, including:
 
-2. **MongoDB 6.0 (Document-Oriented Extension Store)**  
-   Handles schema-flexible, write-intensive unstructured data, such as `Comment` documents (containing text and image URLs), `Feedback` submissions, and system audit logs. Its dynamic schema greatly simplifies the storage and evolution of rich-media comments and variable feedback forms.
-
-3. **Redis 7.0 (In-Memory Caching Layer)**  
-   Deployed at the front of the data access path to cache frequently accessed data, including:  
-   - Today's dish menu (`Dish` list)  
-   - Real-time dish rankings and aggregated ratings  
-   - User session tokens  
-   - Low-balance alert thresholds  
-   With automatic TTL expiration and protection against cache penetration, Redis significantly reduces backend database load and delivers millisecond-level response times for mobile clients.
+   - Today's dish menu (`Dish` list)
+   - Real-time dish rankings and aggregated ratings
+   - User session tokens
+   - Low-balance alert thresholds
+     With automatic TTL expiration and protection against cache penetration, Redis significantly reduces backend database load and delivers millisecond-level response times for mobile clients.
 
 The entire backend data service stack is containerized using Docker and orchestrated by Kubernetes, ensuring consistent deployment and elastic scalability across development, testing, and production environments.
 
-###### 3.1.3 Persistence Layer Design and Framework Integration
+##### 3.1.3 Persistence Layer Design and Framework Integration
+
 ![alt text](source/image.png)
 
 At the software architecture level, the persistence layer sits between the business logic layer and physical storage, providing a unified data access abstraction. We implement this layer using the Spring Boot 3.x + Spring Data ecosystem:
@@ -449,15 +470,10 @@ At the software architecture level, the persistence layer sits between the busin
 
 ###### 3.1.4 Typical Data Persistence Scenarios
 
-1. **Campus Card Top-Up and Balance Management**  
-   A user's top-up request triggers the creation of a `TopUpTransaction` entity, which is persisted to MySQL to ensure an immutable financial audit trail. Simultaneously, the updated `CampusCard.balance` value is refreshed in Redis, allowing subsequent balance queries to bypass the database entirely.
-
-2. **Dish Comments and Feedback Submission**  
-   User-submitted rich-media comments are stored as JSON documents in MongoDB, preserving their original structure (including embedded images). Meanwhile, associated metadata-such as dish ID and user ID-remains in MySQL to facilitate cross-system relational analysis.
-
-3. **Real-Time Dish Rankings**  
+1. **Campus Card Top-Up and Balance Management**A user's top-up request triggers the creation of a `TopUpTransaction` entity, which is persisted to MySQL to ensure an immutable financial audit trail. Simultaneously, the updated `CampusCard.balance` value is refreshed in Redis, allowing subsequent balance queries to bypass the database entirely.
+2. **Dish Comments and Feedback Submission**User-submitted rich-media comments are stored as JSON documents in MongoDB, preserving their original structure (including embedded images). Meanwhile, associated metadata-such as dish ID and user ID-remains in MySQL to facilitate cross-system relational analysis.
+3. **Real-Time Dish Rankings**
    Based on voting statistics stored in MySQL, a background scheduled task (or event-driven processor) computes the latest rankings and writes the result set (including `dishId`, `score`, and `rank`) into a Redis Sorted Set. The frontend retrieves the full leaderboard with a single `ZRANGE` operation, achieving response times under 10ms.
-
 
 ##### 3.2 Security Mechanism
 
@@ -475,24 +491,17 @@ Security in SmartCampus encompasses multiple dimensions:
 
 To address these diverse requirements effectively, we implement a defense-in-depth security architecture with multiple protective layers and specialized security components.
 
-###### 3.2.2 Security Architecture and Multi-Layer Protection
+##### 3.2.2 Security Architecture and Multi-Layer Protection
+
 ![alt text](source/SmartCampusSecurityArchitecture.png)
 
 Our security architecture is built upon a five-layer defense model:
 
-1. **Infrastructure Security Layer**  
-   Serves as the foundation, implementing security configurations, vulnerability scanning, and the principle of least privilege for all system components. Container security hardening and network segmentation ensure basic protection at the infrastructure level.
-
-2. **Network Security Layer**  
-   Provides transport-level protection with mandatory HTTPS/TLS encryption, Web Application Firewall (WAF) deployment, and proper network isolation between different service tiers. This layer prevents eavesdropping and unauthorized network access.
-
-3. **Session and Access Control Layer**  
-   Manages user authentication, authorization checks, and session security. JWT-based stateless authentication supports mobile clients while maintaining security. Role-based and attribute-based access control ensures proper permission management across the platform.
-
-4. **Application Protection Layer**  
-   Implements input validation, output encoding, and business logic security checks. This layer prevents application-level attacks such as injection and cross-site scripting while ensuring data integrity throughout business processes.
-
-5. **Monitoring and Response Layer**  
+1. **Infrastructure Security Layer**Serves as the foundation, implementing security configurations, vulnerability scanning, and the principle of least privilege for all system components. Container security hardening and network segmentation ensure basic protection at the infrastructure level.
+2. **Network Security Layer**Provides transport-level protection with mandatory HTTPS/TLS encryption, Web Application Firewall (WAF) deployment, and proper network isolation between different service tiers. This layer prevents eavesdropping and unauthorized network access.
+3. **Session and Access Control Layer**Manages user authentication, authorization checks, and session security. JWT-based stateless authentication supports mobile clients while maintaining security. Role-based and attribute-based access control ensures proper permission management across the platform.
+4. **Application Protection Layer**Implements input validation, output encoding, and business logic security checks. This layer prevents application-level attacks such as injection and cross-site scripting while ensuring data integrity throughout business processes.
+5. **Monitoring and Response Layer**
    Provides real-time security monitoring, anomaly detection, and emergency response procedures. Security event correlation and automated alerting enable rapid response to potential threats.
 
 ###### 3.2.3 Security Component Design and Framework Integration
@@ -506,19 +515,13 @@ At the implementation level, security components are integrated throughout the a
 
 ###### 3.2.4 Typical Security Application Scenarios
 
-1. **Student Payment Transaction Security**  
-   A student's payment request triggers JWT token validation, role-based permission checking, and payment signature verification. The transaction is recorded with complete audit information including timestamp, IP address, and operator identity, ensuring non-repudiation and traceability.
-
-2. **Multi-Role Platform Access Control**  
-   Different user roles (student, merchant, administrator) receive distinct permission sets through JWT claims. The authorization layer enforces access restrictions based on both URL patterns and business method annotations, preventing privilege escalation and unauthorized data access.
-
-3. **Sensitive Data Protection**  
+1. **Student Payment Transaction Security**A student's payment request triggers JWT token validation, role-based permission checking, and payment signature verification. The transaction is recorded with complete audit information including timestamp, IP address, and operator identity, ensuring non-repudiation and traceability.
+2. **Multi-Role Platform Access Control**Different user roles (student, merchant, administrator) receive distinct permission sets through JWT claims. The authorization layer enforces access restrictions based on both URL patterns and business method annotations, preventing privilege escalation and unauthorized data access.
+3. **Sensitive Data Protection**
    User credentials are hashed using BCrypt before storage, while payment information is encrypted using AES-GCM. All sensitive data transmissions employ TLS 1.2+ encryption, and database connections use SSL protection to prevent data interception.
 
 This security mechanism provides comprehensive protection while maintaining performance and usability, forming an essential foundation for the trusted operation of the SmartCampus platform.
-
-
-
+ 
 #### 4. Two Use Case Realizations
 ##### 4.1 Meal Ordering Use Case
 
@@ -628,7 +631,7 @@ Accordingly, we replaced `OAuth 2.0` with a stateless authentication mechanism b
 Because `JWT` is self-contained and verifiable via public-key cryptography, the system no longer requires centralized session storage or an authorization server-improving scalability, fault tolerance, and deployment simplicity. This approach better meets the platform's needs for high concurrency, low latency, and autonomous control, while fully satisfying assignment 1's security goal: "ensuring secure data transmission and access".
 
 ###### 6.1.2 End-to-End Encryption of Sensitive Data  
-In response to assignment 1's requirement for "AES-256 encryption during transmission and storage", our technical stack (Section 2.1.2 Technology Stack Mapping) explicitly employs `Spring Security with HTTPS (TLS 1.3)` to secure data in transit. At the database layer, `MySQL 8.0` enables Transparent Data Encryption (TDE), and `Redis 7.0` is configured with access controls and TLS-encrypted connections. Critical fields-such as campus card top-up amounts and payment credentials-are encrypted before persistence, ensuring that even in the event of unauthorized database access, plaintext data remains inaccessible.
+In response to assignment 1's requirement for "AES-256 encryption during transmission and storage", our technical stack explicitly employs `Spring Security with HTTPS (TLS 1.3)` to secure data in transit. At the database layer, `MySQL 8.0` enables Transparent Data Encryption (TDE), and `Redis 7.0` is configured with access controls and TLS-encrypted connections. Critical fields-such as campus card top-up amounts and payment credentials-are encrypted before persistence, ensuring that even in the event of unauthorized database access, plaintext data remains inaccessible.
 
 ###### 6.1.3 Secure Payment and Transaction Workflow  
 In the campus card top-up subsystem, interactions between `TopUpController` and the external Payment Gateway are encapsulated using the Adapter pattern. Every payment request includes a cryptographic signature and a timestamp to prevent replay attacks. Only after receiving a confirmed success response from the payment provider does the system update the card balance and log the transaction via `AuditLogger`. This "deduct-first, credit-later" atomic workflow prevents financial inconsistencies caused by network failures or service interruptions.
@@ -636,6 +639,7 @@ In the campus card top-up subsystem, interactions between `TopUpController` and 
 ###### 6.1.4 Fine-Grained Permission Control and Operational Auditing  
 During dish publishing and review workflows, the system explicitly validates user permissions through use cases such as "Verify Permission" and "View User Authority". All critical operations-including publishing dishes, reviewing feedback, and modifying orders-are recorded in audit logs, associated with user IDs and timestamps. This fulfills Assignment 1's governance requirements for "data traceability" and "accountability".
 
+##### 6.2 Usability Requirements
 
 ##### 6.2 Usability Requirements  
 SmartCampus primarily serves on-campus students whose usage scenarios are highly fragmented-for example, placing meal orders between classes or checking card balances while queuing. If the interface is complex, the learning curve steep, or the operation flow lengthy, user adoption will suffer significantly. The "90%+ student adoption rate" target outlined in Assignment 1 fundamentally depends on an exceptional user experience. Therefore, usability is not merely a supplementary feature-it is a core driver of business success.
@@ -660,6 +664,7 @@ Clear status indicators are provided throughout key user flows such as ordering,
 
 This "action-feedback" loop significantly enhances users' sense of control and reduces anxiety, aligning with the usability principles of "clear operational logic" and "minimizing uncertainty".
 
+##### 6.3 Performance and Scalability Requirements
 
 ##### 6.3 Performance and Scalability Requirements  
 SmartCampus must serve a campus population of thousands, with usage patterns characterized by sharp peaks—particularly during meal times (11:30–13:00 and 17:00–18:30), when hundreds of concurrent meal orders, real-time balance queries, and ranking updates must be handled without degradation. The target of "reducing service delivery time by 40%" can only be achieved through a high-performance, horizontally scalable architecture.
@@ -694,7 +699,8 @@ Using Spring Cloud Config, environment‑specific settings (database URLs, featu
 ###### 6.4.4 Comprehensive Monitoring and Automated Diagnostics  
 Each microservice exports health and performance metrics via Spring Boot Actuator, which are collected by Prometheus and visualized in Grafana dashboards. Logs from all services are aggregated in the ELK Stack (Elasticsearch, Logstash, Kibana). This observability stack enables engineers to quickly pinpoint the root cause of issues—whether a slow database query, a failing external API, or a memory leak—and proactively address them before they affect users, directly contributing to the target of “maintaining user satisfaction above 4.5/5.0.”
 
-#### 7. Progress on prototyping  
+#### 7. Progress on prototyping
+
 ##### 7.1. Front-end Prototyping
 
 In this project, considering that the core user base consists of on-campus students who heavily rely on mobile devices, we prioritized mobile accessibility and user experience in the presentation layer design. Therefore, WeChat Mini Program was selected as the primary client platform-it requires no download or installation, offers an instant "use-and-go" experience, and enjoys extremely high adoption among university students, effectively lowering the barrier to entry for users.
@@ -704,17 +710,18 @@ The front-end client is developed using the uni-app cross-platform framework, wi
 During development, we adopted the "Run to Mini Program Simulator" mode, which automatically compiles the project in real time and pushes it directly into WeChat DevTools. This workflow enables efficient debugging, real-device previewing, and performance profiling. It fully leverages HBuilderX's strengths in intelligent code completion, rapid component generation, and project management, while also taking advantage of WeChat DevTools' deep support for Mini Program API debugging, network monitoring, and log inspection-significantly enhancing both development efficiency and consistency in user experience.
 
 which is structured as follows:
+
 <p align="center">
   <img src="source/structure.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; width:20%; max-width:500px; height:auto;"/>
 </p>
 
 The way to run the front end:
+
 <p align="center">
   <img src="source/way.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:700px; height:auto;"/>
 </p>
 
-
-对于管理侧用户，我们独立开发了一套基于 Vue.js 3 + Vite 的响应式 Web 管理仪表盘。该后台系统采用 npm 作为包管理工具，通过 npm run dev 命令在本地 localhost:5173 启动开发服务器，支持热更新与模块化开发。
+For administrative users, we have independently developed a responsive web management dashboard based on Vue.js 3 + Vite. This backend system uses npm as the package manager and starts the development server on local localhost:5173 through the npm run dev command, supporting hot reload and modular development.
 
 <p align="center">
   <img src="source/vue.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:300px; height:auto;"/>
@@ -728,45 +735,49 @@ Taking the login page as an example, our front-end code is as follows:
 <view class="container">
 		<view class="circle-bg top-left"></view>
 		<view class="circle-bg bottom-right"></view>
+<template>
+  <view class="container">
+    <view class="circle-bg top-left"></view>
+    <view class="circle-bg bottom-right"></view>
 
-		<view class="content">
-			<view class="header">
-				<image class="logo" src="/static/logo.png" mode="aspectFill"></image>
-				<view class="title-group">
-					<text class="title">Welcome Back !</text>
-				</view>
-			</view>
+    <view class="content">
+      <view class="header">
+        <image class="logo" src="/static/logo.png" mode="aspectFill"></image>
+        <view class="title-group">
+          <text class="title">Welcome Back !</text>
+        </view>
+      </view>
 
-			<view class="form-card">
-				<view class="input-wrapper">
-					<text class="input-label"> ID </text>
-					<view class="input-box">
-						<input
-							class="input-field"
-							v-model="userId"
-							type="text"
-							placeholder="please input your ID"
-							placeholder-class="placeholder-style"
-							confirm-type="next"
-						/>
-					</view>
-				</view>
+      <view class="form-card">
+        <view class="input-wrapper">
+          <text class="input-label"> ID </text>
+          <view class="input-box">
+            <input
+              class="input-field"
+              v-model="userId"
+              type="text"
+              placeholder="please input your ID"
+              placeholder-class="placeholder-style"
+              confirm-type="next"
+            />
+          </view>
+        </view>
 
-				<view class="input-wrapper">
-					<text class="input-label"> password </text>
-					<view class="input-box">
-						<input
-							class="input-field"
-							v-model="userKey"
-							password
-							type="text"
-							placeholder="please input your password"
-							placeholder-class="placeholder-style"
-							confirm-type="done"
-							@confirm="handleLogin"
-						/>
-					</view>
-				</view>
+        <view class="input-wrapper">
+          <text class="input-label"> password </text>
+          <view class="input-box">
+            <input
+              class="input-field"
+              v-model="userKey"
+              password
+              type="text"
+              placeholder="please input your password"
+              placeholder-class="placeholder-style"
+              confirm-type="done"
+              @confirm="handleLogin"
+            />
+          </view>
+        </view>
 
 				<button 
 					class="login-btn" 
@@ -794,11 +805,11 @@ This page is designed based on system UI snapshots, offering a simple and effici
 
 ##### 7.2. Back-end Prototyping
 
-The backend system is built using the **Spring Boot 3.x** framework, following microservices architecture principles. The overall functionality is decomposed into multiple highly cohesive and loosely coupled service modules (such as meal service, feedback service, and campus card service). In the current prototype phase, we have not yet introduced the complete distributed governance components of Spring Cloud (such as service registry and configuration center), but instead focus on implementing the core business logic of each microservice and validating API interfaces.
+The backend system is built using the **Spring Boot 3.x** framework, following microservices architecture principles. The overall functionality is decomposed into multiple highly cohesive and loosely coupled service modules (such as meal service, feedback service, and campus card service). In the current prototyping phase, we have not yet integrated the full suite of Spring Cloud distributed governance components—such as a service registry or configuration center—and are instead focusing on implementing core business logic and validating API contracts for each microservice. Inter-service communication is currently handled via hardcoded URLs or local hosts file configurations for testing purposes. In subsequent iterations, we plan to introduce Spring Cloud Netflix Eureka as the service registry and discovery mechanism, complemented by Spring Cloud Config for centralized configuration management, thereby enabling comprehensive microservices governance in the production environment.
 
 The frontend and backend communicate through **RESTful APIs**, with interface design following unified specifications, supporting JSON data format, and integrating global exception handling and standardized response structures.
 
-We begin our work by creating a Spring Boot microservice called `auth-service` : 
+We begin our work by creating a Spring Boot microservice called `auth-service` :
 
 <p align="center">
   <img src="source/spring_initializr.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:700px; height:auto;"/>
@@ -806,13 +817,13 @@ We begin our work by creating a Spring Boot microservice called `auth-service` :
 
 which is structured as follows:
 
-以 **用户认证微服务**（auth-service） 为例，该服务负责处理学生和管理员的登录、会话管理等安全相关功能。我们为其定义了如下关键接口：
+Taking the **User Authentication Microservice** (auth-service) as an example, this service is responsible for handling security-related functions such as student and administrator login and session management. We have defined the following key interfaces for it:
 
-- `POST /api/auth/login`：用户密码登录
-- `POST /api/auth/logout`：退出登录
-- `GET /api/auth/userinfo`：获取当前用户信息
+- `POST /api/auth/login`: User password login
+- `POST /api/auth/logout`: User logout
+- `GET /api/auth/userinfo`: Get current user information
 
-核心控制器代码片段如下：
+Core controller code snippet:
 
 ```java
 @RestController
@@ -827,15 +838,16 @@ public class AuthController {
     @PostMapping("/api/auth/login")
     public ResponseEntity<ApiResponse<TokenInfoVO>> login(
             @Valid @RequestBody LoginRequest request) {
-        
-        // 验证用户名密码
+      
+        // Validate username and password
         UserInfoBO user = authService.authenticate(request.getUsername(), request.getPassword());
         if (user == null) {
-            return ResponseEntity.badRequest().body(ApiResponse.error("用户名或密码错误"));
+            return ResponseEntity.badRequest().body(ApiResponse.error("Invalid username or password"));
         }
-  
+
+        // Generate JWT access token
         String accessToken = tokenService.generateToken(user);
-        
+        // Return standardized response
         TokenInfoVO tokenVO = new TokenInfoVO(accessToken, user.getUserId(), user.getRole());
         return ResponseEntity.ok(ApiResponse.success(tokenVO));
     }
@@ -867,10 +879,9 @@ How can the system handle sudden high-concurrency requests to services such as o
 
 **Challenge**
 Detailed capacity planning strategies, multi-level caching solutions, and elastic scaling mechanisms need to be formulated. Considerations include setting appropriate rate limiting and circuit breaking rules, optimizing database connection pools and Redis cache configurations, and establishing an effective performance monitoring and early warning system.
- 
 
-#### 9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required 
+#### 9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required
 
-#### 10. Project self-reflection  
+#### 10. Project self-reflection
 
 #### 11. Contributions of team members
