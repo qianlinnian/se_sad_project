@@ -181,8 +181,6 @@ Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 
 
 ##### 2.2.2 Dishes recommendation and ranking Subsystem
 
-Here is the fully translated version of your table in English:
-
 | API Interface | Method | Parameters | Description |
 |---------------|--------|------------|-------------|
 |/api/dishes/rankings | GET | sortType, category, restaurantId | Retrieves a ranked list of dishes, supporting sorting by popularity or rating. |
@@ -208,6 +206,25 @@ The Feedback Service Subsystem is responsible for collecting, managing, and proc
 | `/api/feedback/review` | POST | `token`, `feedbackId`, `decision`, `comment` | Administrator reviews feedback and submits a decision. |
 | `/api/feedback/status/update` | POST | `token`, `feedbackId`, `status` | Update the status of a feedback record after review. |
 | `/api/feedback/notify` | POST | `feedbackId` | Notify the student of the feedback review result. |
+
+##### 2.2.4 Campus Card Service Subsystem
+
+The Campus Card Service Subsystem is responsible for managing all digital campus card–related functionalities, including balance inquiry, recharge processing, low-balance alert configuration, and transaction history management. As a core component of the Life Services domain, this subsystem provides secure, real-time financial interactions between students and campus infrastructure. It integrates closely with the authentication service for identity verification, with external payment gateways for recharge operations, and with the notification mechanism to deliver balance alerts and transaction feedback. The subsystem emphasizes transactional consistency, high availability, and low-latency responses, given its high-frequency usage in daily campus life.
+
+From a functional perspective, the subsystem is designed based on Assignment 2 use cases (UC-007 to UC-010) and refined here into concrete, platform-dependent API interfaces. Balance queries and transaction records rely on MySQL to ensure ACID-compliant financial data consistency, while Redis is employed to cache frequently accessed balance information and alert thresholds, reducing database load and improving responsiveness. Recharge operations follow a strict two-phase process involving payment request initiation and asynchronous payment result callbacks to guarantee correctness under distributed conditions.
+
+| API Interface                  | Method | Parameters                       | Description                                                                     |
+| ------------------------------ | ------ | -------------------------------- | ------------------------------------------------------------------------------- |
+| `/api/card/balance`            | GET    | `token`                          | Retrieves the current campus card balance of the authenticated student.         |
+| `/api/card/alert/set`          | POST   | `token`, `threshold`             | Sets or updates a custom low-balance alert threshold for the student.           |
+| `/api/card/alert/get`          | GET    | `token`                          | Retrieves the currently configured low-balance alert threshold.                 |
+| `/api/card/topup/create`       | POST   | `token`, `amount`                | Initiates a campus card top-up request with a specified recharge amount.        |
+| `/api/card/topup/confirm`      | POST   | `transactionId`, `paymentStatus` | Receives payment gateway callback and confirms the top-up result.               |
+| `/api/card/transactions`       | GET    | `token`, `page`, `size`          | Retrieves a paginated list of campus card transaction records.                  |
+| `/api/card/transaction/detail` | GET    | `token`, `transactionId`         | Retrieves detailed information of a specific transaction.                       |
+| `/api/card/notify/low-balance` | POST   | `userId`, `currentBalance`       | Triggers a low-balance notification when the balance falls below the threshold. |
+
+Through this design, the Campus Card Service Subsystem translates abstract use cases into a secure, scalable, and implementation-ready service interface. The same architectural pattern—JWT-based authentication, RESTful APIs, hybrid storage, and external service integration—can be directly extended to other financial or identity-related campus services within the SmartCampus platform.
 
 ##### 2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems
 
