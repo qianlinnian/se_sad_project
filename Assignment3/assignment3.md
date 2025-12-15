@@ -23,7 +23,7 @@
     - [2.4.2. Order Status Query Interface](#242-order-status-query-interface)
     - [2.4.3. Review Submission Interface](#243-review-submission-interface)
     - [2.4.4. Menu Retrieval Interface](#244-menu-retrieval-interface)
-- [3. Select any two analysis mechanisms identified in your analysis model, find suitable solutions in your implementation platform, and then provide a detailed description of the corresponding design mechanisms](#3-select-any-two-analysis-mechanisms-identified-in-your-analysis-model-find-suitable-solutions-in-your-implementation-platform-and-then-provide-a-detailed-description-of-the-corresponding-design-mechanisms)
+- [3. Two Selected Analysis Mechanisms and Their Design Mechanisms](#3-two-selected-analysis-mechanisms-and-their-design-mechanisms)
   - [3.1 Data Persistence Mechanism](#31-data-persistence-mechanism)
   - [3.1.1 Data Persistence Requirements](#311-data-persistence-requirements)
   - [3.1.2 Persistence Architecture and Multi-Modal Storage Technologies](#312-persistence-architecture-and-multi-modal-storage-technologies)
@@ -34,7 +34,13 @@
   - [3.2.2 Security Architecture and Multi-Layer Protection](#322-security-architecture-and-multi-layer-protection)
   - [3.2.3 Security Component Design and Framework Integration](#323-security-component-design-and-framework-integration)
   - [3.2.4 Typical Security Application Scenarios](#324-typical-security-application-scenarios)
-- [4. Design two use case realizations by incorporating the design mechanisms and the refined architecture](#4-design-two-use-case-realizations-by-incorporating-the-design-mechanisms-and-the-refined-architecture)
+- [4. Two Use Case Realizations](#4-two-use-case-realizations)
+  - [4.1 Meal Ordering Use Case](#41-meal-ordering-use-case)
+    - [4.1.1 Use Case Selection](#411-use-case-selection)
+    - [4.1.2 Design Patterns Applied](#412-design-patterns-applied)
+    - [4.1.3 Architecture Integration](#413-architecture-integration)
+    - [4.1.4 Class Diagram](#414-class-diagram)
+    - [4.1.5 Sequence Diagrams](#415-sequence-diagrams)
 - [5. Architectural styles used and critical design decisions made in your solution](#5-architectural-styles-used-and-critical-design-decisions-made-in-your-solution)
 - [6.1.1 Layered Security Architecture and Evolution of Authentication Mechanism](#611-layered-security-architecture-and-evolution-of-authentication-mechanism)
 - [6.1.2 End-to-End Encryption of Sensitive Data](#612-end-to-end-encryption-of-sensitive-data)
@@ -62,7 +68,7 @@
 - [10. Project self-reflection](#10-project-self-reflection)
 - [11. Contributions of team members](#11-contributions-of-team-members)
 
-#### 1. Overview
+#### 1. Overview  
 
 ##### 1.1 Overview of Design Progress
 
@@ -440,7 +446,9 @@ Headers: {
 }
 ```
 
-#### 3. Select any two analysis mechanisms identified in your analysis model, find suitable solutions in your implementation platform, and then provide a detailed description of the corresponding design mechanisms
+
+
+#### 3. Two Selected Analysis Mechanisms and Their Design Mechanisms 
 
 ##### 3.1 Data Persistence Mechanism
 
@@ -535,18 +543,95 @@ At the implementation level, security components are integrated throughout the a
    User credentials are hashed using BCrypt before storage, while payment information is encrypted using AES-GCM. All sensitive data transmissions employ TLS 1.2+ encryption, and database connections use SSL protection to prevent data interception.
 
 This security mechanism provides comprehensive protection while maintaining performance and usability, forming an essential foundation for the trusted operation of the SmartCampus platform.
+ 
+#### 4. Two Use Case Realizations
+##### 4.1 Meal Ordering Use Case
 
-#### 4. Design two use case realizations by incorporating the design mechanisms and the refined architecture
+###### 4.1.1 Use Case Selection
 
-#### 5. Architectural styles used and critical design decisions made in your solution
+We selected **Meal Ordering** because it: (1) represents the highest-frequency student activity (60-70% daily usage), (2) encompasses hybrid storage, JWT security, microservices coordination, and high concurrency, and (3) naturally demonstrates multiple design patterns addressing real architectural challenges.
 
-### 6. Non-Functional Requirements
+###### 4.1.2 Design Patterns Applied
 
-### 6.1 Security Requirements
+| Pattern | Problem | Solution | Benefit | Reference |
+|---------|---------|----------|---------|-----------|
+| **Adapter** | Multiple payment APIs with inconsistent interfaces | Unified `PaymentAdapter` interface with concrete adapters | Easy to add new payment methods; simplifies testing | Sec 2.1.3 External API Integration |
+| **Repository** | Hybrid storage (MySQL/MongoDB/Redis) creates scattered data access logic | Domain-oriented repositories abstract database operations | Technology independence; centralized caching | Sec 3.1.3 Persistence Architecture |
+| **Strategy** | Dynamic pricing rules (discounts, membership, promotions) | `PricingStrategy` interface with runtime-selectable implementations | New promotions without modifying core logic | Assignment 1 Promotion Features |
+| **Observer** | Order status changes require multiple reactions (notifications, updates, tasks) | `OrderStatusSubject` notifies `OrderObserver` implementations asynchronously | Decoupled notification logic; fault-tolerant | Sec 2.1.3 Message Queue |
+
+###### 4.1.3 Architecture Integration
+
+| Design Aspect | Architecture (Sec 2) | Design Mechanism (Sec 3) | Pattern |
+|---------------|----------------------|--------------------------|---------|
+| Authentication | API Gateway + JWT Filter | JWT Security | Security Filter |
+| Menu Access | Menu Service | Redis + MySQL | Repository (cache-aside) |
+| Order Storage | Order Service | MySQL Transactions | Repository (JPA) |
+| Reviews | Feedback Service | MongoDB | Repository (aggregations) |
+| Payment | Payment Gateway | HTTPS + AES | Adapter |
+| Notifications | RabbitMQ | Async Messaging | Observer |
+
+###### 4.1.4 Class Diagram
+
+The following class diagram illustrates the complete design of the Meal Ordering use case, showing all entities, controllers, and design pattern implementations:
+ 
+<p align="center">
+  <img src="diagrams/cd_ordermeal_patterns.svg" alt="Meal Ordering Use Case - Class Diagram" title="Meal Ordering Use Case - Class Diagram" style="display:block; margin:0 auto; width:100%; max-width:800px; height:auto;">
+</p> 
+
+The diagram demonstrates:
+- **Core Entities Layer**: Student, Order, Dish, and Restaurant classes with their relationships
+- **Controllers Layer**: OrderController and MenuController managing business logic
+- **Design Patterns Layer**: 
+  - Adapter Pattern for payment method abstraction
+  - Repository Pattern for data persistence abstraction  
+  - Strategy Pattern for dynamic pricing strategies
+  - Observer Pattern for order status notifications
+- **Security Layer**: SecurityFilter and JWTTokenService for authentication and authorization 
+
+###### 4.1.5 Sequence Diagrams
+
+**Sequence Diagram 1: Order Creation Flow**
+
+This sequence diagram illustrates the complete flow of a student placing a meal order, demonstrating the integration of security mechanisms, caching strategies, and design patterns:
+
+<p align="center">
+  <img src="diagrams/id_ordermeal.svg" alt="Order Creation Sequence Diagram" title="Order Creation - Interaction Diagram" style="display:block; margin:0 auto; width:100%; max-width:1000px; height:auto;">
+</p>
+
+**Key interactions demonstrated:**
+- **JWT Authentication**: SecurityFilter validates the JWT token before allowing order creation
+- **Cache-First Strategy**: MenuCacheService checks Redis for dish availability before querying MySQL
+- **Repository Pattern**: OrderRepository abstracts persistence logic, coordinating MySQL and Redis operations
+- **Adapter Pattern**: PaymentAdapter provides a unified interface for different payment methods (WeChat Pay, Alipay, Campus Card)
+- **Observer Pattern**: NotificationService is triggered upon successful payment to send order confirmation
+
+**Sequence Diagram 2: Order Query and Review Submission Flow**
+
+This sequence diagram shows how students query their order history and submit reviews, highlighting the hybrid storage strategy and cache optimization:
+
+<p align="center">
+  <img src="diagrams/id_trackorder.svg" alt="Order Query and Review Sequence Diagram" title="Order Tracking and Review - Interaction Diagram" style="display:block; margin:0 auto; width:100%; max-width:1000px; height:auto;">
+</p>
+
+**Key interactions demonstrated:**
+- **Cache-First Query**: System first attempts to retrieve order list from Redis cache
+- **Cache Miss Handling**: On cache miss, data is fetched from MySQL and cached for subsequent requests
+- **Ownership Validation**: JWTTokenService validates that the user owns the order before allowing review submission
+- **Hybrid Storage**: Review content (rich text + images) is stored in MongoDB for flexibility, while order metadata is updated in MySQL
+- **Ranking Update**: RankingService updates dish rankings in Redis Sorted Set for real-time leaderboard updates
+
+Both diagrams demonstrate the seamless integration of Section 3's design mechanisms (persistence and security) with Section 2's architectural decisions (microservices, JWT authentication, hybrid storage).
+
+#### 5. Architectural styles used and critical design decisions made in your solution   
+
+#### 6. Non-Functional Requirements
+
+##### 6.1 Security Requirements
 
 The campus digital platform handles a large volume of sensitive data, including student identity information, campus card balances, payment records, dining preferences, and user feedback. Any data breach, identity impersonation, or payment fraud could severely damage user trust and potentially lead to legal and compliance risks. Given the platform's support for online payments, unified identity authentication, and integration with multiple systems, security must serve as the cornerstone of the system design.
 
-#### 6.1.1 Layered Security Architecture and Evolution of Authentication Mechanism
+###### 6.1.1 Layered Security Architecture and Evolution of Authentication Mechanism
 
 In the a2 phase, the system was initially designed with `OAuth 2.0` and SSO for unified authentication. However, we later recognized that `OAuth 2.0` introduces unnecessary complexity-such as authorization server management-for a closed-campus environment serving only internal users. It is also better suited for third-party integrations, whereas SmartCampus primarily uses its own front-end clients that benefit from a lighter, more integrated solution.
 
@@ -554,23 +639,23 @@ Accordingly, we replaced `OAuth 2.0` with a stateless authentication mechanism b
 
 Because `JWT` is self-contained and verifiable via public-key cryptography, the system no longer requires centralized session storage or an authorization server-improving scalability, fault tolerance, and deployment simplicity. This approach better meets the platform's needs for high concurrency, low latency, and autonomous control, while fully satisfying assignment 1's security goal: "ensuring secure data transmission and access".
 
-#### 6.1.2 End-to-End Encryption of Sensitive Data
+###### 6.1.2 End-to-End Encryption of Sensitive Data
 
 In response to assignment 1's requirement for "AES-256 encryption during transmission and storage", our technical stack (Section 2.4 of A2) explicitly employs `Spring Security with HTTPS (TLS 1.3)` to secure data in transit. At the database layer, `MySQL 8.0` enables Transparent Data Encryption (TDE), and `Redis 7.0` is configured with access controls and TLS-encrypted connections. Critical fields-such as campus card top-up amounts and payment credentials-are encrypted before persistence, ensuring that even in the event of unauthorized database access, plaintext data remains inaccessible.
 
-#### 6.1.3 Secure Payment and Transaction Workflow
+###### 6.1.3 Secure Payment and Transaction Workflow
 
 In the campus card top-up subsystem, interactions between `TopUpController` and the external Payment Gateway are encapsulated using the Adapter pattern. Every payment request includes a cryptographic signature and a timestamp to prevent replay attacks. Only after receiving a confirmed success response from the payment provider does the system update the card balance and log the transaction via `AuditLogger`. This "deduct-first, credit-later" atomic workflow prevents financial inconsistencies caused by network failures or service interruptions.
 
-#### 6.1.4 Fine-Grained Permission Control and Operational Auditing
+###### 6.1.4 Fine-Grained Permission Control and Operational Auditing
 
 During dish publishing and review workflows, the system explicitly validates user permissions through use cases such as "Verify Permission" and "View User Authority". All critical operations-including publishing dishes, reviewing feedback, and modifying orders-are recorded in audit logs, associated with user IDs and timestamps. This fulfills Assignment 1's governance requirements for "data traceability" and "accountability".
 
-### 6.2 Usability Requirements
+##### 6.2 Usability Requirements
 
 SmartCampus primarily serves on-campus students whose usage scenarios are highly fragmented-for example, placing meal orders between classes or checking card balances while queuing. If the interface is complex, the learning curve steep, or the operation flow lengthy, user adoption will suffer significantly. The "90%+ student adoption rate" target outlined in Assignment 1 fundamentally depends on an exceptional user experience. Therefore, usability is not merely a supplementary feature-it is a core driver of business success.
 
-#### 6.2.1 User Journey-Centric Interface Redesign
+###### 6.2.1 User Journey-Centric Interface Redesign
 
 Section 5 of the A2 document illustrates optimizations across key interfaces, directly implementing assignment 1's goals of "reducing cognitive load" and enabling "first-time users to operate independently without training":
 
@@ -578,15 +663,15 @@ Section 5 of the A2 document illustrates optimizations across key interfaces, di
 - The **top-up page** offers both preset quick-amount buttons and a custom input field, balancing efficiency with flexibility.
 - The **voting page** auto-fills known context to eliminate redundant input.
 
-#### 6.2.2 Multimodal Interaction and Context-Aware Help
+###### 6.2.2 Multimodal Interaction and Context-Aware Help
 
 The system embeds a "?" help icon next to complex features (e.g. on the feedback submission page or new dish publishing page); clicking it instantly displays text-and-image-based guidance closely relevant to the current task. Additionally, as described in Section 5.3 of a2, the feedback subsystem allows users to submit input using a combination of text and images, lowering the barrier to expression-this is a concrete realization of assignment1's principle that "the help system should be closely aligned with the user's task context".
 
-#### 6.2.3 Seamless Language Switching and Accessibility Support
+###### 6.2.3 Seamless Language Switching and Accessibility Support
 
 The frontend supports real-time switching between Simplified Chinese and English without requiring a page refresh, and the user's language preference is persistently stored in local cache. Additionally, all icons are accompanied by text labels, fully satisfying Assignment 1's requirement for "multilingual support and accessibility."
 
-#### 6.2.4 Transparent State Visibility and Immediate Feedback
+###### 6.2.4 Transparent State Visibility and Immediate Feedback
 
 Clear status indicators are provided throughout key user flows such as ordering, top-ups, and voting:
 
@@ -596,15 +681,15 @@ Clear status indicators are provided throughout key user flows such as ordering,
 
 This "action-feedback" loop significantly enhances users' sense of control and reduces anxiety, aligning with the usability principles of "clear operational logic" and "minimizing uncertainty".
 
-### 6.3 Performance and Scalability Requirements
+##### 6.3 Performance and Scalability Requirements
 
 SmartCampus must serve a campus population of thousands, with usage patterns characterized by sharp peaks—particularly during meal times (11:30–13:00 and 17:00–18:30), when hundreds of concurrent meal orders, real-time balance queries, and ranking updates must be handled without degradation. The target of "reducing service delivery time by 40%" can only be achieved through a high-performance, horizontally scalable architecture.
 
-#### 6.3.1 Microservices-Based Horizontal Scaling
+###### 6.3.1 Microservices-Based Horizontal Scaling
 
 As detailed in Sections 2.1 and 2.2 of Assignment 2, we adopted a microservices architecture that decouples the system into independently deployable services (e.g., order service, top‑up service, voting service).In the target production architecture, each service will be scaled horizontally based on load. While Kubernetes provides basic service discovery within its cluster (via DNS and Services), we plan to enhance inter-service communication reliability and observability by integrating Spring Cloud Netflix Eureka as a dedicated service registry in later phases. This layered approach leverages Kubernetes for infrastructure-level orchestration while using Eureka for application-level service governance.This design directly addresses Assignment 2’s requirement that “the system must be capable of scaling to support growth in user numbers and transaction volume.”
 
-#### 6.3.2 Multi-Level Caching Strategy
+###### 6.3.2 Multi-Level Caching Strategy
 
 To satisfy the “low-latency access” objective, we implemented a two-tier caching layer:
 
@@ -612,31 +697,31 @@ To satisfy the “low-latency access” objective, we implemented a two-tier cac
 - **Static resource CDN**: Dish images, help‑page illustrations, and other static assets are distributed via a content‑delivery network, lowering server load and improving page‑load speed for users across different campus locations.
   These measures collectively ensure that even during peak hours, the system maintains the sub‑second response times required.
 
-#### 6.3.3 Asynchronous Processing and Message Queues
+###### 6.3.3 Asynchronous Processing and Message Queues
 
 Time‑insensitive operations—such as generating weekly dining reports, sending batch notifications, and updating aggregated rankings—are offloaded to background jobs powered by RabbitMQ. This prevents long‑running tasks from blocking critical user‑facing flows and enables the system to handle sudden traffic surges gracefully, thereby meeting the availability target of “99.9% uptime” stipulated.
 
-#### 6.3.4 Database Read‑Write Separation and Connection Pooling
+###### 6.3.4 Database Read‑Write Separation and Connection Pooling
 
 MySQL 8.0 is configured with a master‑slave replication setup: write operations (e.g., orders, top‑ups) go to the master, while read‑intensive queries (e.g., menu browsing, ranking displays) are routed to read replicas. Combined with HikariCP connection pooling, this architecture sustains high throughput and avoids database bottlenecks, directly supporting the goal of “improving resource utilization to 85%+.”
 
-### 6.4 Maintainability and Extensibility Requirements
+###### 6.4 Maintainability and Extensibility Requirements
 
 SmartCampus is envisioned as a long‑term platform that will evolve with the campus’s needs. Adding new services (e.g., library‑seat booking, sports‑facility reservation) or modifying existing ones must not require extensive re‑engineering or introduce system‑wide instability. The architectural decisions described in Assignment 2 are explicitly guided by Assignment 1’s emphasis on “building scalable architecture supporting 50,000+ concurrent users” and “enabling data‑driven decision making for institutional planning.”
 
-#### 6.4.1 Clear Separation of Concerns and Layered Design
+###### 6.4.1 Clear Separation of Concerns and Layered Design
 
 The layered architecture (presentation, security/gateway, business logic, data access, infrastructure, and storage) enforces strict boundaries between components, as illustrated in Section 2.3 of Assignment 2. Developers working on the feedback subsystem, for example, need not understand the internals of the payment gateway; they interact only with well‑defined service interfaces. This modularity fulfills the demand for “reducing administrative overhead by 30% through system integration.”
 
-#### 6.4.2 API‑First Development and Contract‑Based Integration
+###### 6.4.2 API‑First Development and Contract‑Based Integration
 
 All service‑to‑service communication employs RESTful APIs with OpenAPI (Swagger) documentation, and external integrations (e.g., with the campus‑card system or third‑party payment providers) are wrapped behind adapters. This contract‑driven approach ensures that changes in one service do not cascade failures to others, and new features can be added by implementing new APIs without disrupting existing workflows—aligning with the principle of “establishing SmartCampus as the market leader in university digital transformation.”
 
-#### 6.4.3 Centralized Configuration and Versioned Deployments
+###### 6.4.3 Centralized Configuration and Versioned Deployments
 
 Using Spring Cloud Config, environment‑specific settings (database URLs, feature toggles, external service endpoints) are stored in a version‑controlled repository (Git) and injected at runtime. Combined with Docker‑based containerization and Kubernetes deployment manifests, this allows the same service image to be promoted from development to production with minimal manual intervention, thereby supporting the goal of “enabling rapid, reliable iteration and feature rollout.”
 
-#### 6.4.4 Comprehensive Monitoring and Automated Diagnostics
+###### 6.4.4 Comprehensive Monitoring and Automated Diagnostics
 
 Each microservice exports health and performance metrics via Spring Boot Actuator, which are collected by Prometheus and visualized in Grafana dashboards. Logs from all services are aggregated in the ELK Stack (Elasticsearch, Logstash, Kibana). This observability stack enables engineers to quickly pinpoint the root cause of issues—whether a slow database query, a failing external API, or a memory leak—and proactively address them before they affect users, directly contributing to the target of “maintaining user satisfaction above 4.5/5.0.”
 
