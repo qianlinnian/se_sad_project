@@ -687,6 +687,92 @@ This sequence diagram shows how students query their order history and submit re
 
 Both diagrams demonstrate the seamless integration of Section 3's design mechanisms (persistence and security) with Section 2's architectural decisions (microservices, JWT authentication, hybrid storage).
  
+##### 4.2 Campus Card Service Use Case
+
+###### 4.2.1 Use Case Selection
+
+We selected the Campus Card Service use case because it represents a financially sensitive, high-reliability core service within the SmartCampus platform. Unlike meal ordering, which emphasizes high concurrency and user interaction richness, the campus card domain focuses on data consistency, transactional correctness, and security guarantees. It covers multiple representative scenarios—including balance inquiry, recharge processing, low-balance alerts, and transaction history tracking—and therefore provides an ideal case to demonstrate how security mechanisms, persistence strategies, and design patterns are applied to ensure correctness under distributed and asynchronous conditions.
+
+In addition, this use case strongly involves external system integration (payment gateways), state synchronization (balance updates and cache refresh), and event-driven reactions (low-balance notifications), making it complementary to the Meal Ordering use case while avoiding redundant architectural exposition.
+
+###### 4.2.2 Design Patterns Applied
+
+| Pattern        | Problem     | Solution    | Benefit   |
+| ------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| Facade          | Campus card operations involve multiple subsystems (auth, payment, persistence, notification) | CampusCardFacade provides a unified entry point for balance, top-up, and history queries | Simplifies controller logic; improves maintainability      |
+| Repository      | Financial data must remain consistent across MySQL and Redis                                  | CampusCardRepository encapsulates balance and transaction persistence                    | Centralized data access; enforces consistency rules        |
+| Template Method | Recharge flows share common steps but differ in payment channels                              | Abstract TopUpTemplate defines invariant workflow with overridable steps                 | Reduces duplication; enforces correct transaction sequence |
+| Observer        | Balance changes may trigger alerts or notifications                                           | BalanceSubject notifies registered listeners on threshold breach                         | Decouples monitoring logic from core transactions          |
+| Adapter         | Multiple external payment gateways expose heterogeneous APIs                                  | Unified PaymentAdapter hides gateway-specific details                                    | Enables seamless extension to new payment providers        |
+
+These patterns are selected to reflect the transaction-oriented and security-sensitive nature of the campus card domain, emphasizing control flow correctness and separation of responsibilities rather than UI-driven flexibility.
+
+###### 4.2.3 Architecture Integration
+
+| Design Aspect       | Architecture (Sec 2)           | Design Mechanism (Sec 3) | Pattern                  |
+| ------------------- | ------------------------------ | ------------------------ | ------------------------ |
+| Authentication      | API Gateway + JWT              | Stateless Authentication | Security Filter          |
+| Balance Query       | Card Service                   | Redis + MySQL            | Repository (cache-aside) |
+| Top-Up Processing   | Card Service + Payment Gateway | ACID Transactions        | Template Method          |
+| Payment Integration | External Payment APIs          | HTTPS + Signature        | Adapter                  |
+| Alert Triggering    | Notification Module            | Event Dispatch           | Observer                 |
+| Unified API Entry   | Card Controller                | Service Aggregation      | Facade                   |
+
+This mapping demonstrates how the Campus Card use case concretely applies the architectural decisions defined in Section 2 and the design mechanisms introduced in Section 3, ensuring conceptual continuity throughout the system design.
+
+###### 4.2.4 Class Diagram
+
+The following class diagram illustrates the design of the Campus Card Service use case, focusing on transaction handling, payment abstraction, and notification decoupling:
+
+<p align="center">
+  <img src="diagrams/cd_campuscard_patterns.svg" alt="Campus Card Use Case - Class Diagram" title="Campus Card Use Case - Class Diagram" style="display:block; margin:0 auto; width:100%; max-width:800px; height:auto;">
+</p>
+
+The diagram highlights:
+
+* **Core Entity Layer**: CampusCard, TopUpTransaction, TransactionRecord
+* **Facade Layer**: CampusCardFacade coordinating high-level operations
+* **Persistence Layer**: Repository abstractions isolating MySQL and Redis access
+* **Design Pattern Layer**:
+
+  * Adapter for payment gateway integration
+  * Template Method for standardized top-up workflows
+  * Observer for low-balance alert propagation
+* **Security Layer**: JWT validation and permission enforcement before any financial operation
+
+###### 4.2.5 Sequence Diagrams
+
+**Sequence Diagram 1: Campus Card Balance Query Flow**
+
+This sequence diagram illustrates how a student queries their campus card balance, emphasizing cache efficiency and security validation:
+
+<p align="center">
+  <img src="diagrams/id_card_balance.svg" alt="Campus Card Balance Query Sequence Diagram" title="Campus Card Balance Query - Interaction Diagram" style="display:block; margin:0 auto; width:100%; max-width:1000px; height:auto;">
+</p>
+
+**Key interactions demonstrated:**
+
+* **JWT Authentication**: SecurityFilter validates user identity and role
+* **Cache-First Access**: Redis is queried before MySQL to minimize latency
+* **Repository Pattern**: Balance retrieval logic is fully encapsulated
+* **Facade Pattern**: Controller delegates complex logic to a single service entry
+
+**Sequence Diagram 2: Campus Card Top-Up and Alert Trigger Flow**
+
+This sequence diagram shows the complete recharge process and post-transaction reactions:
+
+<p align="center">
+  <img src="diagrams/id_card_topup.svg" alt="Campus Card Top-Up Sequence Diagram" title="Campus Card Top-Up - Interaction Diagram" style="display:block; margin:0 auto; width:100%; max-width:1000px; height:auto;">
+</p>
+
+**Key interactions demonstrated:**
+
+* **Template Method Pattern**: Ensures fixed recharge steps (validation → payment → confirmation → update)
+* **Adapter Pattern**: Abstracts different payment gateway implementations
+* **Transactional Consistency**: Balance update and transaction record persist atomically in MySQL
+* **Observer Pattern**: Low-balance listeners are notified automatically when thresholds are crossed
+* **Cache Synchronization**: Redis balance cache is refreshed immediately after successful recharge
+
 #### 5. Architectural Styles and Design Decisions
 ##### 5.1 Architectural Styles
 
