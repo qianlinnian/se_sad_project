@@ -1052,6 +1052,26 @@ How can the system handle sudden high-concurrency requests to services such as o
 **Challenge**
 Detailed capacity planning strategies, multi-level caching solutions, and elastic scaling mechanisms need to be formulated. Considerations include setting appropriate rate limiting and circuit breaking rules, optimizing database connection pools and Redis cache configurations, and establishing an effective performance monitoring and early warning system.
 
+##### 8.3. Evolution of Security Governance in a Growing Microservices Ecosystem
+
+**Problem Description**
+As the SmartCampus platform evolves from a small set of core services into a broader microservices ecosystem, security governance becomes increasingly complex. While the current JWT-based stateless authentication and role-based authorization model is sufficient for the existing services, future expansion—such as integrating third-party systems (e.g., library systems, external payment providers, or municipal services) or introducing additional internal services—may expose limitations in the current approach. Specifically, managing token scope, service-to-service trust, and fine-grained authorization policies across an expanding set of services could become difficult to maintain and audit.
+
+In addition, as the number of APIs grows, ensuring consistent security policies (e.g., rate limiting, access control, and encryption standards) across all services becomes more challenging. Without a unified governance mechanism, discrepancies in security configurations may introduce vulnerabilities or operational risks.
+
+**Challenge**
+The key challenge lies in designing a scalable and manageable security governance model that can evolve alongside the microservices architecture. Potential approaches include introducing centralized policy management, service-to-service authentication mechanisms (such as mutual TLS), or more expressive authorization models (e.g., attribute-based access control). However, these solutions increase system complexity and operational overhead. Balancing security robustness, performance impact, and maintainability remains an open issue that requires careful architectural trade-off analysis in future iterations.
+
+##### 8.4. Data Model Evolution and Backward Compatibility
+
+**Problem Description**
+SmartCampus is intended to operate as a long-term digital platform, continuously evolving to accommodate new services, regulatory requirements, and user behaviors. Over time, domain models—such as orders, transactions, user profiles, and feedback entities—will inevitably change. For example, new attributes may be added to support advanced analytics, new payment methods may introduce additional transaction metadata, or policy changes may require historical data to be preserved in new formats.
+
+In a microservices and polyglot persistence environment, schema evolution is particularly challenging. Different services may evolve at different paces, and multiple storage technologies (MySQL, MongoDB, Redis) must remain logically consistent. Without careful planning, schema changes risk breaking backward compatibility, causing service failures, or complicating data migration.
+
+**Challenge**
+The primary challenge is to support continuous data model evolution while minimizing disruption to existing services and users. Strategies such as versioned APIs, backward-compatible schema changes, and incremental data migration must be considered. At the same time, excessive versioning can lead to increased maintenance burden and technical debt. Designing a sustainable approach that balances flexibility, stability, and long-term maintainability remains an unresolved issue in the current design model.
+
 #### 9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required
 
 #### 10. Project self-reflection
