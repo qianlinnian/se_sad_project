@@ -65,7 +65,7 @@ Data Storage and Management Our data strategy employs a hybrid approach to optim
 
 #### 2. Architecture Refinement  
 
-##### 2.1. Platform-dependent architecture with a refined overall structure
+##### 2.1 Platform-dependent architecture with a refined overall structure  
 
 This section refines the logical layered architecture from Assignment 2 into a **platform-specific implementation**, mapping abstract components to concrete technologies. The key evolution is transforming generic architectural layers into executable deployment configurations with specific frameworks, versions, and integration strategies.
 
@@ -142,7 +142,7 @@ The hybrid multi-modal storage architecture refines Assignment 2's generic "data
 
 **Security:** HTTPS enforcement, JWT (HS256, 2h expiration), BCrypt hashing, parameterized queries, daily backups
 
-##### 2.2. List of subsystems and interfaces
+##### 2.2 List of subsystems and interfaces  
 
 ###### 2.2.1 Meal Ordering Subsystem
 
@@ -164,8 +164,6 @@ Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 
 
 
 ###### 2.2.2 Dishes recommendation and ranking Subsystem
-
-Here is the fully translated version of your table in English:
 
 | API Interface                      | Method | Parameters                                           | Description                                                                                                                                                  |
 | ---------------------------------- | ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -193,9 +191,97 @@ The Feedback Service Subsystem is responsible for collecting, managing, and proc
 | `/api/feedback/status/update` | POST   | `token`, `feedbackId`, `status`                | Update the status of a feedback record after review.                           |
 | `/api/feedback/notify`        | POST   | `feedbackId`                                       | Notify the student of the feedback review result.                              |
 
-##### 2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems
+###### 2.2.4 Campus Card Service Subsystem
 
-##### 2.4. Meal Ordering Subsystem - Interface Specification
+The Campus Card Service Subsystem is responsible for managing all digital campus card–related functionalities, including balance inquiry, recharge processing, low-balance alert configuration, and transaction history management. As a core component of the Life Services domain, this subsystem provides secure, real-time financial interactions between students and campus infrastructure. It integrates closely with the authentication service for identity verification, with external payment gateways for recharge operations, and with the notification mechanism to deliver balance alerts and transaction feedback. The subsystem emphasizes transactional consistency, high availability, and low-latency responses, given its high-frequency usage in daily campus life.
+
+From a functional perspective, the subsystem is designed based on Assignment 2 use cases (UC-007 to UC-010) and refined here into concrete, platform-dependent API interfaces. Balance queries and transaction records rely on MySQL to ensure ACID-compliant financial data consistency, while Redis is employed to cache frequently accessed balance information and alert thresholds, reducing database load and improving responsiveness. Recharge operations follow a strict two-phase process involving payment request initiation and asynchronous payment result callbacks to guarantee correctness under distributed conditions.
+
+| API Interface | Method | Parameters | Description |
+|--------|--------|------------|------------------|
+| /api/card/balance | GET | token | Retrieves the current campus card balance of the authenticated student.  |
+| /api/card/alert/set | POST | token, threshold | Sets or updates a custom low-balance alert threshold for the student.  |
+| /api/card/alert/get | GET | token | Retrieves the currently configured low-balance alert threshold. |
+| /api/card/topup/create | POST   | token, amount | Initiates a campus card top-up request with a specified recharge amount. |
+| /api/card/topup/confirm | POST   | transactionId, paymentStatus | Receives payment gateway callback and confirms the top-up result.  |
+| /api/card/transactions | GET    | token, page, size | Retrieves a paginated list of campus card transaction records.  |
+| /api/card/transaction/detail | GET    | token, transactionId | Retrieves detailed information of a specific transaction.                       |
+| /api/card/notify/low-balance | POST   | userId, currentBalance | Triggers a low-balance notification when the balance falls below the threshold. |
+
+Through this design, the Campus Card Service Subsystem translates abstract use cases into a secure, scalable, and implementation-ready service interface. The same architectural pattern—JWT-based authentication, RESTful APIs, hybrid storage, and external service integration—can be directly extended to other financial or identity-related campus services within the SmartCampus platform.
+
+##### 2.3 Demonstrate Interface Specification in Detail with External Systems
+
+This section demonstrates detailed interface specifications between the SmartCampus system and representative external systems, focusing on how internal subsystems interact with third-party platforms through clearly defined, secure, and reusable interfaces. To ensure architectural consistency with subsequent internal API specifications (Section 2.4), this section emphasizes interface responsibility boundaries and payment capability reuse rather than isolated subsystem design.
+
+Two critical external integrations are selected as representative examples: the External Payment Gateway and the WeChat Authentication Platform. These integrations support multiple internal subsystems, including Meal Ordering and Campus Card services, and illustrate the system’s approach to secure communication, asynchronous processing, and platform abstraction.
+
+###### 2.3.1 Interface with External Payment Gateway (Unified Payment Capability)
+
+The SmartCampus system integrates with third-party payment platforms (e.g., WeChat Pay or Alipay) through a unified payment interface, which is reused by multiple internal subsystems such as Meal Ordering and Campus Card Recharge. Internally, payment interactions are encapsulated within backend services, while the client only interacts with SmartCampus-managed payment URLs.
+
+**Business Context:**
+
+This interface supports financial use cases including UC-009 (Top-up Campus Card) and meal order payment confirmation. The SmartCampus system is responsible for order creation, transaction tracking, and balance updates, while the external payment gateway handles fund authorization and settlement.
+
+**Interface Type:** RESTful HTTPS API
+
+**Security Mechanism:** HTTPS, merchant signature verification, transaction ID validation
+
+**Integration Pattern:** Asynchronous two-phase payment model
+
+**Phase 1: Payment Order Creation (SmartCampus → External Payment Gateway)**
+
+| Item                | Specification  |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| Endpoint            | /pay/api/v1/createOrder |
+| Method              | POST               |
+| Request Parameters  | merchantId, orderId, amount, currency, callbackUrl, timestamp, signature |
+| Response Parameters | gatewayTransactionId, gatewayPaymentUrl, status                                  |
+| Description         | Creates a payment order within the external payment platform                           |
+
+**Processing Logic:**
+When a payment is required (either from a meal order or a campus card top-up), the corresponding backend service generates a unique internal orderId and records a pending transaction in MySQL. The service then sends a signed request to the external payment gateway. The returned gatewayPaymentUrl is not exposed directly to the client; instead, it is bound to an internal SmartCampus payment entry.
+
+The client-facing API (e.g., /api/meal/order/create) returns a SmartCampus-managed payment_url (such as https://pay.smartcampus.com/order/{orderId}), ensuring a consistent and controlled payment entry point, as shown in Section 2.4.
+
+**Phase 2: Payment Result Callback (External Payment Gateway → SmartCampus)**
+
+| Item                | Specification   |
+| ------------------- | ------------------------------------------------------------------------- |
+| Endpoint            | /api/payment/callback   |
+| Method              | POST         |
+| Callback Parameters | gatewayTransactionId, orderId, paymentStatus, amount, signature |
+| Description         | Notifies SmartCampus of the final payment result                          |
+
+**Processing Logic:**
+Upon receiving the callback, the SmartCampus backend verifies the signature and matches the orderId with the internal transaction record. If the payment is successful, the system atomically updates the related business state—such as campus card balance or meal order status—within a single database transaction. Failed or delayed callbacks are handled through idempotent retry mechanisms to prevent duplicate processing.
+
+This unified payment design guarantees transactional consistency, interface reuse, and clear separation between internal and external responsibilities.
+
+###### 2.3.2 Interface with WeChat Authentication Platform (User Login)
+
+To support seamless mobile access, the SmartCampus system integrates with the WeChat Mini Program authentication service. This external interface provides trusted identity verification while allowing the platform to maintain full control over authorization and session management.
+
+**Business Context:**
+This interface underpins all authenticated operations across subsystems, including Meal Ordering, Campus Card services, and Feedback management.
+
+**Interface Type:** RESTful HTTPS API
+
+**Security Mechanism:** AppID/AppSecret + temporary login code exchange
+
+| Item                | Specification      |
+| ------------------- | -------------------------------------------------------------------- |
+| Endpoint            | https://api.weixin.qq.com/sns/jscode2session |
+| Method              | GET   |
+| Request Parameters  | appid, secret, js_code, grant_type                           |
+| Response Parameters | openid, session_key, expires_in                                |
+| Description         | Exchanges a temporary login code for a unique WeChat user identifier |
+
+**Processing Logic:**
+After the client obtains a temporary js_code from WeChat, it forwards the code to the auth-service. The service exchanges the code for an openid, which is mapped to an internal user record. Upon successful mapping, the system issues a JWT token containing the internal userId and role claims. This token is subsequently used in all internal API calls, as demonstrated in Section 2.4.
+
+##### 2.4 Meal Ordering Subsystem - Interface Specification
 
 This section provides detailed specifications for the Meal Ordering subsystem's core interfaces, including request/response formats and authentication requirements.
 
