@@ -14,26 +14,23 @@
   - [1.1 Overview of Design Progress](#11-overview-of-design-progress)
   - [1.2 Implementation Platforms and Frameworks](#12-implementation-platforms-and-frameworks)
 - [2. Architecture Refinement](#2-architecture-refinement)
-  - [2.1. Platform-dependent architecture with a refined overall structure](#21-platform-dependent-architecture-with-a-refined-overall-structure)
-  - [2.2. List of subsystems and interfaces](#22-list-of-subsystems-and-interfaces)
-  - [2.3. Demonstrate interface specification in detail with one or several samples between your system and external systems](#23-demonstrate-interface-specification-in-detail-with-one-or-several-samples-between-your-system-and-external-systems)
-  - [2.4. Meal Ordering Subsystem - Interface Specification](#24-meal-ordering-subsystem---interface-specification)
+  - [2.1 Platform-dependent architecture with a refined overall structure](#21-platform-dependent-architecture-with-a-refined-overall-structure)
+  - [2.2 List of subsystems and interfaces](#22-list-of-subsystems-and-interfaces)
+  - [2.3 Demonstrate Interface Specification in Detail with External Systems](#23-demonstrate-interface-specification-in-detail-with-external-systems)
+  - [2.4 Meal Ordering Subsystem - Interface Specification](#24-meal-ordering-subsystem---interface-specification)
 - [3. Two Selected Analysis Mechanisms and Their Design Mechanisms](#3-two-selected-analysis-mechanisms-and-their-design-mechanisms)
   - [3.1 Data Persistence Mechanism](#31-data-persistence-mechanism)
-  - [3.1.3 Persistence Layer Design and Framework Integration](#313-persistence-layer-design-and-framework-integration)
   - [3.2 Security Mechanism](#32-security-mechanism)
-  - [3.2.2 Security Architecture and Multi-Layer Protection](#322-security-architecture-and-multi-layer-protection)
 - [4. Two Use Case Realizations](#4-two-use-case-realizations)
   - [4.1 Meal Ordering Use Case](#41-meal-ordering-use-case)
+  - [4.2 Campus Card Service Use Case](#42-campus-card-service-use-case)
 - [5. Architectural Styles and Design Decisions](#5-architectural-styles-and-design-decisions)
   - [5.1 Architectural Styles](#51-architectural-styles)
   - [5.2 Critical Design Decisions](#52-critical-design-decisions)
 - [6. Non-Functional Requirements](#6-non-functional-requirements)
   - [6.1 Security Requirements](#61-security-requirements)
   - [6.2 Usability Requirements](#62-usability-requirements)
-  - [6.2 Usability Requirements](#62-usability-requirements-1)
   - [6.3 Performance and Scalability Requirements](#63-performance-and-scalability-requirements)
-  - [6.3 Performance and Scalability Requirements](#63-performance-and-scalability-requirements-1)
   - [6.4 Maintainability and Extensibility Requirements](#64-maintainability-and-extensibility-requirements)
 - [7. Progress on prototyping](#7-progress-on-prototyping)
   - [7.1. Front-end Prototyping](#71-front-end-prototyping)
@@ -41,6 +38,8 @@
 - [8. Open Issues in the Design Model](#8-open-issues-in-the-design-model)
   - [8.1. Data Consistency Assurance Mechanism Across Distributed Services](#81-data-consistency-assurance-mechanism-across-distributed-services)
   - [8.2. System Performance Optimization Under Real-Time High-Concurrency Scenarios](#82-system-performance-optimization-under-real-time-high-concurrency-scenarios)
+  - [8.3. Evolution of Security Governance in a Growing Microservices Ecosystem](#83-evolution-of-security-governance-in-a-growing-microservices-ecosystem)
+  - [8.4. Data Model Evolution and Backward Compatibility](#84-data-model-evolution-and-backward-compatibility)
 - [9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required](#9-if-you-have-used-an-ai-tool-or-technology-to-generate-an-output-that-you-either-paraphrase-or-direct-quote-in-your-writing-you-must-cite-and-reference-this-output-as-a-source-in-your-reference-list-if-you-have-used-an-ai-tool-or-technology-in-the-process-of-completing-the-above-tasks-for-example-generating-technical-solutions-improving-your-architectural-decisions-creating-software-prototypes-implementing-the-poc-and-enhancing-the-contents-of-your-report-an-acknowledgment-of-how-you-have-used-ai-tools-or-technologies-is-required)
 - [10. Project self-reflection](#10-project-self-reflection)
 - [11. Contributions of team members](#11-contributions-of-team-members)
@@ -544,7 +543,7 @@ Our persistence architecture is built upon a three-tier data storage model:
 
 The entire backend data service stack is containerized using Docker and orchestrated by Kubernetes, ensuring consistent deployment and elastic scalability across development, testing, and production environments.
 
-##### 3.1.3 Persistence Layer Design and Framework Integration
+###### 3.1.3 Persistence Layer Design and Framework Integration
 
 ![alt text](source/image.png)
 
@@ -577,7 +576,7 @@ Security in SmartCampus encompasses multiple dimensions:
 
 To address these diverse requirements effectively, we implement a defense-in-depth security architecture with multiple protective layers and specialized security components.
 
-##### 3.2.2 Security Architecture and Multi-Layer Protection
+###### 3.2.2 Security Architecture and Multi-Layer Protection
 
 ![alt text](source/SmartCampusSecurityArchitecture.png)
 
@@ -810,8 +809,7 @@ In the campus card top-up subsystem, interactions between `TopUpController` and 
 
 ###### 6.1.4 Fine-Grained Permission Control and Operational Auditing  
 During dish publishing and review workflows, the system explicitly validates user permissions through use cases such as "Verify Permission" and "View User Authority". All critical operations-including publishing dishes, reviewing feedback, and modifying orders-are recorded in audit logs, associated with user IDs and timestamps. This fulfills Assignment 1's governance requirements for "data traceability" and "accountability".
-
-##### 6.2 Usability Requirements
+ 
 
 ##### 6.2 Usability Requirements  
 SmartCampus primarily serves on-campus students whose usage scenarios are highly fragmented-for example, placing meal orders between classes or checking card balances while queuing. If the interface is complex, the learning curve steep, or the operation flow lengthy, user adoption will suffer significantly. The "90%+ student adoption rate" target outlined in Assignment 1 fundamentally depends on an exceptional user experience. Therefore, usability is not merely a supplementary feature-it is a core driver of business success.
@@ -837,8 +835,7 @@ Clear status indicators are provided throughout key user flows such as ordering,
 This "action-feedback" loop significantly enhances users' sense of control and reduces anxiety, aligning with the usability principles of "clear operational logic" and "minimizing uncertainty".
 
 ##### 6.3 Performance and Scalability Requirements
-
-##### 6.3 Performance and Scalability Requirements  
+ 
 SmartCampus must serve a campus population of thousands, with usage patterns characterized by sharp peaks—particularly during meal times (11:30–13:00 and 17:00–18:30), when hundreds of concurrent meal orders, real-time balance queries, and ranking updates must be handled without degradation. The target of "reducing service delivery time by 40%" can only be achieved through a high-performance, horizontally scalable architecture.
 
 ###### 6.3.1 Microservices-Based Horizontal Scaling  
