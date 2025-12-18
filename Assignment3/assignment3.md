@@ -165,8 +165,6 @@ The hybrid multi-modal storage architecture refines Assignment 2's generic "data
 
 Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 core classes: 5 entity classes (Student, Order, Dish, Restaurant, Reservation) for business data modeling, 2 boundary classes (SystemInterface, OrderingInterface) for user interaction handling, and 2 control classes (OrderController, MenuController) for business logic coordination. Inter-subsystem interactions include: Meal Service invoking Auth Service for user identity verification (JWT token → User_id), calling Payment Service for campus card deduction (Order_id + Amount → Payment result), utilizing Notification Service for order status updates (Order_id + Status → Push message), and receiving payment callbacks (Transaction_id + Status → Order update).
 
-**API Interface:**
-
 | API Interface           | Method | Parameters                                 | Description                            |
 | ----------------------- | ------ | ------------------------------------------ | -------------------------------------- |
 | /api/meal/restaurants   | GET    | token, location                            | Get restaurant list by location        |
@@ -181,7 +179,7 @@ Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 
 
 ##### 2.2.2 Dishes recommendation and ranking Subsystem
 
-Here is the fully translated version of your table in English:
+This subsystem centers around dish recommendation and rating functionality, providing a clear set of RESTful APIs with well-separated responsibilities, primarily covering three areas: user interactions, merchant operations, and administrator review. The overall design embodies permission isolation (students, merchants, and administrators each perform distinct roles), data consistency (duplicate votes are automatically updated), user experience enhancements (paginated comments, fuzzy search, and new dish recommendations), and content governance (via a review mechanism). The architecture is comprehensive, covering the full lifecycle of a dish—from creation and display to user interaction and management.
 
 | API Interface                      | Method | Parameters                                           | Description                                                                                                                                                  |
 | ---------------------------------- | ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -191,7 +189,7 @@ Here is the fully translated version of your table in English:
 | /api/dishes/search                 | GET    | keyword                                              | Searches for dishes based on a keyword (supports fuzzy matching).                                                                                            |
 | /api/dishes/new                    | GET    | month                                                | Retrieves a list of newly recommended dishes for the specified month (defaults to the current month if not provided).                                        |
 | /api/merchants/{merchantId}/dishes | POST   | name, price, description, category, allergens, image | Allows a merchant to submit a new dish. The dish status defaults to "pending review".                                                                        |
-| /api/admin/dishes/pending`         | GET    | -                                                    | Retrieves a list of all dishes with "pending review" status for administrator approval.                                                                      |
+| /api/admin/dishes/pending          | GET    | -                                                    | Retrieves a list of all dishes with "pending review" status for administrator approval.                                                                      |
 | /api/admin/dishes/{dishId}/review  | PUT    | status, rejectionReason                              | Enables an administrator to review a dish: approve it for publication or reject it (with an optional rejection reason).                                      |
 | /api/dishes/{dishId}/comments      | GET    | page, size                                           | Retrieves a paginated list of user comments for a specific dish.                                                                                             |
 | /api/dishes/{dishId}/comments      | POST   | userId, content, images                              | Allows a user to submit a text-and-image comment for a specific dish.                                                                                        |
@@ -460,9 +458,9 @@ To manage this data efficiently and securely, we abandon a single-database appro
 
 Our persistence architecture is built upon a three-tier data storage model:
 
-1. **MySQL 8.0 (Relational Core Database)**Serves as the primary transactional database, storing all business entities requiring strong consistency, including `Student`, `CampusCard`, `Order`, and `TopUpTransaction`. The InnoDB engine guarantees ACID compliance and supports complex joins and foreign key constraints, making it ideal for critical operations such as order creation, balance deduction, and top-up confirmation.
-2. **MongoDB 6.0 (Document-Oriented Extension Store)**Handles schema-flexible, write-intensive unstructured data, such as `Comment` documents (containing text and image URLs), `Feedback` submissions, and system audit logs. Its dynamic schema greatly simplifies the storage and evolution of rich-media comments and variable feedback forms.
-3. **Redis 7.0 (In-Memory Caching Layer)**Deployed at the front of the data access path to cache frequently accessed data, including:
+1. MySQL 8.0 (Relational Core Database) Serves as the primary transactional database, storing all business entities requiring strong consistency, including `Student`, `CampusCard`, `Order`, and `TopUpTransaction`. The InnoDB engine guarantees ACID compliance and supports complex joins and foreign key constraints, making it ideal for critical operations such as order creation, balance deduction, and top-up confirmation.
+2. MongoDB 6.0 (Document-Oriented Extension Store)Handles schema-flexible, write-intensive unstructured data, such as `Comment` documents (containing text and image URLs), `Feedback` submissions, and system audit logs. Its dynamic schema greatly simplifies the storage and evolution of rich-media comments and variable feedback forms.
+3. Redis 7.0 (In-Memory Caching Layer)Deployed at the front of the data access path to cache frequently accessed data, including:
 
    - Today's dish menu (`Dish` list)
    - Real-time dish rankings and aggregated ratings
@@ -642,162 +640,121 @@ Each microservice exports health and performance metrics via Spring Boot Actuato
 
 #### 7. Progress on prototyping
 
-##### 7.1. Front-end Prototyping
+##### 7.1 Login Page Progress
 
-In this project, considering that the core user base consists of on-campus students who heavily rely on mobile devices, we prioritized mobile accessibility and user experience in the presentation layer design. Therefore, WeChat Mini Program was selected as the primary client platform-it requires no download or installation, offers an instant "use-and-go" experience, and enjoys extremely high adoption among university students, effectively lowering the barrier to entry for users.
+<div align="center">
+ <img src="diagrams/board1.png" alt="original login page" style="width:40%; max-width:900px;"/>
+  <img src="source/Login_page3.png" alt="login page progess" style="width:37.5%; max-width:900px;"/>
+</div>
 
-The front-end client is developed using the uni-app cross-platform framework, with HBuilderX as the main development environment. uni-app enables us to write code once using Vue.js syntax and compile it to multiple platforms-including WeChat Mini Programs, H5 web apps, and native mobile apps-laying a solid technical foundation for future expansion to native iOS/Android applications or web interfaces.
+**(1) Added "Forgot Password" Functionality to Improve Usability:**
+* In real-world usage scenarios, users frequently forget their passwords. Including a password recovery option reflects a user-centered design philosophy: not only providing a login function, but also offering a clear recovery path for common error cases.
 
-During development, we adopted the "Run to Mini Program Simulator" mode, which automatically compiles the project in real time and pushes it directly into WeChat DevTools. This workflow enables efficient debugging, real-device previewing, and performance profiling. It fully leverages HBuilderX's strengths in intelligent code completion, rapid component generation, and project management, while also taking advantage of WeChat DevTools' deep support for Mini Program API debugging, network monitoring, and log inspection-significantly enhancing both development efficiency and consistency in user experience.
+**(2) More Accurate Field Labeling to Reduce Cognitive Load:**
+* The original design used "key" instead of "password." However, "password" is the globally recognized and standard term for login credentials, instantly understandable to users. The improved version uses "password," aligning with user expectations and reducing confusion and input errors.
 
-which is structured as follows:
+**(3) More Modern and Guided Visual Design:**
+* The improved version features:
+  * **Card-based layout**: Focuses attention by grouping form elements together;
+  * **Rounded corners and subtle shadows**: Enhance depth and a modern aesthetic;
+  * **Prominent blue primary button with gradient background**: More visually engaging and encourages interaction.
+* In contrast, the original design is overly minimalistic and plain, lacking visual hierarchy and guidance. Its smaller button and overall appearance feel less professional.
 
-<p align="center">
-  <img src="source/structure.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; width:20%; max-width:500px; height:auto;"/>
-</p>
+##### 7.2 
 
-The way to run the front end:
+##### 7.3 Dishes recommendation and ranking Subsystem progress
 
-<p align="center">
-  <img src="source/way.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:700px; height:auto;"/>
-</p>
+**7.3.1 Refinements in the “Publish New Dish” Interface**
 
-For administrative users, we have independently developed a responsive web management dashboard based on Vue.js 3 + Vite. This backend system uses npm as the package manager and starts the development server on local localhost:5173 through the npm run dev command, supporting hot reload and modular development.
+<div align="center">
+ <img src="source/RP-S.png" alt="original login page" style="width:37.5%; max-width:900px;"/>
+  <img src="source/publish_progress.png" alt="login page progess" style="width:37.5%; max-width:900px;"/>
+</div>
 
-<p align="center">
-  <img src="source/vue.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:300px; height:auto;"/>
-</p>
+**(1) Fix Logical Ambiguity by Clarifying the Difference Between “Submit Now” and “Save as Draft”**
 
-Taking the login page as an example, our front-end code is as follows:
+- In the A2 interface, the option “Publish Immediately?” was presented only as a Yes/No toggle, without explaining what happens when “No” is selected—specifically, whether the dish enters the review queue or can be edited later. This left users uncertain about the post-submission status and caused confusion.
 
-```vue
-<template>
-  <view class="container">
-    <view class="circle-bg top-left"></view>
-    <view class="circle-bg bottom-right"></view>
+- In A3, this option has been redesigned as labeled radio buttons that clearly distinguish two workflows:
+  - **Yes (Submit now)**: Immediately submits the dish to the administrator’s review queue; the dish enters “Pending Approval” status.
+  - **No (Save as draft)**: Automatically saves the current input as a draft, allowing the user to return at any time to continue editing and submit later.
 
-    <view class="content">
-      <view class="header">
-        <image class="logo" src="/static/logo.png" mode="aspectFill"></image>
-        <view class="title-group">
-          <text class="title">Welcome Back !</text>
-        </view>
-      </view>
+- **Result**: Users can clearly understand the consequences of each choice, avoid accidental submissions, and benefit from flexible, step-by-step form completion—improving both form completion rates and overall user experience.
 
-      <view class="form-card">
-        <view class="input-wrapper">
-          <text class="input-label"> ID </text>
-          <view class="input-box">
-            <input
-              class="input-field"
-              v-model="userId"
-              type="text"
-              placeholder="please input your ID"
-              placeholder-class="placeholder-style"
-              confirm-type="next"
-            />
-          </view>
-        </view>
 
-        <view class="input-wrapper">
-          <text class="input-label"> password </text>
-          <view class="input-box">
-            <input
-              class="input-field"
-              v-model="userKey"
-              password
-              type="text"
-              placeholder="please input your password"
-              placeholder-class="placeholder-style"
-              confirm-type="done"
-              @confirm="handleLogin"
-            />
-          </view>
-        </view>
+**(2) Complete Key Input Fields and Improve Guidance Text**
 
-        <button 
-          class="login-btn" 
-          :loading="isLoading" 
-          :disabled="isLoading" 
-          @click="handleLogin"
-        >
-          {{ isLoading ? 'Logging in......' : 'Log In' }}
-        </button>
-      
-        <view class="footer-link">
-          <text>Forget password?</text>
-        </view>
-      </view>
-    </view>
-  </view>
-</template>
-```
+- In the A2 interface, the “Description” field was missing, and both the form sections and image upload area lacked clear instructions, often leading to incomplete submissions or incorrect formats.
 
-This page is designed based on system UI snapshots, offering a simple and efficient user authentication entry point. It includes fields for entering student ID and password, with secure password masking display and a responsive login button. The interface is optimized for mobile screens, supporting the WeChat Mini Program platform's instant access and use experience. The page effect is shown in the figure below:
+- In A3, the following improvements were implemented:
+  - Added an allergen disclosure section: a Yes/No toggle triggers a dynamic multi-select list (e.g., Gluten, Nuts, Dairy) when “Yes” is selected.
+  - The image upload area now includes explicit guidance: “Up to 3 images; recommended size: 800×600 px.”
+  - Added a multi-line description field with placeholder text: “Describe taste, ingredients, etc.”
+  - Enhanced the cuisine category section with a multi-tag selector accessible via a dropdown arrow on the right, allowing users to choose appropriate dish type labels.
 
-<p align="center">
-  <img src="source/Login_page.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:700px; height:auto;"/>
-</p>
+- **Result**: The form now collects more complete and compliant information, reducing the likelihood of rejection due to missing details, while also improving data quality and transparency around food safety.
 
-##### 7.2. Back-end Prototyping
+**(3) Strengthen Form Guidance and Real-Time Feedback**
 
-The backend system is built using the **Spring Boot 3.x** framework, following microservices architecture principles. The overall functionality is decomposed into multiple highly cohesive and loosely coupled service modules (such as meal service, feedback service, and campus card service). In the current prototyping phase, we have not yet integrated the full suite of Spring Cloud distributed governance components—such as a service registry or configuration center—and are instead focusing on implementing core business logic and validating API contracts for each microservice. Inter-service communication is currently handled via hardcoded URLs or local hosts file configurations for testing purposes. In subsequent iterations, we plan to introduce Spring Cloud Netflix Eureka as the service registry and discovery mechanism, complemented by Spring Cloud Config for centralized configuration management, thereby enabling comprehensive microservices governance in the production environment.
+- **Original issue**: There were no required-field indicators or input validation, so users might submit the form unsuccessfully without understanding why.
 
-The frontend and backend communicate through **RESTful APIs**, with interface design following unified specifications, supporting JSON data format, and integrating global exception handling and standardized response structures.
+- In A3, the following enhancements were made:
+  - Required fields are marked with a red asterisk (*).
+  - Real-time validation is applied during input (e.g., dish name must not be empty; price must be non-negative).
+  - When validation fails, a red error message appears below the field (e.g., “Dish name cannot be empty”).
+  - The “Submit” button is initially disabled (rendered in gray-blue) and only becomes active once all required fields are valid.
 
-We begin our work by creating a Spring Boot microservice called `auth-service` :
+- **Result**: User trial-and-error is significantly reduced, form-filling efficiency and success rates improve, and the design embodies the UX principle that “preventing errors is better than correcting them.”
 
-<p align="center">
-  <img src="source/spring_initializr.png" alt="allscopes" title="scope" style="display:block; margin:0 auto; max-width:700px; height:auto;"/>
-</p>
+**7.3.2 Refinements in the “Pending Approval” Interface**
 
-which is structured as follows:
+<div align="center">
+ <img src="source/PA-S.png" alt="original login page" style="width:37.5%; max-width:900px;"/>
+  <img src="source/pending_progress.png" alt="login page progess" style="width:37.5%; max-width:900px;"/>
+</div>
 
-Taking the **User Authentication Microservice** (auth-service) as an example, this service is responsible for handling security-related functions such as student and administrator login and session management. We have defined the following key interfaces for it:
+**(1) From “Abstract Number Cards” to “Concrete Task Cards” — Improving Information Readability**
 
-- `POST /api/auth/login`: User password login
-- `POST /api/auth/logout`: User logout
-- `GET /api/auth/userinfo`: Get current user information
+- In the A2 interface, each entry displayed only a number (e.g., “4”) to represent the count of dishes, without clarifying whether it referred to “dishes pending approval” or another metric. Users could not quickly understand its meaning.
 
-Core controller code snippet:
+- In A3, each entry has been redesigned as a concrete task card, clearly showing at the top: “Number of dishes submitted: X”, along with explicit labels for submission date, status, and affiliated restaurant.
 
-```java
-@RestController
-public class AuthController {
+- **Result**: Users can instantly grasp what each record represents, avoiding confusion. The information hierarchy is clearer, significantly improving readability and scanning efficiency.
 
-    @Autowired
-    private AuthService authService;
 
-    @Autowired
-    private TokenService tokenService;
+**(2) Differentiate Statuses and Provide Contextual Action Buttons — Enhancing Workflow Control**
 
-    @PostMapping("/api/auth/login")
-    public ResponseEntity<ApiResponse<TokenInfoVO>> login(
-            @Valid @RequestBody LoginRequest request) {
-      
-        // Validate username and password
-        UserInfoBO user = authService.authenticate(request.getUsername(), request.getPassword());
-        if (user == null) {
-            return ResponseEntity.badRequest().body(ApiResponse.error("Invalid username or password"));
-        }
+- In the A2 interface, statuses were distinguished only by text labels such as “Awaiting Approval” or “Under Review,” with no actionable buttons—leaving users unsure of what to do next.
 
-        // Generate JWT access token
-        String accessToken = tokenService.generateToken(user);
-      
-        // Return standardized response
-        TokenInfoVO tokenVO = new TokenInfoVO(accessToken, user.getUserId(), user.getRole());
-        return ResponseEntity.ok(ApiResponse.success(tokenVO));
-    }
-}
-```
+- Improvements in A3:
+  - For entries in “Awaiting Approval” status: Approve and Reject buttons are provided.
+  - For entries in “Under Review” status: Pause and Add Note buttons are available.
 
-**Security Implementation:**
+- **Result**: Each status now maps to a specific set of actions, enabling administrators to perform precise review operations, reduce errors, and improve operational efficiency.
 
-We have deeply integrated **Spring Security + JWT** to implement a stateless token-based authentication mechanism. All protected APIs require a valid JWT Access Token, which is uniformly validated at the gateway layer, ensuring clear system security boundaries and precise permission control.
 
-**Current Development Status:**
+**(3) Add Search and Sorting Capabilities — Enabling Efficient Filtering and Management**
 
-Currently, each microservice has initially completed the development and integration testing of core interfaces. Testing can be performed through Postman or Swagger UI, laying a solid foundation for subsequent integration with the frontend mini-program and management backend.
+- In the A2 interface, there was no search bar or sorting options, making it difficult to locate specific records when the number of pending submissions grew large.
+
+- Improvements in A3:
+  - A search bar was added at the top: “Search by restaurant name or submitter”.
+  - A sorting control was introduced: “Sort by [Date ↓]”, allowing submissions to be ordered by submission time (descending by default).
+
+- **Result**: Administrators can quickly find dishes from a specific restaurant or submitter and prioritize urgent or high-priority requests, greatly enhancing management efficiency.
+
+**(4) Introduce a “View Details” Entry Point — Supporting In-Depth Review and Verification**
+
+- In the A2 interface, only basic information was shown; users could not access detailed content such as dish images, descriptions, or allergen information, which hindered accurate review decisions.
+
+- Improvement in A3:  
+  A View Details button was added below each record. Clicking it reveals complete dish information—including name, price, images, allergens, and more.
+
+- **Result**: Reviewers can access comprehensive details without leaving the current page, reducing navigation overhead and improving the accuracy and confidence of their approval decisions.
+
+##### 7.3
+##### 7.4
+##### 7.5 
 
 #### 8. Open Issues in the Design Model
 
