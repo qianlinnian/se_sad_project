@@ -189,7 +189,7 @@ Two critical external integrations are selected as representative examples: the 
 
 ###### 2.3.1 Interface with External Payment Gateway (Unified Payment Capability)
 
-The SmartCampus system integrates with third-party payment platforms (e.g., WeChat Pay or Alipay) through a unified payment interface, which is reused by multiple internal subsystems such as Meal Ordering and Campus Card Recharge. Internally, payment interactions are encapsulated within backend services, while the client only interacts with SmartCampus-managed payment URLs.
+The SmartCampus system integrates with third-party payment platforms (e.g., WeChat Pay) through a unified payment interface, which is reused by multiple internal subsystems such as Meal Ordering and Campus Card Recharge. Internally, payment interactions are encapsulated within backend services, while the client only interacts with SmartCampus-managed payment URLs.
 
 **Business Context:**
 
@@ -609,7 +609,7 @@ This sequence diagram illustrates the complete flow of a student placing a meal 
 - **JWT Authentication**: SecurityFilter validates the JWT token before allowing order creation
 - **Cache-First Strategy**: MenuCacheService checks Redis for dish availability before querying MySQL
 - **Repository Pattern**: OrderRepository abstracts persistence logic, coordinating MySQL and Redis operations
-- **Adapter Pattern**: PaymentAdapter provides a unified interface for different payment methods (WeChat Pay, Alipay, Campus Card)
+- **Adapter Pattern**: PaymentAdapter provides a unified interface for different payment methods (e.g., WeChat Pay)
 - **Observer Pattern**: NotificationService is triggered upon successful payment to send order confirmation
 
 This diagram demonstrates the seamless integration of Section 3's design mechanisms (persistence and security) with Section 2's architectural decisions (microservices, JWT authentication, hybrid storage) in the Place Order use case.
