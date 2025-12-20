@@ -1,14 +1,14 @@
 <mxfile host="65bd71144e">
     <diagram id="MealOrderingClassDiagram" name="Page-1">
-        <mxGraphModel dx="1188" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="2400" math="0" shadow="0">
+        <mxGraphModel dx="1813" dy="1498" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="2400" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="repositoryPackage" value="Repository Pattern" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;recursiveResize=0;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="1530" y="1020" width="400" height="460" as="geometry"/>
+                    <mxGeometry x="1420" y="1040" width="400" height="460" as="geometry"/>
                 </mxCell>
                 <mxCell id="orderRepoInterface" value="&lt;&lt;interface&gt;&gt;&#xa;OrderRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="repositoryPackage" vertex="1">
-                    <mxGeometry x="30" y="50" width="150" height="126" as="geometry"/>
+                    <mxGeometry x="220" y="60" width="150" height="126" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="orderRepoInterface" vertex="1">
                     <mxGeometry y="40" width="150" height="8" as="geometry"/>
@@ -22,20 +22,8 @@
                 <mxCell id="orMethod1" value="+ update(Order):void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="orderRepoInterface" vertex="1">
                     <mxGeometry y="100" width="150" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="menuRepoInterface" value="&lt;&lt;interface&gt;&gt;&#xa;MenuRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="repositoryPackage" vertex="1">
-                    <mxGeometry x="220" y="50" width="150" height="116" as="geometry"/>
-                </mxCell>
-                <mxCell id="40" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="menuRepoInterface" vertex="1">
-                    <mxGeometry y="40" width="150" height="8" as="geometry"/>
-                </mxCell>
-                <mxCell id="44" value="+ findByRestaurant&#xa;(restaurantId):List&lt;Dish&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="menuRepoInterface" vertex="1">
-                    <mxGeometry y="48" width="150" height="42" as="geometry"/>
-                </mxCell>
-                <mxCell id="45" value="+ findById(orderId):Dish" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="menuRepoInterface" vertex="1">
-                    <mxGeometry y="90" width="150" height="26" as="geometry"/>
-                </mxCell>
                 <mxCell id="mysqlRepo" value="&lt;&lt;repository&gt;&gt;&#xa;MySQLOrderRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;labelBackgroundColor=none;" parent="repositoryPackage" vertex="1">
-                    <mxGeometry x="20" y="214" width="170" height="174" as="geometry"/>
+                    <mxGeometry x="210" y="224" width="170" height="174" as="geometry"/>
                 </mxCell>
                 <mxCell id="49" value="- dataSource:DataSource" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="mysqlRepo" vertex="1">
                     <mxGeometry y="36" width="170" height="26" as="geometry"/>
@@ -55,8 +43,20 @@
                 <mxCell id="52" value="+ update(Order):void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="mysqlRepo" vertex="1">
                     <mxGeometry y="148" width="170" height="26" as="geometry"/>
                 </mxCell>
+                <mxCell id="menuRepoInterface" value="&lt;&lt;interface&gt;&gt;&#xa;MenuRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="repositoryPackage" vertex="1">
+                    <mxGeometry x="30" y="40" width="150" height="116" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="menuRepoInterface" vertex="1">
+                    <mxGeometry y="40" width="150" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="+ findByRestaurant&#xa;(restaurantId):List&lt;Dish&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="menuRepoInterface" vertex="1">
+                    <mxGeometry y="48" width="150" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="+ findById(orderId):Dish" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="menuRepoInterface" vertex="1">
+                    <mxGeometry y="90" width="150" height="26" as="geometry"/>
+                </mxCell>
                 <mxCell id="redisCache" value="&lt;&lt;repository&gt;&gt;&#xa;RedisMenuCache" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="repositoryPackage" vertex="1">
-                    <mxGeometry x="210" y="214" width="180" height="216" as="geometry"/>
+                    <mxGeometry x="20" y="204" width="180" height="216" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" value="- redisTemplate:RedisTemplate" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="redisCache" vertex="1">
                     <mxGeometry y="36" width="180" height="26" as="geometry"/>
@@ -78,6 +78,9 @@
                 </mxCell>
                 <mxCell id="57" value="+ refreshCache(key):void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=2" parent="redisCache" vertex="1">
                     <mxGeometry y="190" width="180" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="redisToInterface" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;" parent="repositoryPackage" source="redisCache" target="menuRepoInterface" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="coreEntitiesPackage" value="Core Entities" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;recursiveResize=0;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="60" y="300" width="800" height="610" as="geometry"/>
@@ -212,7 +215,7 @@
                     <mxGeometry y="178" width="240" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="menuControllerClass" value="&lt;&lt;controller&gt;&gt;&#xa;MenuController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="controllersPackage" vertex="1">
-                    <mxGeometry x="30" y="280" width="210" height="126" as="geometry"/>
+                    <mxGeometry x="60" y="270" width="210" height="126" as="geometry"/>
                 </mxCell>
                 <mxCell id="mcAttr1" value="- menuRepository: MenuRepository" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="menuControllerClass" vertex="1">
                     <mxGeometry y="40" width="210" height="26" as="geometry"/>
@@ -481,17 +484,14 @@
                 <mxCell id="mysqlToInterface" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;" parent="1" source="mysqlRepo" target="orderRepoInterface" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="redisToInterface" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;" parent="1" source="redisCache" target="menuRepoInterface" edge="1">
-                    <mxGeometry width="160" relative="1" as="geometry"/>
-                </mxCell>
                 <mxCell id="ocToStrategy" value="uses" style="endArrow=open;endSize=12;html=1;" parent="1" source="orderControllerClass" target="pricingStrategyInterface" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="adapterPackage" value="Adapter Pattern" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;recursiveResize=0;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="820" y="1050" width="670" height="410" as="geometry"/>
+                    <mxGeometry x="820" y="1050" width="510" height="410" as="geometry"/>
                 </mxCell>
                 <mxCell id="paymentAdapterInterface" value="&lt;&lt;interface&gt;&gt;&#xa;PaymentAdapter" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="adapterPackage" vertex="1">
-                    <mxGeometry x="250" y="50" width="210" height="126" as="geometry"/>
+                    <mxGeometry x="180" y="50" width="210" height="126" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="paymentAdapterInterface" vertex="1">
                     <mxGeometry y="40" width="210" height="8" as="geometry"/>
@@ -524,7 +524,7 @@
                     <mxGeometry y="112" width="200" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="wechatAdapter" value="WeChatPayAdapter" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="adapterPackage" vertex="1">
-                    <mxGeometry x="220" y="220" width="200" height="164" as="geometry"/>
+                    <mxGeometry x="280" y="207" width="200" height="164" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" value="- appId:String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="wechatAdapter" vertex="1">
                     <mxGeometry y="26" width="200" height="26" as="geometry"/>
@@ -544,34 +544,10 @@
                 <mxCell id="30" value="+ queryStatus(orderId):String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="wechatAdapter" vertex="1">
                     <mxGeometry y="138" width="200" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="alipayAdapter" value="AlipayAdapter" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="adapterPackage" vertex="1">
-                    <mxGeometry x="450" y="220" width="200" height="164" as="geometry"/>
-                </mxCell>
-                <mxCell id="37" value="- partnerId:String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="alipayAdapter" vertex="1">
-                    <mxGeometry y="26" width="200" height="26" as="geometry"/>
-                </mxCell>
-                <mxCell id="25" value="- privateKey:String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="alipayAdapter" vertex="1">
-                    <mxGeometry y="52" width="200" height="26" as="geometry"/>
-                </mxCell>
-                <mxCell id="20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="alipayAdapter" vertex="1">
-                    <mxGeometry y="78" width="200" height="8" as="geometry"/>
-                </mxCell>
-                <mxCell id="35" value="+ processPayment(order): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="alipayAdapter" vertex="1">
-                    <mxGeometry y="86" width="200" height="26" as="geometry"/>
-                </mxCell>
-                <mxCell id="34" value="+ refund(orderId):boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="alipayAdapter" vertex="1">
-                    <mxGeometry y="112" width="200" height="26" as="geometry"/>
-                </mxCell>
-                <mxCell id="33" value="+ queryStatus(orderId):String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="alipayAdapter" vertex="1">
-                    <mxGeometry y="138" width="200" height="26" as="geometry"/>
-                </mxCell>
                 <mxCell id="campusToInterface" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;" parent="adapterPackage" source="campusCardAdapter" target="paymentAdapterInterface" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="wechatToInterface" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;" parent="adapterPackage" source="wechatAdapter" target="paymentAdapterInterface" edge="1">
-                    <mxGeometry width="160" relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="alipayToInterface" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;" parent="adapterPackage" source="alipayAdapter" target="paymentAdapterInterface" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="138" style="html=1;dashed=1;endSize=12;endArrow=open;endFill=0;" parent="1" source="orderControllerClass" target="studentClass" edge="1">
@@ -585,7 +561,8 @@
                 <mxCell id="ocToAdapter" value="uses" style="endArrow=open;endSize=12;html=1;edgeStyle=orthogonalEdgeStyle;" parent="1" source="orderControllerClass" target="paymentAdapterInterface" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1110" y="760"/>
+                            <mxPoint x="1170" y="940"/>
+                            <mxPoint x="1170" y="940"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -633,14 +610,14 @@
                 <mxCell id="ocToRepo" value="uses" style="endArrow=open;endSize=12;html=1;edgeStyle=orthogonalEdgeStyle;" parent="1" source="orderControllerClass" target="orderRepoInterface" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1660" y="655"/>
+                            <mxPoint x="1680" y="655"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="146" style="html=1;endArrow=open;endFill=0;endSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="menuControllerClass" target="menuRepoInterface" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1760" y="900"/>
+                            <mxPoint x="1570" y="900"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
