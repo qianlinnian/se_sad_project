@@ -41,7 +41,7 @@
   - [8.2. System Performance Optimization Under Real-Time High-Concurrency Scenarios](#82-system-performance-optimization-under-real-time-high-concurrency-scenarios)
   - [8.3. Evolution of Security Governance in a Growing Microservices Ecosystem](#83-evolution-of-security-governance-in-a-growing-microservices-ecosystem)
   - [8.4. Data Model Evolution and Backward Compatibility](#84-data-model-evolution-and-backward-compatibility)
-- [9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required](#9-if-you-have-used-an-ai-tool-or-technology-to-generate-an-output-that-you-either-paraphrase-or-direct-quote-in-your-writing-you-must-cite-and-reference-this-output-as-a-source-in-your-reference-list-if-you-have-used-an-ai-tool-or-technology-in-the-process-of-completing-the-above-tasks-for-example-generating-technical-solutions-improving-your-architectural-decisions-creating-software-prototypes-implementing-the-poc-and-enhancing-the-contents-of-your-report-an-acknowledgment-of-how-you-have-used-ai-tools-or-technologies-is-required)
+- [9. Acknowledgment of AI Tool Usage](#9-acknowledgment-of-ai-tool-usage)
 - [10. Project self-reflection](#10-project-self-reflection)
 - [11. Contributions of team members](#11-contributions-of-team-members)
 
@@ -956,8 +956,19 @@ In a microservices and polyglot persistence environment, schema evolution is par
 **Challenge**
 The primary challenge is to support continuous data model evolution while minimizing disruption to existing services and users. Strategies such as versioned APIs, backward-compatible schema changes, and incremental data migration must be considered. At the same time, excessive versioning can lead to increased maintenance burden and technical debt. Designing a sustainable approach that balances flexibility, stability, and long-term maintainability remains an unresolved issue in the current design model.
 
-#### 9. If you have used an AI tool or technology to generate an output that you either paraphrase or direct quote in your writing, you must cite and reference this output as a source in your reference list. If you have used an AI tool or technology in the process of completing the above tasks (for example, generating technical solutions, improving your architectural decisions, creating software prototypes, implementing the PoC, and enhancing the contents of your report), an acknowledgment of how you have used AI tools or technologies is required
+#### 9. Acknowledgment of AI Tool Usage
+In completing this assignment, we utilized AI-powered tools including **GitHub Copilot** (Claude Sonnet 4.5) and **ChatGPT** (GPT-4) to enhance documentation quality and technical design.
+**AI Applications**: AI assisted in identifying documentation inconsistencies (section numbering, duplicate headers), analyzing UML class diagrams to generate specification tables (sections 2.4.3-2.4.5) and API interfaces (section 2.4.6), providing comparative analysis for authentication mechanisms (OAuth 2.0 vs JWT), and recommending design patterns (Adapter, Repository, Strategy, Observer, Facade, Template Method) for use case realizations.
+**Human Oversight**: All AI-generated content was reviewed and validated by the team. Core architectural decisions, use case selection, domain modeling, and PoC implementation were performed by human team members. AI did not make final design decisions, develop prototypes independently, or interpret assignment requirements. All suggestions were cross-validated against authoritative sources and tested in the development environment.
+**References**: GitHub Copilot (Claude Sonnet 4.5). (2025). *System design assistance for SmartCampus platform*. Retrieved via VS Code. | ChatGPT (GPT-4). (2024). *Design pattern recommendations*. OpenAI.
 
 #### 10. Project self-reflection
+- Feng Juncai (2353924): As team lead, I coordinated the overall architecture design and alignment with assignment requirements. This project deepened my understanding of system design complexity through collaborative discussions with team members on architecture and documentation. I contributed significantly to the meal ordering subsystem, including interface design, core logic implementation, "Place Order" use case realization, and UI prototype iterations. I enhanced my skills in requirements documentation and design modeling while improving communication and coordination abilities. However, I recognize that our initial planning was overly broad, causing significant scope adjustments from the complete system to focused meal ordering functionalities. Moving forward, I will prioritize thorough preliminary planning and requirements analysis to ensure clear objectives and reasonable task allocation, while strengthening my technical capabilities through continuous learning of new technologies. 
 
 #### 11. Contributions of team members
+|name|work|percent|
+|----|----|-------|
+|冯俊财 2353924|Overall Architecture: System architecture design, refinement, and style definition.<br>Subsystem Implementation: Interface design and core logic implementation of the meal ordering subsystem.<br>Use Case Implementation: Implementation of the key use case "Place Order."<br>Interface Prototype: Iterations of the meal ordering page prototype.|25%|
+|||25%|
+|||25%|
+|||25%|
