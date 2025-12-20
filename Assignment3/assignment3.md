@@ -34,7 +34,7 @@
   - [6.4 Maintainability and Extensibility Requirements](#64-maintainability-and-extensibility-requirements)
 - [7. Progress on prototyping](#7-progress-on-prototyping)
   - [7.1 Login Page Progress](#71-login-page-progress)
-  - [7.2](#72)
+  - [7.2 Meal Ordering Subsystem Progress](#72-meal-ordering-subsystem-progress)
   - [7.3 Dishes recommendation and ranking Subsystem progress](#73-dishes-recommendation-and-ranking-subsystem-progress)
 - [8. Open Issues in the Design Model](#8-open-issues-in-the-design-model)
   - [8.1. Data Consistency Assurance Mechanism Across Distributed Services](#81-data-consistency-assurance-mechanism-across-distributed-services)
@@ -90,12 +90,10 @@ This section refines the logical layered architecture from Assignment 2 into a *
 
 **Microservices Design:**
 
-| Service | Port | Core Responsibilities | Data Storage |
-|---------|------|----------------------|--------------|
-| **recommendation-service** | 8081 | Dish recommendations, daily rankings | MySQL + MongoDB + Redis |
-| **meal-service** | 8082 | Order management, menu browsing, reviews | MySQL + MongoDB + Redis |
-| **card-service** | 8083 | Campus card balance, top-up operations | MySQL + Redis |
-| **feedback-service** | 8084 | Feedback collection, admin review | MySQL + MongoDB |
+1. **recommendation-service** : Dish recommendations, daily rankings 
+2. **meal-service** : Order management, menu browsing, reviews 
+3. **card-service** : Campus card balance, top-up operations 
+4. **feedback-service** : Feedback collection, admin review 
 
 **Inter-Service Communication:**
 - **Protocol**: Internal HTTP/REST APIs with JSON payloads
@@ -113,15 +111,7 @@ This section refines the logical layered architecture from Assignment 2 into a *
 
 ###### 2.1.3 Cross-Layer Data Flow Example: Order Creation
 
-To illustrate how the 5 layers interact, consider the following flow when a student places a meal order:
-
-1. **Client Layer**: Student selects dishes in WeChat Mini Program → Sends `POST /api/meal/order/create` with JWT token
-2. **Gateway Layer**: Nginx receives HTTPS request → Spring Security validates JWT token → Routes to `meal-service:8082`
-3. **Service Layer**: OrderController validates request → Checks dish stock → Calculates total price → Generates payment URL
-4. **Data Access Layer**: Spring Data JPA persists Order entity to MySQL → Redis caches order status → MongoDB prepared for future review
-5. **Infrastructure Layer**: Kubernetes ensures `meal-service` pod availability → MySQL transaction commits → Redis cache updated
-
-This layered approach ensures clear separation of concerns, independent scalability, and maintainability.
+When a student places an order, the request flows sequentially through all five layers: the Client submits via HTTPS with JWT authentication, the Gateway validates and routes to the appropriate microservice, the Service layer executes business logic, the Data Access layer coordinates persistence across MySQL/Redis/MongoDB, and the Infrastructure layer ensures container orchestration and transaction integrity—demonstrating clear separation of concerns and independent scalability.
 
 ##### 2.2 List of subsystems and interfaces  
 
@@ -144,20 +134,20 @@ Based on Assignment 2's analysis model, the Meal Ordering subsystem comprises 9 
 
 ###### 2.2.2 Dishes recommendation and ranking Service Subsystem
 
-This subsystem centers around dish recommendation and rating functionality, providing a clear set of RESTful APIs with well-separated responsibilities, primarily covering three areas: user interactions, merchant operations, and administrator review. The overall design embodies permission isolation (students, merchants, and administrators each perform distinct roles), data consistency (duplicate votes are automatically updated), user experience enhancements (paginated comments, fuzzy search, and new dish recommendations), and content governance (via a review mechanism). The architecture is comprehensive, covering the full lifecycle of a dish—from creation and display to user interaction and management.
+This subsystem manages dish recommendation, rating, and review workflows across three user roles: students (voting/commenting), merchants (dish submission), and administrators (approval). The design ensures permission isolation, automatic vote updates, and content governance throughout the dish lifecycle.
 
-| API Interface                      | Method | Parameters                                           | Description                                                                                                                                                  |
-| ---------------------------------- | ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| /api/dishes/rankings               | GET    | sortType, category, restaurantId                     | Retrieves a ranked list of dishes, supporting sorting by popularity or rating.                                                                               |
-| /api/dishes/{dishId}/vote          | POST   | userId, rating, comment                              | Allows a student to rate and comment on a specific dish. If the student has already voted, the existing record is updated; otherwise, a new vote is created. |
-| /api/dishes/{dishId}               | GET    | -                                                    | Retrieves detailed information about a specific dish, including name, price, description, associated restaurant, average rating, and total number of votes.  |
-| /api/dishes/search                 | GET    | keyword                                              | Searches for dishes based on a keyword (supports fuzzy matching).                                                                                            |
-| /api/dishes/new                    | GET    | month                                                | Retrieves a list of newly recommended dishes for the specified month (defaults to the current month if not provided).                                        |
-| /api/merchants/{merchantId}/dishes | POST   | name, price, description, category, allergens, image | Allows a merchant to submit a new dish. The dish status defaults to "pending review".                                                                        |
-| /api/admin/dishes/pending          | GET    | -                                                    | Retrieves a list of all dishes with "pending review" status for administrator approval.                                                                      |
-| /api/admin/dishes/{dishId}/review  | PUT    | status, rejectionReason                              | Enables an administrator to review a dish: approve it for publication or reject it (with an optional rejection reason).                                      |
-| /api/dishes/{dishId}/comments      | GET    | page, size                                           | Retrieves a paginated list of user comments for a specific dish.                                                                                             |
-| /api/dishes/{dishId}/comments      | POST   | userId, content, images                              | Allows a user to submit a text-and-image comment for a specific dish.                                                                                        |
+| API Interface | Method | Parameters | Description |
+|--------------|--------|------------|-------------|
+| /api/dishes/rankings | GET | sortType, category, restaurantId | Get ranked dish list by popularity or rating |
+| /api/dishes/{dishId}/vote | POST | userId, rating, comment | Rate and comment on dish (updates if already voted) |
+| /api/dishes/{dishId} | GET | - | Get detailed dish information with ratings |
+| /api/dishes/search | GET | keyword | Search dishes by keyword (fuzzy matching) |
+| /api/dishes/new | GET | month | Get newly recommended dishes for specified month |
+| /api/merchants/{merchantId}/dishes | POST | name, price, description, category, allergens, image | Submit new dish for review (status: pending) |
+| /api/admin/dishes/pending | GET | - | Get all dishes pending administrator approval |
+| /api/admin/dishes/{dishId}/review | PUT | status, rejectionReason | Approve or reject dish submission |
+| /api/dishes/{dishId}/comments | GET | page, size | Get paginated user comments for dish |
+| /api/dishes/{dishId}/comments | POST | userId, content, images | Submit text and image comment for dish |
 
 ###### 2.2.3 Feedback Service Subsystem
 
@@ -266,113 +256,104 @@ After the client obtains a temporary js_code from WeChat, it forwards the code t
 
 This section demonstrates the detailed class design for the Meal Ordering subsystem, decomposing it into atomic elements (entity classes, boundary classes, and control classes) with their attributes, methods, and responsibilities, followed by concrete API interface specifications. This decomposition follows the platform-dependent architecture defined in Section 2.1 and provides the foundation for the use case realization in Section 4.
 
-###### 2.4.1 Subsystem Overview and Class Categories
+###### 2.4.1 Subsystem Overview and Class Diagram
 
-The Meal Ordering subsystem is responsible for managing the complete meal ordering lifecycle, from browsing restaurant menus to placing orders, making reservations, and tracking order status. Based on the analysis model from Assignment 2, this subsystem is decomposed into **9 core classes** organized into three categories:
+The Meal Ordering subsystem is responsible for managing the complete meal ordering lifecycle, from user authentication and restaurant browsing to placing orders, processing payments, making reservations, and tracking order status. Based on the analysis model from Assignment 2, this subsystem is decomposed into **9 core classes** organized into three categories following the **ECB (Entity-Control-Boundary)** pattern.
+
+<div align="center">
+  <img src="diagrams/cd_ordermeal.svg" alt="Meal Ordering Subsystem Class Diagram" style="width:90%; max-width:1000px;"/>
+   
+</div>
+
+###### 2.4.2 Class Categories and Relationships
 
 | Class Category | Class Name | Count | Responsibility |
 |----------------|------------|-------|----------------|
-| **Entity Classes** | Student, Order, Dish, Restaurant, Reservation | 5 | Represent core business domain objects with persistent state |
-| **Boundary Classes** | MealOrderingUI, OrderAPIController | 2 | Handle user interaction and external system communication |
-| **Control Classes** | OrderController, MenuController | 2 | Coordinate business logic and orchestrate interactions between entities |
+| **Entity Classes** | Student, Order, Dish, Restaurant, Reservation | 5 | Represent core business domain objects with persistent state and business rules |
+| **Boundary Classes** | SystemInterface, OrderingInterface | 2 | Handle user interaction, authentication, and presentation logic |
+| **Control Classes** | OrderController, MenuController | 2 | Coordinate business logic, orchestrate interactions, and manage workflows |
 
-This decomposition follows the **ECB (Entity-Control-Boundary)** pattern, ensuring clear separation of concerns between domain logic, user interface, and business process coordination.
+**Key Relationships:**
+- **Student ↔ Order**: One-to-many (1..\*) - A student can place multiple orders
+- **Order ↔ Dish**: Many-to-many (\*..\*) - An order contains multiple dishes, each dish can be in multiple orders
+- **Restaurant ↔ Dish**: One-to-many (\*..1) - A restaurant offers multiple dishes
+- **Student ↔ Reservation**: One-to-one (1..1) - Each reservation is linked to one student
+- **Boundary → Control → Entity**: Dependencies flow from interface layer through control layer to entity layer
 
-###### 2.4.2 Entity Classes - Domain Model Atomic Elements
+This decomposition ensures clear separation of concerns between domain logic, user interface, and business process coordination.
 
-The subsystem contains 5 core entity classes. Below is a consolidated overview:
+###### 2.4.3 Entity Classes - Domain Model Design
 
-| Entity Class | Persistence | Key Attributes | Key Methods | Relationships |
-|--------------|-------------|----------------|-------------|---------------|
-| **Student** | MySQL `students` | `studentId` (PK), `studentNumber`, `name`, `email`, `campusCardId` (FK), `passwordHash`, `role` | `authenticate()`, `placeOrder()`, `getOrderHistory()`, `makeReservation()` | 1→N Order, 1→N Reservation |
-| **Order** | MySQL `orders` | `orderId` (PK), `studentId/restaurantId` (FK), `orderItems[]`, `totalPrice`, `status` (PENDING→PAID→PREPARING→READY→COMPLETED/CANCELLED), `deliveryTime`, `paymentUrl` | `calculateTotalPrice()`, `addItem()`, `updateStatus()`, `cancel()`, `generatePaymentUrl()`, `isModifiable()` | N→1 Student/Restaurant, 1→N OrderItem |
-| **Dish** | MySQL `dishes` + Redis (1h TTL) | `dishId` (PK), `restaurantId` (FK), `name`, `price`, `category`, `stock`, `isAvailable`, `averageRating`, `salesCount` | `reduceStock()`, `updateRating()`, `isInStock()`, `getPopularityScore()` | N→1 Restaurant, 1→N OrderItem |
-| **Restaurant** | MySQL `restaurants` + Redis | `restaurantId` (PK), `name`, `location`, `openingHours`, `isOpen`, `averageRating`, `cuisineType` | `getMenu()`, `isCurrentlyOpen()`, `acceptOrder()`, `updateOperatingStatus()` | 1→N Dish/Order/Reservation |
-| **Reservation** | MySQL `reservations` | `reservationId` (PK), `studentId/restaurantId` (FK), `dishIds[]`, `reservedTime`, `status` (PENDING/CONFIRMED/CANCELLED), `createTime`, `note` | `confirm()`, `cancel()`, `convertToOrder()`, `isModifiable()`, `getReservationDetails()` | N→1 Student/Restaurant |
+| Entity | Key Attributes | Persistence | Core Responsibility |
+|--------|---------------|-------------|---------------------|
+| **Student** | studentId, name, password, balance | MySQL | User authentication and account management |
+| **Order** | orderId, studentId, dishes, totalAmount, status | MySQL | Order lifecycle (PENDING→PAID→PREPARING→READY→COMPLETED) |
+| **Dish** | dishId, restaurantId, name, price, isAvailable | MySQL + Redis | Menu item data with availability control |
+| **Restaurant** | restaurantId, name, location, rating | MySQL + Redis | Restaurant information and operating status |
+| **Reservation** | reservationId, orderId, reservationTime, status | MySQL | Advance meal ordering with time constraints |
 
-**Key Design Decisions:**
-- **Transactional Persistence**: All entities stored in MySQL with ACID guarantees for data consistency
-- **Caching Strategy**: Redis caches Dish/Restaurant entities with 1-hour TTL to reduce database load during peak ordering times
-- **Order State Machine**: Status transitions follow strict workflow (PENDING→PAID→PREPARING→READY→COMPLETED) with CANCELLED allowed before PREPARING
-- **Reservation Workflow**: Reservations can be converted to Orders upon confirmation, supporting advance meal planning
+**Design Decisions:** All entities stored in MySQL for ACID guarantees; hot data (Dish, Restaurant) cached in Redis; Order and Reservation implement state machines for workflow control.
 
-###### 2.4.3 Boundary Classes - Interface Atomic Elements
+###### 2.4.4 Boundary Classes - User Interface Layer
 
-| Boundary Class | Technology | Responsibility | Key Methods/Endpoints |
-|----------------|------------|----------------|----------------------|
-| **MealOrderingUI** | WeChat Mini Program (uni-app, Vue 3) | Provides user interface for browsing menus, placing orders, and managing reservations | `displayRestaurants()`, `displayMenu()`, `showOrderSummary()`, `updateOrderStatus()`, `showReservationForm()`, `handlePaymentRedirect()` |
-| **OrderAPIController** | Spring Boot 3.x + Spring MVC + Spring Security | Exposes RESTful APIs and handles HTTP request/response with JWT authentication | `POST /api/meal/order/create`<br>`GET /api/meal/order/status`<br>`POST /api/meal/order/cancel`<br>`GET /api/meal/order/history`<br>`GET /api/meal/menu`<br>`POST /api/meal/reservation/create` |
+| Boundary Class | Key Methods | Technology | Responsibility |
+|----------------|-------------|------------|----------------|
+| **SystemInterface** | login(), logout(), showLoginForm() | WeChat Mini Program | User authentication, session management |
+| **OrderingInterface** | showRestaurants(), showMenu(), showCart(), showPayment() | WeChat Mini Program (uni-app, Vue 3) | Order workflow UI, shopping cart, payment flow |
 
-**Security Note**: OrderAPIController enforces JWT validation via Spring Security filter, input validation using Hibernate Validator, and rate limiting to prevent abuse.
+**Interaction Flow**: SystemInterface handles login → OrderingInterface manages ordering → delegates to Control layer
 
-###### 2.4.4 Control Classes - Business Logic Atomic Elements
+###### 2.4.5 Control Classes - Business Logic Orchestration
 
-| Control Class | Technology | Responsibility | Core Workflow | Dependencies |
-|---------------|------------|----------------|---------------|--------------|
-| **OrderController** | Spring Boot Service Layer (@Service) | Orchestrates order lifecycle: creation, payment, status tracking, cancellation, reservation management | `createOrder()`: Validate → Check stock → Calculate price → Generate payment URL → Persist<br>`processPaymentCallback()`: Validate signature → Update status → Notify<br>`cancelOrder()`: Validate ownership → Restore stock → Refund if paid<br>`createReservation()`: Validate time slot → Reserve stock → Persist | OrderRepository, ReservationRepository, DishRepository, PaymentAdapter, NotificationService |
-| **MenuController** | Spring Boot Service + Redis Cache | Manages menu retrieval with cache-first strategy and dish availability | `getRestaurantMenu()`: Check Redis → Query MySQL on miss → Filter/Sort → Cache (1h TTL)<br>`getDishDetails()`: Redis cache → MySQL → Return dish info<br>`updateDishAvailability()`: Update MySQL → Invalidate cache | DishRepository, MenuCacheService, RankingService |
+| Control Class | Key Methods | Technology | Responsibility |
+|---------------|-------------|------------|----------------|
+| **OrderController** | createOrder(), submitOrder(), cancelOrder(), getOrderHistory() | Spring Boot (@Service) | Order processing workflow and state management |
+| **MenuController** | getAllRestaurants(), getDishById(), getDishesByRestaurant() | Spring Boot + Redis Cache | Menu & restaurant data retrieval with caching |
 
-###### 2.4.5 RESTful API Interface Specifications
+**Design Pattern**: Controllers implement the **Facade Pattern**, providing simplified interfaces to complex subsystem operations.
 
-This section provides detailed API specifications exposed by the OrderAPIController boundary class, demonstrating how the atomic elements defined above interact through concrete interfaces.
+###### 2.4.6 RESTful API Interface Specifications
 
-**2.4.5.1 Restaurant List Retrieval Interface**
+This section demonstrates how boundary and control classes expose system functionality through RESTful APIs. Core interfaces are detailed below; supporting interfaces are summarized in the overview table.
 
-| API Interface          | Method | Parameters      | Description                          | Controller Method |
-| ---------------------- | ------ | --------------- | ------------------------------------ | ----------------- |
-| /api/meal/restaurants  | GET    | token, location | Get restaurant list by location      | `OrderAPIController.getRestaurants()` → `MenuController.getRestaurantList()` |
+**API Interface Overview**
 
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController handles GET request
-- **Control**: MenuController retrieves restaurant data with Redis caching
-- **Entity**: Reads Restaurant entities, leverages Redis cache
+| API Interface | Method | Parameters | Description | Controller Method |
+|--------------|--------|------------|-------------|-------------------|
+| /api/meal/restaurants | GET | token, location | Get restaurant list by location | MenuController.getRestaurantList() |
+| /api/meal/menu | GET | token, restaurant_id | Get menu for specific restaurant | MenuController.getRestaurantMenu() |
+| /api/meal/dish/detail | GET | token, dish_id | Get detailed dish information | MenuController.getDishDetails() |
+| /api/meal/order/create | POST | token, dish_ids, quantities, restaurant_id | **[Core] Create new meal order** | OrderController.createOrder() |
+| /api/meal/order/status | GET | token, order_id | **[Core] Query order status** | OrderController.trackOrderStatus() |
+| /api/meal/order/cancel | POST | token, order_id | Cancel pending order | OrderController.cancelOrder() |
+| /api/meal/order/history | GET | token, page, size | Get user's order history | OrderController.getOrderHistory() |
+| /api/meal/reservation/create | POST | token, dish_ids, reserved_time | Create meal reservation | OrderController.createReservation() |
+| /api/meal/reservation/list | GET | token, status | Get user's reservation list | OrderController.getReservationList() |
+| /api/meal/reservation/cancel | POST | token, reservation_id | Cancel reservation | OrderController.cancelReservation() |
 
+**Interface 1: GET /api/meal/restaurants** - Get Restaurant List by Location
+**Mapped Class Elements:** OrderAPIController → MenuController → Restaurant entities (with Redis cache)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `location` (String, Query): Student location or campus zone
 - `cuisine_type` (String, Query, Optional): Filter by cuisine type
 - `is_open` (Boolean, Query, Optional): Filter by current opening status
-
 **Response:**
-
 - Success (200): Returns array of restaurants with basic info
 - Error (401): Token expired or invalid
 
-**2.4.5.2 Dish Detail Query Interface**
-
-| API Interface       | Method | Parameters | Description                       | Controller Method |
-| ------------------- | ------ | ---------- | --------------------------------- | ----------------- |
-| /api/meal/dish/detail | GET  | token, dish_id | Get detailed dish information | `OrderAPIController.getDishDetail()` → `MenuController.getDishDetails()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController handles GET request
-- **Control**: MenuController retrieves dish information
-- **Entity**: Reads Dish entity with Redis cache
-
+**Interface 2: GET /api/meal/dish/detail** - Get Detailed Dish Information
+**Mapped Class Elements:** OrderAPIController → MenuController → Dish entity (with Redis cache)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `dish_id` (Integer, Query): Dish identifier
-
 **Response:**
-
 - Success (200): Returns detailed dish information
 - Error (404): Dish not found
- 
-**2.4.5.3 Order Creation Interface**
 
-| API Interface          | Method | Parameters                                 | Description           | Controller Method |
-| ---------------------- | ------ | ------------------------------------------ | --------------------- | ----------------- |
-| /api/meal/order/create | POST   | token, dish_ids, quantities, restaurant_id | Create new meal order | `OrderAPIController.createOrder()` → `OrderController.createOrder()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController receives HTTP request
-- **Control**: OrderController orchestrates order creation logic
-- **Entity**: Creates Order and OrderItem instances, updates Dish stock
-
+**Interface 3: POST /api/meal/order/create** - Create New Meal Order
+**Mapped Class Elements:** OrderAPIController → OrderController → Order, OrderItem entities
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `restaurant_id` (Integer, Body): Target restaurant identifier
 - `items` (Array, Body): Order items list
@@ -380,129 +361,54 @@ This section provides detailed API specifications exposed by the OrderAPIControl
   - `quantity` (Integer): Order quantity
 - `delivery_time` (String, Body, Optional): Expected pickup time (format: "HH:mm")
 - `note` (String, Body, Optional): Special instructions (max 200 chars)
-
 **Response:**
-
 - Success (200): Returns `order_id`, `total_price`, `estimated_time`, `payment_url`
 - Error (400): Invalid dish_id or insufficient stock
 - Error (401): Token expired or invalid
 - Error (403): Restaurant closed or user blacklisted
+  
+**Example:**
+<p align="center">
+  <img src="image.png" alt="Order Creation Request" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="image-1.png" alt="Order Creation Response" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+</p>
 
-**Request Example:**
-
-```json
-POST /api/meal/order/create
-Headers: {
-  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-Body: {
-  "restaurant_id": 101,
-  "items": [
-    {"dish_id": 2001, "quantity": 2},
-    {"dish_id": 2015, "quantity": 1}
-  ],
-  "delivery_time": "12:30",
-  "note": "Less spicy please"
-}
-```
-
-**Response Example:**
-
-```json
-{
-  "code": 200,
-  "data": {
-    "order_id": 87654,
-    "total_price": 45.50,
-    "estimated_time": "12:45",
-    "payment_url": "https://pay.smartcampus.com/order/87654"
-  },
-  "message": "Order created successfully"
-}
-```
-
-**2.4.5.4 Order Status Query Interface**
-
-| API Interface          | Method | Parameters      | Description        | Controller Method |
-| ---------------------- | ------ | --------------- | ------------------ | ----------------- |
-| /api/meal/order/status | GET    | token, order_id | Query order status | `OrderAPIController.getOrderStatus()` → `OrderController.trackOrderStatus()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController handles GET request
-- **Control**: OrderController retrieves order status
-- **Entity**: Reads Order entity with associated OrderItem, Restaurant, and Dish data
-
+**Interface 4: GET /api/meal/order/status** - Query Order Status
+**Mapped Class Elements:** OrderAPIController → OrderController → Order entity (with associated OrderItem, Restaurant, Dish)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `order_id` (Integer, Query): Order identifier
-
 **Response:**
-
 - Success (200): Returns `order_id`, `status` (PENDING/PREPARING/READY/COMPLETED/CANCELLED), `items`, `total_price`, `restaurant_info`, `create_time`, `update_time`
 - Error (404): Order not found
 - Error (403): Order belongs to different user
 
-**2.4.5.5 Order Cancellation Interface**
-
-| API Interface          | Method | Parameters  | Description        | Controller Method |
-| ---------------------- | ------ | ----------- | ------------------ | ----------------- |
-| /api/meal/order/cancel | POST   | token, order_id | Cancel pending order | `OrderAPIController.cancelOrder()` → `OrderController.cancelOrder()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController receives cancellation request
-- **Control**: OrderController validates ownership and updates order status
-- **Entity**: Updates Order entity status, restores Dish stock
-
+**Interface 5: POST /api/meal/order/cancel** - Cancel Pending Order
+**Mapped Class Elements:** OrderAPIController → OrderController → Order entity (status update, Dish stock restoration)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `order_id` (Integer, Body): Order identifier to cancel
 - `cancel_reason` (String, Body, Optional): Reason for cancellation
-
 **Response:**
-
 - Success (200): Returns cancellation confirmation
 - Error (400): Order cannot be cancelled (already preparing)
 - Error (403): Not authorized to cancel this order
 - Error (404): Order not found
 
-**2.4.5.6 Order History Interface**
-
-| API Interface       | Method | Parameters        | Description             | Controller Method |
-| ------------------- | ------ | ----------------- | ----------------------- | ----------------- |
-| /api/meal/order/history | GET    | token, page, size | Get user's order history | `OrderAPIController.getOrderHistory()` → `OrderController.getOrderHistory()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController handles pagination request
-- **Control**: OrderController retrieves user's historical orders
-- **Entity**: Reads Order entities with pagination
-
+**Interface 6: GET /api/meal/order/history** - Get User's Order History
+**Mapped Class Elements:** OrderAPIController → OrderController → Order entities (with pagination)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `page` (Integer, Query): Page number (default: 1)
 - `size` (Integer, Query): Page size (default: 10, max: 50)
 - `status` (String, Query, Optional): Filter by order status
-
 **Response:**
-
 - Success (200): Returns paginated order history
 - Error (401): Token expired or invalid
 
-**2.4.5.7 Reservation Creation Interface**
-
-| API Interface                 | Method | Parameters                                          | Description           | Controller Method |
-| ----------------------------- | ------ | --------------------------------------------------- | --------------------- | ----------------- |
-| /api/meal/reservation/create | POST   | token, dish_ids, quantities, restaurant_id, reserved_time | Create meal reservation | `OrderAPIController.createReservation()` → `OrderController.createReservation()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController receives reservation request
-- **Control**: OrderController validates time slot and creates reservation
-- **Entity**: Creates Reservation entity, reserves Dish stock temporarily
-
+**Interface 7: POST /api/meal/reservation/create** - Create Meal Reservation
+**Mapped Class Elements:** OrderAPIController → OrderController → Reservation entity (with Dish stock reservation)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `restaurant_id` (Integer, Body): Target restaurant identifier
 - `items` (Array, Body): Reservation items list
@@ -510,131 +416,44 @@ Body: {
   - `quantity` (Integer): Reserved quantity
 - `reserved_time` (String, Body): Pickup date and time (format: "YYYY-MM-DD HH:mm")
 - `note` (String, Body, Optional): Special instructions (max 200 chars)
-
 **Response:**
-
 - Success (201): Returns `reservation_id`, `reserved_time`, `confirmation_code`, `expiry_time`
 - Error (400): Invalid time slot or dish unavailable
 - Error (401): Token expired or invalid
 - Error (403): Restaurant closed or reservation capacity full
 
-**Request Example:**
-
-```json
-POST /api/meal/reservation/create
-Headers: {
-  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-Body: {
-  "restaurant_id": 101,
-  "items": [
-    {"dish_id": 2001, "quantity": 2},
-    {"dish_id": 2015, "quantity": 1}
-  ],
-  "reserved_time": "2024-12-14 12:30",
-  "note": "Please prepare in advance"
-}
-```
-
-**Response Example:**
-
-```json
-{
-  "code": 201,
-  "data": {
-    "reservation_id": 98765,
-    "reserved_time": "2024-12-14 12:30",
-    "confirmation_code": "RSV-2024-98765",
-    "expiry_time": "2024-12-14 11:30"
-  },
-  "message": "Reservation created successfully"
-}
-```
-
-**2.4.5.8 Reservation List Interface**
-
-| API Interface             | Method | Parameters | Description                   | Controller Method |
-| ------------------------- | ------ | ---------- | ----------------------------- | ----------------- |
-| /api/meal/reservation/list | GET    | token, status | Get user's reservation list | `OrderAPIController.getReservationList()` → `OrderController.getReservationList()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController handles GET request
-- **Control**: OrderController retrieves user's reservations
-- **Entity**: Reads Reservation entities with filtering
-
+**Interface 8: GET /api/meal/reservation/list** - Get User's Reservation List
+**Mapped Class Elements:** OrderAPIController → OrderController → Reservation entities (with filtering)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `status` (String, Query, Optional): Filter by reservation status (PENDING/CONFIRMED/CANCELLED)
 - `date` (String, Query, Optional): Filter by reservation date (YYYY-MM-DD)
-
 **Response:**
-
 - Success (200): Returns list of reservations
 - Error (401): Token expired or invalid
 
-**2.4.5.9 Reservation Cancellation Interface**
-
-| API Interface               | Method | Parameters  | Description           | Controller Method |
-| --------------------------- | ------ | ----------- | --------------------- | ----------------- |
-| /api/meal/reservation/cancel | POST   | token, reservation_id | Cancel reservation | `OrderAPIController.cancelReservation()` → `OrderController.cancelReservation()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController receives cancellation request
-- **Control**: OrderController validates and updates reservation status
-- **Entity**: Updates Reservation entity status, restores stock
-
+**Interface 9: POST /api/meal/reservation/cancel** - Cancel Reservation
+**Mapped Class Elements:** OrderAPIController → OrderController → Reservation entity (status update, stock restoration)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `reservation_id` (Integer, Body): Reservation identifier to cancel
 - `cancel_reason` (String, Body, Optional): Reason for cancellation
-
 **Response:**
-
 - Success (200): Returns cancellation confirmation
 - Error (400): Reservation cannot be cancelled (too close to reserved time)
 - Error (403): Not authorized to cancel this reservation
 - Error (404): Reservation not found
 
-**2.4.5.10 Menu Retrieval Interface**
-
-| API Interface  | Method | Parameters           | Description                            | Controller Method |
-| -------------- | ------ | -------------------- | -------------------------------------- | ----------------- |
-| /api/meal/menu | GET    | token, restaurant_id | Get menu items for specific restaurant | `OrderAPIController.getMenu()` → `MenuController.getRestaurantMenu()` |
-
-**Mapped Class Elements:**
-- **Boundary**: OrderAPIController handles menu request
-- **Control**: MenuController retrieves menu with caching strategy
-- **Entity**: Reads Restaurant and Dish entities, leverages Redis cache
-
+**Interface 10: GET /api/meal/menu** - Get Menu for Specific Restaurant
+**Mapped Class Elements:** OrderAPIController → MenuController → Restaurant, Dish entities (with Redis cache)
 **Request Parameters:**
-
 - `token` (String, Header): JWT authentication token
 - `restaurant_id` (Integer, Query): Restaurant identifier
 - `category` (String, Query, Optional): Filter by category (e.g., "staple", "beverage")
 - `sort_by` (String, Query, Optional): Sort criteria ("price", "sales", "rating")
-
 **Response:**
-
-- Success (200): Returns array of dishes with `dish_id`, `name`, `price`, `description`, `category`, `stock`, `image_url`, `rating`, `sales_count`, `is_available`
-- Success (304): Not Modified (if cache valid via ETag)
+- Success (200): Returns array of dishes with details
 - Error (404): Restaurant not found
-
-###### 2.4.6 Class Design Summary
-
-The Meal Ordering subsystem demonstrates a complete application of the ECB pattern with clear separation of responsibilities:
-
-| Aspect | Design Achievement |
-|--------|-------------------|
-| **Entity Layer** | 5 domain entities (Student, Order, Dish, Restaurant, Reservation) with complete attribute definitions, business methods, and relationship mappings |
-| **Boundary Layer** | Dual-channel boundary with MealOrderingUI for frontend interaction and OrderAPIController for RESTful API exposure |
-| **Control Layer** | OrderController and MenuController orchestrate complex workflows including payment integration, stock management, reservation handling, and caching strategies |
-| **Persistence Strategy** | MySQL for all transactional data with ACID guarantees, Redis for performance caching of menu and restaurant data |
-| **API Specifications** | 10 core interfaces with detailed request/response schemas, error handling, and security requirements |
-| **Class-to-API Mapping** | Each API endpoint explicitly maps to boundary → control → entity flow, ensuring traceability from interface to implementation |
-
-This design provides a complete blueprint for implementing the Meal Ordering subsystem, bridging the gap between architectural decisions (Section 2.1) and concrete use case realizations (Section 4).
 
 #### 3. Two Selected Analysis Mechanisms and Their Design Mechanisms 
 
@@ -669,8 +488,9 @@ Our persistence architecture is built upon a three-tier data storage model:
 The entire backend data service stack is containerized using Docker and orchestrated by Kubernetes, ensuring consistent deployment and elastic scalability across development, testing, and production environments.
 
 ###### 3.1.3 Persistence Layer Design and Framework Integration
-
-![alt text](source/image.png)
+<p align="center">
+  <img src="source/image.png" alt="SmartCampus Data Persistence Architecture" title="SmartCampus Data Persistence Architecture" style="display:block; margin:0 auto; width:50%; max-width:800px; height:auto;">
+</p> 
 
 At the software architecture level, the persistence layer sits between the business logic layer and physical storage, providing a unified data access abstraction. We implement this layer using the Spring Boot 3.x + Spring Data ecosystem:
 
@@ -702,9 +522,9 @@ Security in SmartCampus encompasses multiple dimensions:
 To address these diverse requirements effectively, we implement a defense-in-depth security architecture with multiple protective layers and specialized security components.
 
 ###### 3.2.2 Security Architecture and Multi-Layer Protection
-
-![alt text](source/SmartCampusSecurityArchitecture.png)
-
+<p align="center">
+  <img src="source/SmartCampusSecurityArchitecture.png" alt="SmartCampus Security Architecture" title="SmartCampus Security Architecture" style="display:block; margin:0 auto; width:50%; max-width:800px; height:auto;">
+</p> 
 Our security architecture is built upon a five-layer defense model:
 
 1. **Infrastructure Security Layer**Serves as the foundation, implementing security configurations, vulnerability scanning, and the principle of least privilege for all system components. Container security hardening and network segmentation ensure basic protection at the infrastructure level.
@@ -743,7 +563,7 @@ We selected the **"Place Order"** use case because it: (1) represents the core w
 
 | Pattern | Problem | Solution | Benefit |
 |---------|---------|----------|---------|
-| **Adapter** | Multiple payment APIs with inconsistent interfaces (WeChat Pay, Alipay, Campus Card) | Unified `PaymentAdapter` interface with concrete adapters | Easy to add new payment methods; simplifies testing |
+| **Adapter** | Multiple payment APIs with inconsistent interfaces (WeChat Pay, Campus Card) | Unified `PaymentAdapter` interface with concrete adapters | Easy to add new payment methods; simplifies testing |
 | **Repository** | Hybrid storage (MySQL+Redis) creates scattered data access logic | Domain-oriented repositories abstract database operations | Technology independence; centralized caching |
 | **Strategy** | Dynamic pricing rules (discounts, membership, promotions) | `PricingStrategy` interface with runtime-selectable implementations | New promotions without modifying core logic |
 | **Observer** | Order status changes require multiple reactions (notifications, stock updates, analytics) | `OrderStatusSubject` notifies `OrderObserver` implementations asynchronously | Decoupled notification logic; fault-tolerant |
@@ -982,10 +802,10 @@ Each microservice exports health and performance metrics via Spring Boot Actuato
 
 ##### 7.1 Login Page Progress
 
-<div align="center">
- <img src="diagrams/board1.png" alt="original login page" style="width:40%; max-width:900px;"/>
-  <img src="source/Login_page3.png" alt="login page progess" style="width:37.5%; max-width:900px;"/>
-</div>
+<p align="center">
+  <img src="diagrams/board1.png" alt="original login page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="source/Login_page3.png" alt="login page progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+</p>
 
 **(1) Added "Forgot Password" Functionality to Improve Usability:**
 * In real-world usage scenarios, users frequently forget their passwords. Including a password recovery option reflects a user-centered design philosophy: not only providing a login function, but also offering a clear recovery path for common error cases.
@@ -1000,16 +820,22 @@ Each microservice exports health and performance metrics via Spring Boot Actuato
   * **Prominent blue primary button with gradient background**: More visually engaging and encourages interaction.
 * In contrast, the original design is overly minimalistic and plain, lacking visual hierarchy and guidance. Its smaller button and overall appearance feel less professional.
 
-##### 7.2 
+##### 7.2 Meal Ordering Subsystem Progress
+<p align="center">
+  <img src="diagrams/mealorder1_before.png" alt="original order page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="diagrams/mealorder1_after.png" alt="original order page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+</p> 
+In the initial UI snapshots, all dishes were presented with a uniform 'Available' status. The interface lacked visual cues to handle stock depletion scenarios, potentially leading to the 'Overbooking' issue.
+State Visualization: Implemented the distinct visual state for isAvailable = false (Sold Out). We utilized grayscale styling for the dish images and disabled the action buttons for out-of-stock items. This improvement strictly visualizes the isAvailable attribute defined in the Dish entity class.
 
 ##### 7.3 Dishes recommendation and ranking Subsystem progress
 
 **7.3.1 Refinements in the “Publish New Dish” Interface**
 
-<div align="center">
- <img src="source/RP-S.png" alt="original login page" style="width:37.5%; max-width:900px;"/>
-  <img src="source/publish_progress.png" alt="login page progess" style="width:37.5%; max-width:900px;"/>
-</div>
+<p align="center">
+  <img src="source/RP-S.png" alt="original publish page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="source/publish_progress.png" alt="publish page progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+</p>
 
 **(1) Fix Logical Ambiguity by Clarifying the Difference Between “Submit Now” and “Save as Draft”**
 
@@ -1048,10 +874,10 @@ Each microservice exports health and performance metrics via Spring Boot Actuato
 
 **7.3.2 Refinements in the “Pending Approval” Interface**
 
-<div align="center">
- <img src="source/PA-S.png" alt="original login page" style="width:37.5%; max-width:900px;"/>
-  <img src="source/pending_progress.png" alt="login page progess" style="width:37.5%; max-width:900px;"/>
-</div>
+<p align="center">
+  <img src="source/PA-S.png" alt="original pending approval page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="source/pending_progress.png" alt="pending approval progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+</p>
 
 **(1) From “Abstract Number Cards” to “Concrete Task Cards” — Improving Information Readability**
 
