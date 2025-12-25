@@ -72,8 +72,6 @@ This section refines the logical layered architecture from Assignment 2 into a *
 <div align="center">
   <img src="diagrams/platform_architecture.png" alt="SmartCampus Platform Architecture" style="width:90%; max-width:900px;"/>
 
-**Figure 2.1: SmartCampus Platform-Dependent Architecture**
-
 </div>
 
 ###### 2.1.1 Five-Layer Architecture Overview
@@ -489,7 +487,7 @@ The entire backend data service stack is containerized using Docker and orchestr
 
 ###### 3.1.3 Persistence Layer Design and Framework Integration
 <p align="center">
-  <img src="source/image.png" alt="SmartCampus Data Persistence Architecture" title="SmartCampus Data Persistence Architecture" style="display:block; margin:0 auto; width:50%; max-width:800px; height:auto;">
+  <img src="diagrams/image.png" alt="SmartCampus Data Persistence Architecture" title="SmartCampus Data Persistence Architecture" style="display:block; margin:0 auto; width:50%; max-width:800px; height:auto;">
 </p> 
 
 At the software architecture level, the persistence layer sits between the business logic layer and physical storage, providing a unified data access abstraction. We implement this layer using the Spring Boot 3.x + Spring Data ecosystem:
@@ -523,7 +521,7 @@ To address these diverse requirements effectively, we implement a defense-in-dep
 
 ###### 3.2.2 Security Architecture and Multi-Layer Protection
 <p align="center">
-  <img src="source/SmartCampusSecurityArchitecture.png" alt="SmartCampus Security Architecture" title="SmartCampus Security Architecture" style="display:block; margin:0 auto; width:50%; max-width:800px; height:auto;">
+  <img src="diagrams/SmartCampusSecurityArchitecture.png" alt="SmartCampus Security Architecture" title="SmartCampus Security Architecture" style="display:block; margin:0 auto; width:50%; max-width:800px; height:auto;">
 </p> 
 Our security architecture is built upon a five-layer defense model:
 
@@ -804,7 +802,7 @@ Each microservice exports health and performance metrics via Spring Boot Actuato
 
 <p align="center">
   <img src="diagrams/board1.png" alt="original login page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
-  <img src="source/Login_page3.png" alt="login page progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="diagrams/Login_page3.png" alt="login page progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
 </p>
 
 **(1) Added "Forgot Password" Functionality to Improve Usability:**
@@ -830,11 +828,11 @@ State Visualization: Implemented the distinct visual state for isAvailable = fal
 
 ##### 7.3 Dishes recommendation and ranking Subsystem progress
 
-**7.3.1 Refinements in the “Publish New Dish” Interface**
+###### 7.3.1 Refinements in the “Publish New Dish” Interface
 
 <p align="center">
-  <img src="source/RP-S.png" alt="original publish page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
-  <img src="source/publish_progress.png" alt="publish page progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="diagrams/RP-S.png" alt="original publish page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="diagrams/publish_progress.png" alt="publish page progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
 </p>
 
 **(1) Fix Logical Ambiguity by Clarifying the Difference Between “Submit Now” and “Save as Draft”**
@@ -872,11 +870,11 @@ State Visualization: Implemented the distinct visual state for isAvailable = fal
 
 - **Result**: User trial-and-error is significantly reduced, form-filling efficiency and success rates improve, and the design embodies the UX principle that “preventing errors is better than correcting them.”
 
-**7.3.2 Refinements in the “Pending Approval” Interface**
+###### 7.3.2 Refinements in the “Pending Approval” Interface
 
 <p align="center">
-  <img src="source/PA-S.png" alt="original pending approval page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
-  <img src="source/pending_progress.png" alt="pending approval progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="diagrams/PA-S.png" alt="original pending approval page" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
+  <img src="diagrams/pending_progress.png" alt="pending approval progress" style="width:40%; max-width:450px; display:inline-block; margin:0 10px;"/>
 </p>
 
 **(1) From “Abstract Number Cards” to “Concrete Task Cards” — Improving Information Readability**
