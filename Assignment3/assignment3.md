@@ -8,9 +8,8 @@
 - 2353240 Zhang Shikou (张诗蔻)
 - 2352993 Yu Yilian (于伊莲)
 
-#### 0. Table of Contents
+### 0. Table of Contents
 
-- [0. Table of Contents](#0-table-of-contents)
 - [1. Overview](#1-overview)
   - [1.1 Overview of Design Progress](#11-overview-of-design-progress)
   - [1.2 Implementation Platforms and Frameworks](#12-implementation-platforms-and-frameworks)
@@ -587,7 +586,7 @@ The following class diagram illustrates the design of the **Place Order** use ca
 </p>
 
 The diagram demonstrates:
-- **Core Entities Layer**: Student, Order, Dish, and Restaurant classes with their relationships (Order creation workflow)
+- **Core Entities Layer**: Student, Order, Dish, and Restaurant classes with their relationships (Order creation workflow).Considering that the use case is't reservation focused, Reservation class is omitted here.
 - **Controllers Layer**: OrderController and MenuController managing business logic
 - **Design Patterns Layer**:
   - Adapter Pattern for payment method abstraction
@@ -768,7 +767,7 @@ This "action-feedback" loop significantly enhances users' sense of control and r
 SmartCampus must serve a campus population of thousands, with usage patterns characterized by sharp peaks—particularly during meal times (11:30–13:00 and 17:00–18:30), when hundreds of concurrent meal orders, real-time balance queries, and ranking updates must be handled without degradation. The target of "reducing service delivery time by 40%" can only be achieved through a high-performance, horizontally scalable architecture.
 
 ###### 6.3.1 Microservices-Based Horizontal Scaling  
-As detailed in Sections 2.1 and 2.2 of Assignment 2, we adopted a microservices architecture that decouples the system into independently deployable services (e.g., order service, top‑up service, voting service). Each service can be scaled horizontally based on load, using Kubernetes to manage automatic pod replication and service discovery via Spring Cloud Netflix Eureka. This design directly addresses Assignment 2’s requirement that “the system must be capable of scaling to support growth in user numbers and transaction volume.”
+As detailed in Sections 2.1 and 2.2 of Assignment 2, we adopted a microservices architecture that decouples the system into independently deployable services (e.g., order service, top‑up service, voting service). Each service can be scaled horizontally based on load, using Kubernetes to manage automatic pod replication and service discovery. This design directly addresses Assignment 2’s requirement that “the system must be capable of scaling to support growth in user numbers and transaction volume.”
 
 ###### 6.3.2 Multi-Level Caching Strategy  
 To satisfy the “low-latency access” objective, we implemented a two-tier caching layer:  
@@ -973,5 +972,5 @@ In completing this assignment, we utilized AI-powered tools including **GitHub C
 |----|----|-------|
 |冯俊财 2353924|Overall Architecture: System architecture design, refinement, and style definition.<br>Subsystem Implementation: Interface design and core logic implementation of the meal ordering subsystem.<br>Use Case Implementation: Implementation of the key use case "Place Order."<br>Interface Prototype: Iterations of the meal ordering page prototype.|25%|
 |纪鹏 2351869|Overall Architecture: Design and refinement of the campus card recharge service within the system architecture.<br>Interface Design: Definition of internal and external interfaces for the campus card recharge service, including payment and authentication integration.<br>Use Case Implementation: Implementation of the key use case “Campus Card Recharge,” covering recharge flow and transaction handling.<br>System Evolution Analysis: Analysis of security governance evolution and backward compatibility issues related to the campus card data model.|25%|
-|张诗蔻 2353240|Interface Design: Designed RESTful APIs for dining feedback submission, review, status update, and notification flows.<br>Security Mechanism: Specified multi-layer security for authentication, authorization, data protection, and attack prevention.<br>Non-Functional Design : Defined performance, scalability, and maintainability mechanisms (microservices, caching, async processing, monitoring/logging).<br>Open Issues: Identified unresolved points on peak-time performance optimization and future intelligent feature extension.|25%|
+|张诗蔻 2353240|Interface Design: Designed RESTful APIs for dining feedback submission, review, status update, and notification flows.<br>Security Mechanism: Specified multi-layer security for authentication, authorization, data protection, and attack prevention.<br>Non-Functional Design : Defined performance, scalability, and maintainability mechanisms (microservices, caching, async processing, monitoring/logging).<br>Open Issues: Identified unresolved points on peak-time performance optimization.|25%|
 |于伊莲 2352993|Completed the design of the API for the dish recommendation and leaderboard subsystem, and implemented the data persistence mechanism within the key mechanisms. Further refined the user interface of the dish recommendation and leaderboard subsystem.|25%|
